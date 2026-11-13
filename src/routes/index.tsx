@@ -33,6 +33,8 @@ import dTannirbhavi from "@/assets/dest-beach.jpg";
 import dCoorg from "@/assets/coorg-tour.jpg";
 import fSedan from "@/assets/vehicle-sedan.jpg";
 import fSuv from "@/assets/vehicle-suv.jpg";
+import { PhotoMarquee } from "@/components/PhotoMarquee";
+import { services } from "@/lib/services";
 import { BRAND, CALL_NUMBER, WHATSAPP_NUMBER, callLink, whatsappLink as wa } from "@/lib/booking";
 import { SiteLayout, SectionTitle, GoldLink, DestinationCard, PackageCard, ext } from "@/components/SiteLayout";
 import { destinations, packages } from "@/lib/places";
@@ -52,13 +54,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const services = [
-  { icon: Car, img: fSedan, t: "Local City Rides", d: "Quick & comfortable rides within Mangalore city." },
-  { icon: Plane, img: fSedan, t: "Airport Transfers", d: "Timely pickup & drop to Mangaluru International Airport (IXE)." },
-  { icon: RouteIcon, img: fSuv, t: "Outstation Trips", d: "Explore nearby and far destinations with ease." },
-  { icon: Map, img: dTannirbhavi, t: "Custom Tour Packages", d: "Discover the best of Karnataka with our curated tours.", round: true },
-];
 
 const features = [
   { icon: Plane, t: "24/7 Airport Transfers", d: "On-time pickups & drops at Mangaluru International Airport (IXE), day or night." },
@@ -91,7 +86,7 @@ function Index() {
 
 const SLIDE_MS = 4000;
 
-type Slide = { img: string; thumb: string; place: string; sub: string };
+type Slide = { img: string; thumb: string; place: string; sub: string; pos?: string };
 const slides: Slide[] = [
   { img: sBeach, thumb: tBeach, place: "Mangaluru", sub: "City & Beaches" },
   { img: sMurudeshwara, thumb: tMurudeshwara, place: "Murudeshwara", sub: "Coastal Karnataka" },
@@ -104,7 +99,7 @@ const slides: Slide[] = [
   { img: sCoorg, thumb: tCoorg, place: "Coorg", sub: "Hills & Coffee" },
   { img: sChik, thumb: tChik, place: "Chikkamagaluru", sub: "Coffee Hills" },
   { img: sMysore, thumb: tMysore, place: "Mysore", sub: "Palace City" },
-  { img: sBandipur, thumb: tBandipur, place: "Bandipur", sub: "Wildlife Safari" },
+  { img: sBandipur, thumb: tBandipur, place: "Bandipur", sub: "Wildlife Safari", pos: "object-[50%_55%]" },
 ];
 
 const wrap = (i: number, n: number) => ((i % n) + n) % n;
@@ -113,6 +108,7 @@ function Hero() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const touchX = useRef<number | null>(null);
+  const strip = useRef<HTMLUListElement>(null);
   const n = slides.length;
   const go = (i: number) => setActive(wrap(i, n));
   const s = slides[active] as Slide;
@@ -123,12 +119,18 @@ function Hero() {
     return () => clearTimeout(t);
   }, [active, paused, n]);
 
+  useEffect(() => {
+    const ul = strip.current;
+    const li = ul?.children[active] as HTMLElement | undefined;
+    if (ul && li) ul.scrollTo({ left: li.offsetLeft - 8, behavior: "smooth" });
+  }, [active]);
+
   return (
     <section
       id="home"
       aria-roledescription="carousel"
       aria-label="Popular trips from Mangalore"
-      className="relative isolate flex min-h-[100svh] items-center overflow-clip bg-navy-deep text-primary-foreground"
+      className="relative isolate flex min-h-[100svh] flex-col overflow-clip bg-navy-deep text-primary-foreground"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
@@ -152,91 +154,77 @@ function Hero() {
           width={1920}
           height={1088}
           loading={i === 0 ? "eager" : "lazy"}
-          className={`absolute inset-0 -z-20 h-full w-full object-cover object-[72%_center] transition-[opacity,transform] duration-[1400ms] ease-out lg:object-center ${i === active ? "scale-100 opacity-100" : "scale-110 opacity-0"}`}
+          className={`absolute inset-0 -z-20 h-full w-full object-cover ${sl.pos ?? "object-[72%_center] lg:object-center"} transition-opacity duration-[1400ms] ease-out ${i === active ? "animate-[hero-drift_9s_ease-out_forwards] opacity-100" : "opacity-0"}`}
         />
       ))}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/95 via-navy-deep/55 to-navy-deep/30 lg:bg-gradient-to-r lg:from-navy-deep/90 lg:via-navy-deep/45 lg:to-navy-deep/10" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/95 via-navy-deep/60 to-navy-deep/40 lg:bg-gradient-to-r lg:from-navy-deep/90 lg:via-navy-deep/55 lg:to-navy-deep/15" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-navy-deep/80 to-transparent" />
 
-      <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 pb-10 pt-32 sm:px-6 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:items-center lg:gap-6 lg:pb-12 lg:pl-8 lg:pr-14">
-        <div className="min-w-0 max-w-3xl">
-          <div key={active} aria-live="polite" className="inline-flex max-w-full animate-in fade-in slide-in-from-bottom-2 items-center gap-2.5 rounded-full border border-primary-foreground/20 bg-navy-deep/60 px-5 py-2.5 text-sm backdrop-blur-md duration-500 sm:text-base">
-            <MapPin className="h-4 w-4 shrink-0 text-gold" />
-            <span className="truncate"><span className="font-bold">{s.place}</span> <span className="text-primary-foreground/70">· {s.sub}</span></span>
+      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-6 pt-32 sm:px-6 lg:px-8">
+        <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_auto]">
+          <div className="min-w-0 max-w-3xl">
+            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-gold animate-in fade-in slide-in-from-left-4 duration-700">
+              <span className="h-px w-10 bg-gold" /> Mangalore Travel Cabs
+            </p>
+            <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] animate-in fade-in slide-in-from-bottom-6 duration-1000 sm:text-6xl xl:text-7xl">
+              Your Ride Across <span className="bg-gradient-to-r from-gold via-amber-200 to-gold bg-clip-text text-transparent">Coastal Karnataka</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-base text-primary-foreground/85 animate-in fade-in slide-in-from-bottom-4 duration-1000 sm:text-lg">
+              Local taxis, airport transfers, outstation trips and temple tours — clean AC cars, local drivers, clear prices on WhatsApp.
+            </p>
+            <div className="mt-7 flex flex-wrap items-center gap-3 sm:gap-4">
+              <Link to="/packages" className="inline-flex items-center gap-2.5 rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-gold-foreground shadow-float transition hover:scale-105 sm:text-base">
+                Explore Packages <ArrowRight className="h-4 w-4" />
+              </Link>
+              <a href={wa(`Hi ${BRAND}, I'd like a cab quote.`)} target="_blank" rel="noreferrer" className="inline-flex items-center rounded-full border border-primary-foreground/40 bg-primary-foreground/10 px-7 py-3.5 text-sm font-semibold backdrop-blur-md transition hover:bg-primary-foreground/20 sm:text-base">
+                Get a Quote
+              </a>
+            </div>
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold text-primary-foreground/80 sm:text-sm">
+              {["24/7 Service", "Airport Transfers", "Local Drivers", "No Hidden Charges"].map((t) => (
+                <li key={t} className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-gold" />{t}</li>
+              ))}
+            </ul>
           </div>
 
-          <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.05] sm:text-6xl xl:text-7xl">
-            Taxi Service in Mangaluru for <span className="text-gold">Local &amp; Outstation Travel</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-base text-primary-foreground/85 sm:text-lg">
-            Private cab rides, airport transfers and tour packages to tourist places across Karnataka — planned around your dates, your group and your pace.
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
-            <Link to="/packages" className="inline-flex items-center gap-2.5 rounded-xl bg-gold px-6 py-3.5 text-sm font-bold text-gold-foreground shadow-float transition hover:brightness-105 sm:text-base">
-              Explore Packages <ArrowRight className="h-4 w-4" />
-            </Link>
+          <div key={active} aria-live="polite" className="hidden w-72 rounded-3xl border border-primary-foreground/20 bg-navy-deep/40 p-5 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-700 lg:block">
+            <div className="flex items-baseline justify-between">
+              <span className="font-display text-5xl font-extrabold text-gold">{String(active + 1).padStart(2, "0")}</span>
+              <span className="text-sm text-primary-foreground/60">/ {String(n).padStart(2, "0")}</span>
+            </div>
+            <p className="mt-3 flex items-center gap-1.5 text-xs uppercase tracking-widest text-primary-foreground/60"><MapPin className="h-3.5 w-3.5 text-gold" /> Now showing</p>
+            <p className="mt-1 font-display text-2xl font-bold">{s.place}</p>
+            <p className="text-sm text-primary-foreground/75">{s.sub}</p>
+            <a href={wa(`Hi ${BRAND}, I'd like to plan a trip to ${s.place}.`)} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-gold hover:underline">
+              Plan this trip <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
-
-          <ul className="-mx-5 mt-10 flex gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:hidden">
-            {slides.map((sl, i) => (
-              <li key={sl.place} className="shrink-0">
-                <button type="button" onClick={() => go(i)} aria-label={`Show ${sl.place}`} aria-current={i === active} className="flex w-20 flex-col items-center gap-1.5 text-center">
-                  <img src={sl.thumb} alt="" loading="lazy" className={`h-16 w-16 rounded-full object-cover ring-2 transition ${i === active ? "ring-gold" : "ring-primary-foreground/40"}`} />
-                  <span className={`text-[11px] font-semibold leading-tight ${i === active ? "text-gold" : "text-primary-foreground/80"}`}>{sl.place}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
         </div>
+      </div>
 
-        <ul className="relative hidden h-[min(720px,70svh)] lg:block">
+      <div className="mx-auto w-full max-w-7xl px-5 pb-8 sm:px-6 lg:px-8" role="tablist" aria-label="Choose trip">
+        <ul ref={strip} className="flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] sm:gap-4">
           {slides.map((sl, i) => {
-            const d = wrap(i - active + n / 2, n) - n / 2;
-            const abs = Math.abs(d);
-            const sign = d < 0 ? -1 : 1;
-            const y = abs === 0 ? "0px" : abs === 1 ? `${sign} * min(190px, 22svh)` : abs === 2 ? `${sign} * min(335px, 39svh)` : `${sign} * min(480px, 56svh)`;
-            const on = abs === 0;
+            const on = i === active;
             return (
-              <li
-                key={sl.place}
-                className="absolute right-0 top-1/2 transition-[transform,opacity] duration-700 ease-out"
-                style={{
-                  transform: `translate(${-Math.min(abs, 3) * 36}px, calc(-50% + ${y}))`,
-                  opacity: abs > 2 ? 0 : 1,
-                  pointerEvents: abs > 2 ? "none" : "auto",
-                }}
-              >
-                <button type="button" onClick={() => go(i)} tabIndex={abs > 2 ? -1 : 0} aria-label={`Show ${sl.place}`} aria-current={on} className="group flex items-center gap-5 text-right">
-                  <span className="block">
-                    <span className={`block font-display font-bold transition-all duration-700 ${on ? "text-3xl text-gold" : "text-xl text-primary-foreground group-hover:text-gold"}`}>{sl.place}</span>
-                    <span className={`block transition-all duration-700 ${on ? "mt-1 text-xl text-primary-foreground" : "text-sm text-primary-foreground/75"}`}>{sl.sub}</span>
-                  </span>
-                  <span
-                    className={`relative block shrink-0 overflow-hidden rounded-full shadow-float transition-all duration-700 ${on ? "ring-[3px] ring-gold" : "ring-2 ring-primary-foreground/60 group-hover:ring-gold"}`}
-                    style={{ width: on ? "min(220px, 26svh)" : "min(120px, 14svh)", height: on ? "min(220px, 26svh)" : "min(120px, 14svh)" }}
-                  >
-                    <img src={sl.thumb} alt="" loading="lazy" className="h-full w-full object-cover" />
-                  </span>
+              <li key={sl.place} className="shrink-0">
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={on}
+                  aria-label={`Show ${sl.place}`}
+                  onClick={() => go(i)}
+                  className={`group relative block h-24 overflow-hidden rounded-2xl text-left shadow-float transition-all duration-700 ease-out sm:h-28 ${on ? "w-44 ring-2 ring-gold sm:w-56" : "w-28 opacity-80 ring-1 ring-primary-foreground/30 hover:opacity-100 sm:w-36"}`}
+                >
+                  <img src={sl.thumb} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+                  <span className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/20 to-transparent" />
+                  <span className="absolute inset-x-3 bottom-2.5 block truncate text-xs font-bold sm:text-sm">{sl.place}</span>
+                  {on && <span key={active} className="absolute inset-x-0 bottom-0 h-1 origin-left bg-gold" style={{ animation: `hero-progress ${SLIDE_MS}ms linear forwards`, animationPlayState: paused ? "paused" : "running" }} />}
                 </button>
               </li>
             );
           })}
         </ul>
-      </div>
-
-      <div className="absolute right-4 top-1/2 hidden -translate-y-1/2 flex-col gap-3 lg:flex" role="tablist" aria-label="Choose trip">
-        {slides.map((sl, i) => (
-          <button
-            key={sl.place}
-            type="button"
-            role="tab"
-            aria-selected={i === active}
-            aria-label={`Show ${sl.place}`}
-            onClick={() => go(i)}
-            className={`rounded-full transition-all ${i === active ? "h-3.5 w-3.5 bg-gold" : "h-2.5 w-2.5 bg-primary-foreground/50 hover:bg-primary-foreground"}`}
-          />
-        ))}
       </div>
     </section>
   );
@@ -244,20 +232,39 @@ function Hero() {
 
 function Services() {
   return (
-    <section className="bg-secondary py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4">
-        <SectionTitle center kicker="Our Services" title="Taxi & Cab Services in Mangalore" sub="From city rides to long journeys, we've got you covered. Choose from a range of vehicles and travel options tailored to your needs." />
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
-          {services.map(({ icon: I, img, t, d, round }) => (
-            <article key={t} className="flex flex-col items-center rounded-2xl border border-border bg-card p-4 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-float sm:p-6">
-              <div className="flex w-full items-center justify-center gap-3">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold text-gold-foreground"><I className="h-5 w-5" /></span>
-                <img src={img} alt="" loading="lazy" width={1024} height={656} className={`h-14 w-24 object-cover sm:h-16 sm:w-28 ${round ? "rounded-full" : "object-contain"}`} />
+    <section id="services" className="relative scroll-mt-20 overflow-hidden bg-navy-deep py-16 text-primary-foreground sm:py-20">
+      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-gold/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-sky-400/10 blur-3xl" />
+      <div className="relative mx-auto max-w-7xl px-4">
+        <SectionTitle center light kicker="Our Services" title="Taxi & Cab Services in Mangalore" sub="From city rides to long journeys, we've got you covered. Choose from a range of vehicles and travel options tailored to your needs." />
+        <div data-reveal="focus" className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:flex lg:gap-5">
+          {services.map(({ slug, icon: I, img, tag, title: t, short: d, pts, pos, gallery }, i) => (
+            <Link
+              key={slug}
+              to="/services/$slug"
+              params={{ slug }}
+              className="group relative isolate flex flex-col overflow-hidden rounded-3xl bg-primary-foreground/5 ring-1 ring-primary-foreground/15 transition-[flex,box-shadow] duration-700 ease-out hover:ring-gold/70 lg:flex-1 lg:hover:flex-[1.6]"
+            >
+              <div className="relative h-56 overflow-hidden sm:h-60">
+                {gallery ? <PhotoMarquee imgs={gallery} itemClass="w-44" speed={45} /> : <img src={img} alt={t} loading="lazy" className={`h-full w-full object-cover transition duration-1000 ease-out group-hover:scale-105 ${pos ?? "object-center"}`} />}
+                <span className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy-deep/70 to-transparent" />
+                <span className="absolute left-4 top-3 font-display text-4xl font-extrabold text-primary-foreground drop-shadow-lg">0{i + 1}</span>
+                <span className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-gold text-gold-foreground shadow-float transition duration-500 group-hover:rotate-[360deg]"><I className="h-5 w-5" /></span>
               </div>
-              <h3 className="mt-4 font-display text-sm font-bold text-primary sm:text-lg">{t}</h3>
-              <p className="mt-1.5 flex-1 text-xs text-muted-foreground sm:text-sm">{d}</p>
-              <GoldLink href={wa(`Hi ${BRAND}, I'd like to book: ${t}. Please share details.`)} className="mt-4">Book Now</GoldLink>
-            </article>
+              <div className="flex flex-1 flex-col p-5">
+                <span className="inline-block self-start rounded-full bg-gold/90 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-gold-foreground">{tag}</span>
+                <h3 className="mt-3 font-display text-xl font-bold sm:text-2xl">{t}</h3>
+                <p className="mt-2 text-sm text-primary-foreground/80">{d}</p>
+                <ul className="mt-3 space-y-1.5 text-sm text-primary-foreground/90">
+                  {pts.map((x) => (
+                    <li key={x} className="flex items-start gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />{x}</li>
+                  ))}
+                </ul>
+                <span className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-bold text-gold">
+                  View Details <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1.5" />
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -277,7 +284,7 @@ function Destinations() {
             View All Destinations <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div data-reveal="iris" className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {destinations.slice(0, 4).map((d) => <DestinationCard key={d.slug} d={d} />)}
         </div>
       </div>
@@ -291,7 +298,7 @@ function Fleet() {
     <section id="cabs" className="scroll-mt-20 bg-background py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <SectionTitle center kicker="Our Cabs" title="The Right Vehicle for Every Trip" sub="Clean, air-conditioned vehicles driven by experienced local drivers." />
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
+        <div data-reveal="drive" className="mt-10 grid gap-5 md:grid-cols-3">
           {list.map((v) => <VehicleCard key={v.slug} v={v} />)}
         </div>
         <div className="mt-10 text-center">
@@ -310,7 +317,7 @@ function Packages() {
     <section id="packages" className="scroll-mt-20 bg-secondary py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <SectionTitle kicker="Tour Packages" title="Explore Coastal Karnataka" sub="Prices shared on enquiry – tell us your dates and group size on WhatsApp." />
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div data-reveal="focus" className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((p) => <PackageCard key={p.slug} p={p} />)}
         </div>
         <div className="mt-10 text-center">
@@ -328,10 +335,10 @@ function About() {
     <section id="about" className="scroll-mt-20 bg-background py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <SectionTitle center kicker="About Us" title="Travel Easy with Local Experts" sub="A Mangaluru-based cab service open 24/7 – trusted by families, pilgrims and business travellers across South Canara." />
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div data-reveal="pop" className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {features.map(({ icon: I, t, d }) => (
             <div key={t} className="rounded-2xl border border-border bg-card p-6 text-center">
-              <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-gold text-gold-foreground"><I className="h-6 w-6" /></span>
+              <span className="icon-bob mx-auto grid h-14 w-14 place-items-center rounded-full bg-gold text-gold-foreground"><I className="h-6 w-6" /></span>
               <h3 className="mt-4 font-display font-bold text-primary">{t}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{d}</p>
             </div>
@@ -347,7 +354,7 @@ function Reviews() {
     <section className="bg-navy-soft py-16 text-primary-foreground sm:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <SectionTitle center light kicker="Reviews" title="What Our Travellers Say" />
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div data-reveal="tilt" className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {reviews.map((r) => (
             <figure key={r.n} className="rounded-2xl bg-primary-foreground/5 p-6 ring-1 ring-primary-foreground/10">
               <div className="flex gap-0.5 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>

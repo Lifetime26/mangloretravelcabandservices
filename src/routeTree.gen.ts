@@ -15,6 +15,7 @@ import { Route as DestinationsIndexRouteImport } from './routes/destinations.ind
 import { Route as DestinationsSlugRouteImport } from './routes/destinations.$slug'
 import { Route as PackagesIndexRouteImport } from './routes/packages.index'
 import { Route as PackagesSlugRouteImport } from './routes/packages.$slug'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,12 +47,18 @@ const PackagesSlugRoute = PackagesSlugRouteImport.update({
   path: '/packages/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/services/$slug',
+  path: '/services/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/fleet': typeof FleetRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
   '/packages/$slug': typeof PackagesSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
   '/destinations/': typeof DestinationsIndexRoute
   '/packages/': typeof PackagesIndexRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/fleet': typeof FleetRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
   '/packages/$slug': typeof PackagesSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
   '/destinations': typeof DestinationsIndexRoute
   '/packages': typeof PackagesIndexRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/fleet': typeof FleetRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
   '/packages/$slug': typeof PackagesSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
   '/destinations/': typeof DestinationsIndexRoute
   '/packages/': typeof PackagesIndexRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/fleet'
     | '/destinations/$slug'
     | '/packages/$slug'
+    | '/services/$slug'
     | '/destinations/'
     | '/packages/'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/fleet'
     | '/destinations/$slug'
     | '/packages/$slug'
+    | '/services/$slug'
     | '/destinations'
     | '/packages'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/fleet'
     | '/destinations/$slug'
     | '/packages/$slug'
+    | '/services/$slug'
     | '/destinations/'
     | '/packages/'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   FleetRoute: typeof FleetRoute
   DestinationsSlugRoute: typeof DestinationsSlugRoute
   PackagesSlugRoute: typeof PackagesSlugRoute
+  ServicesSlugRoute: typeof ServicesSlugRoute
   DestinationsIndexRoute: typeof DestinationsIndexRoute
   PackagesIndexRoute: typeof PackagesIndexRoute
 }
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PackagesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/services/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   FleetRoute: FleetRoute,
   DestinationsSlugRoute: DestinationsSlugRoute,
   PackagesSlugRoute: PackagesSlugRoute,
+  ServicesSlugRoute: ServicesSlugRoute,
   DestinationsIndexRoute: DestinationsIndexRoute,
   PackagesIndexRoute: PackagesIndexRoute,
 }

@@ -44,7 +44,7 @@ export function Logo({ small = false }: { small?: boolean }) {
 }
 
 export function PhotoSlide({ imgs, alt, eager = false, className = "" }: { imgs: string[]; alt: string; eager?: boolean; className?: string }) {
-  const [i, setI] = useState(0);
+  const [i, setI] = useState(0);c
   useEffect(() => {
     if (imgs.length < 2) return;
     const t = setInterval(() => setI((x) => (x + 1) % imgs.length), 3500);
@@ -91,7 +91,7 @@ export function GoldLink({ href, children, className = "" }: { href: string; chi
 
 export function SectionTitle({ kicker, title, sub, center, light }: { kicker: string; title: string; sub?: string; center?: boolean; light?: boolean }) {
   return (
-    <div className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
+    <div data-reveal="title" className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
       <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">{kicker}</p>
       <h2 className={`mt-2 font-display text-2xl font-bold sm:text-4xl ${light ? "text-primary-foreground" : "text-primary"}`}>{title}</h2>
       {sub && <p className={`mt-3 text-sm sm:text-base ${light ? "text-primary-foreground/80" : "text-muted-foreground"}`}>{sub}</p>}
@@ -248,6 +248,15 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   const path = useRouterState({ select: (s) => s.location.pathname });
   useEffect(() => {
     if (!window.location.hash) window.scrollTo(0, 0);
+  }, [path]);
+  useEffect(() => {
+    const els = document.querySelectorAll("[data-reveal]");
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }),
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
   }, [path]);
   return (
     <div className="font-sans text-foreground">
