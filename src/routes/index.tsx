@@ -153,7 +153,7 @@ function Hero() {
           width={1920}
           height={1088}
           loading={i === 0 ? "eager" : "lazy"}
-          className={`absolute inset-0 -z-20 h-full w-full object-cover ${sl.pos ?? "object-[72%_center] lg:object-center"} transition-opacity duration-[1400ms] ease-out ${i === active ? "animate-[hero-drift_9s_ease-out_forwards] opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 -z-20 h-full w-full object-cover ${sl.pos ?? "object-center"} transition-opacity duration-[1400ms] ease-out ${i === active ? "animate-[hero-drift_9s_ease-out_forwards] opacity-100" : "opacity-0"}`}
         />
       ))}
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/95 via-navy-deep/60 to-navy-deep/40 lg:bg-gradient-to-r lg:from-navy-deep/90 lg:via-navy-deep/55 lg:to-navy-deep/15" />
