@@ -74,7 +74,6 @@ function Index() {
     <SiteLayout>
       <Hero />
       <Services />
-      <Destinations />
       <Fleet />
       <Packages />
       <About />

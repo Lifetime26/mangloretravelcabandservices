@@ -44,7 +44,7 @@ export function Logo({ small = false }: { small?: boolean }) {
 }
 
 export function PhotoSlide({ imgs, alt, eager = false, className = "" }: { imgs: string[]; alt: string; eager?: boolean; className?: string }) {
-  const [i, setI] = useState(0);c
+  const [i, setI] = useState(0);
   useEffect(() => {
     if (imgs.length < 2) return;
     const t = setInterval(() => setI((x) => (x + 1) % imgs.length), 3500);
