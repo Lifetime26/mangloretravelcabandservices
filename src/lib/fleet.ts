@@ -5,6 +5,8 @@ import fErtiga from "@/assets/ertiga.png";
 import fHycross from "@/assets/Hycross.jpg";
 import fUrbania from "@/assets/vehicle-urbania.jpg";
 import fKia from "@/assets/Kia.jpg";
+import fBus21 from "@/assets/21-seater.jpg";
+import fBus50 from "@/assets/50-seater_bus.jpg";
 
 /* ------------------------------------------------------------------ */
 /*  EDIT VEHICLES HERE.                                               */
@@ -125,6 +127,7 @@ export const vehicles: Vehicle[] = [
     features: ["Chilled AC", "Comfortable seats", "Music system"],
     desc: "For medium-sized groups, wedding parties and pilgrim tours travelling together.",
     bestFor: "Weddings and medium groups",
+    img: fBus21,
   },
   {
     slug: "bus-50",
@@ -135,5 +138,6 @@ export const vehicles: Vehicle[] = [
     features: ["Chilled AC", "Comfortable seats", "Music system"],
     desc: "For large groups, school and college tours, wedding functions and pilgrimages.",
     bestFor: "Large groups and long tours",
+    img: fBus50,
   },
 ];

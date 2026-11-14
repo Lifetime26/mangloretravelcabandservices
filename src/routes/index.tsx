@@ -175,9 +175,6 @@ function Hero() {
               <Link to="/packages" className="inline-flex items-center gap-2.5 rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-gold-foreground shadow-float transition hover:scale-105 sm:text-base">
                 Explore Packages <ArrowRight className="h-4 w-4" />
               </Link>
-              <a href={wa(`Hi ${BRAND}, I'd like a cab quote.`)} target="_blank" rel="noreferrer" className="inline-flex items-center rounded-full border border-primary-foreground/40 bg-primary-foreground/10 px-7 py-3.5 text-sm font-semibold backdrop-blur-md transition hover:bg-primary-foreground/20 sm:text-base">
-                Get a Quote
-              </a>
             </div>
             <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold text-primary-foreground/80 sm:text-sm">
               {["24/7 Service", "Airport Transfers", "Local Drivers", "No Hidden Charges"].map((t) => (
@@ -194,7 +191,7 @@ function Hero() {
             <p className="mt-3 flex items-center gap-1.5 text-xs uppercase tracking-widest text-primary-foreground/60"><MapPin className="h-3.5 w-3.5 text-gold" /> Now showing</p>
             <p className="mt-1 font-display text-2xl font-bold">{s.place}</p>
             <p className="text-sm text-primary-foreground/75">{s.sub}</p>
-            <a href={wa(`Hi ${BRAND}, I'd like to plan a trip to ${s.place}.`)} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-gold hover:underline">
+            <a href="#contact" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("plan-trip", { detail: s.place })); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }} className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-gold hover:underline">
               Plan this trip <ArrowRight className="h-4 w-4" />
             </a>
           </div>
@@ -370,6 +367,11 @@ function Reviews() {
 function ContactForm() {
   const [f, setF] = useState({ name: "", phone: "", pickup: "", dest: "", date: "", vehicle: "Sedan (Dzire / Etios)" });
   const [err, setErr] = useState("");
+  useEffect(() => {
+    const h = (e: Event) => setF((x) => ({ ...x, pickup: x.pickup || "Mangaluru", dest: String((e as CustomEvent).detail) }));
+    window.addEventListener("plan-trip", h);
+    return () => window.removeEventListener("plan-trip", h);
+  }, []);
   const set = (k: keyof typeof f) => (e: { target: { value: string } }) => setF({ ...f, [k]: e.target.value.slice(0, 120) });
   const submit = (e: FormEvent) => {
     e.preventDefault();

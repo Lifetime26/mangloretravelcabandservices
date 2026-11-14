@@ -11,7 +11,7 @@ export const nav: [label: string, hash: string][] = [
   ["Tour Packages", "packages"], ["Places to Visit", "places"], ["Contact", "contact"],
 ];
 
-const coverage = ["Mangaluru & Nearby", "Udupi & Manipal", "Kollur & Murudeshwara", "Coorg & Chikmagalur", "Across Karnataka"];
+const coverage = ["Mangalore", "Udupi", "Coorg", "Bangalore", "Hubli", "Manipal", "Mysore"];
 
 export function Logo({ small = false }: { small?: boolean }) {
   return (
@@ -136,9 +136,6 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-primary-foreground/80">
             {coverage.map((c) => <li key={c} className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5 text-gold" />{c}</li>)}
           </ul>
-        </div>
-        <div className="flex items-center lg:justify-end">
-          <p className="font-display text-xl font-semibold italic leading-snug text-gold">Ride Mangalore<br />with Confidence</p>
         </div>
       </div>
       <div className="border-t border-primary-foreground/10">

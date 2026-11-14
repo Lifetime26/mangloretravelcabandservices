@@ -1,3 +1,5 @@
+import { withStopPhotos } from "@/lib/stop-photos";
+import { extraPackages, extraAbout } from "@/lib/packages-extra";
 import dTannirbhavi from "@/assets/dest-beach.jpg";
 import dKadri from "@/assets/kadri.jpg";
 import dUdupi from "@/assets/udupi.jpg";
@@ -145,12 +147,14 @@ export const getDestination = (slug: string) => destinations.find((d) => d.slug 
 
 /* ------------------------------------------------------------------ */
 
-export type Cat = "temple" | "coastal" | "outstation";
+export type Cat = "temple" | "coastal" | "outstation" | "hills" | "heritage";
 
 export const catLabel: Record<Cat, string> = {
   temple: "Temple Yatra",
   coastal: "Coastal & Beach",
-  outstation: "Outstation & Hills",
+  outstation: "Beaches & Adventure",
+  hills: "Hill Stations",
+  heritage: "Heritage & Palaces",
 };
 
 export type TourPackage = {
@@ -161,16 +165,17 @@ export type TourPackage = {
   imgs?: string[];
   places: string;
   summary: string;
+  about?: string[];
   duration: string;
   route: string;
   distance: string;
-  stops: { name: string; note: string }[];
+  stops: { name: string; note: string; detail?: string; img?: string }[];
   vehicle: string;
   plan: string[];
   featured?: boolean;
 };
 
-export const packages: TourPackage[] = [
+const basePackages: TourPackage[] = [
   {
     slug: "kollur-mookambika-darshan",
     cat: "temple",
@@ -220,6 +225,7 @@ export const packages: TourPackage[] = [
       "Visit Bhatkal. Idagunji Ganapati is a longer inland drive and works best on a 2-day plan",
       "Return to Mangaluru",
     ],
+    featured: true,
   },
   {
     slug: "dharmasthala-kukke-subrahmanya",
@@ -244,6 +250,7 @@ export const packages: TourPackage[] = [
       "Continue to Kukke Subrahmanya for darshan",
       "Return to Mangaluru in the evening (queue times can vary)",
     ],
+    featured: true,
   },
   {
     slug: "udupi-krishna-temple-tour",
@@ -268,6 +275,7 @@ export const packages: TourPackage[] = [
       "Evening at Malpe Beach for the sunset",
       "Return to Mangaluru",
     ],
+    featured: true,
   },
   {
     slug: "mangaluru-city-beaches",
@@ -292,7 +300,6 @@ export const packages: TourPackage[] = [
       "Panambur Beach and sunset",
       "Drop-off at your hotel",
     ],
-    featured: true,
   },
   {
     slug: "heritage-temples-mangaluru",
@@ -369,6 +376,7 @@ export const packages: TourPackage[] = [
       "Day 2: Return drive to Mangaluru",
       "Hotel or homestay is booked by you. Ask us for suggestions",
     ],
+    featured: true,
   },
   {
     slug: "bekal-fort-kerala-coast",
@@ -395,6 +403,8 @@ export const packages: TourPackage[] = [
     ],
   },
 ];
+
+export const packages: TourPackage[] = [...basePackages.map((b) => (extraAbout[b.slug] ? { ...b, about: extraAbout[b.slug]! } : b)), ...extraPackages].map(withStopPhotos);
 
 export const getPackage = (slug: string) => packages.find((p) => p.slug === slug);
 
@@ -453,6 +463,8 @@ export const travelGuide: Record<Cat, GuideSection[]> = {
       items: ["Late afternoon is best for sunsets.", "October to March has the most comfortable weather.", "Heritage buildings such as churches may have fixed visiting hours."],
     },
   ],
+  hills: [] as GuideSection[],
+  heritage: [] as GuideSection[],
   outstation: [
     {
       title: "On the road",
@@ -468,6 +480,9 @@ export const travelGuide: Record<Cat, GuideSection[]> = {
     },
   ],
 };
+
+travelGuide.hills = travelGuide.outstation;
+travelGuide.heritage = travelGuide.outstation;
 
 export const yatraFaqs: { q: string; a: string }[] = [
   { q: "Can we visit two temples in one day?", a: "Yes. Dharmasthala and Kukke Subrahmanya work well in a single day with an early morning start. Queue times vary, so expect a late-evening return." },

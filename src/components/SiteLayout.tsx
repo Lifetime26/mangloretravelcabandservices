@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, Clock, MapPin, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { BRAND, CALL_NUMBER, WHATSAPP_NUMBER, callLink, whatsappLink as wa } from "@/lib/booking";
+import logoImg from "@/assets/logo-mtc.png";
 import { catLabel, type Destination, type TourPackage } from "@/lib/places";
 
 export const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
@@ -16,7 +17,7 @@ export const nav: NavItem[] = [
   { l: "Contact", href: "/#contact" },
 ];
 
-const coverage = ["Mangaluru", "Udupi", "Manipal", "Kundapura", "South Canara"];
+const coverage = ["Mangalore", "Udupi", "Coorg", "Bangalore", "Hubli", "Manipal", "Mysore"];
 
 function NavAnchor({ item, className, onClick }: { item: NavItem; className?: string; onClick?: () => void }) {
   return item.to ? (
@@ -28,18 +29,20 @@ function NavAnchor({ item, className, onClick }: { item: NavItem; className?: st
 
 export function Logo({ small = false }: { small?: boolean }) {
   return (
-    <Link to="/" className="flex min-w-0 items-center gap-2.5" aria-label={BRAND}>
-      <svg viewBox="0 0 48 40" className={`${small ? "h-9 w-11" : "h-11 w-13"} shrink-0`} aria-hidden>
-        <path d="M8 26a16 16 0 0 1 32 0Z" className="fill-gold" />
-        <path d="M2 28c6-4 10 4 16 0s10 4 16 0 8 3 12 1" className="stroke-primary-foreground" strokeWidth="3" fill="none" strokeLinecap="round" />
-        <path d="M6 34c6-4 10 4 16 0s10 4 16 0" className="stroke-primary-foreground/70" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-      </svg>
-      <span className="min-w-0 leading-tight">
-        <span className={`block font-display font-bold text-primary-foreground ${small ? "text-sm" : "text-sm sm:text-lg"}`}>Mangalore Travel Cabs</span>
-        <span className={`block font-display font-bold text-gold ${small ? "text-xs" : "text-xs sm:text-base"}`}>And Taxi Services</span>
-        <span className="mt-1 hidden text-[9px] font-semibold uppercase tracking-[0.18em] text-primary-foreground/70 sm:block">Safe • Comfortable • On Time</span>
+    <Link to="/" className="group flex shrink-0 items-center" aria-label={BRAND}>
+      <span className="rounded-xl bg-white px-2.5 py-1 shadow-[0_6px_20px_-6px_rgba(0,0,0,0.5)] ring-1 ring-gold/60 transition duration-300 group-hover:-translate-y-0.5 group-hover:ring-gold sm:rounded-2xl sm:px-3 sm:py-1.5">
+        <img src={logoImg} alt={BRAND} className={`${small ? "h-10 sm:h-11" : "h-10 sm:h-12"} w-auto`} />
       </span>
     </Link>
+  );
+}
+
+export function FitImg({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="relative mt-3 aspect-video overflow-hidden rounded-2xl bg-navy-deep">
+      <img src={src} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full scale-110 object-cover object-center opacity-70 blur-2xl" />
+      <img src={src} alt={alt} loading="lazy" className="absolute inset-0 h-full w-full object-contain object-center" />
+    </div>
   );
 }
 
@@ -53,7 +56,10 @@ export function PhotoSlide({ imgs, alt, eager = false, className = "" }: { imgs:
   return (
     <>
       {imgs.map((src, k) => (
-        <img key={src} src={src} alt={k === 0 ? alt : ""} loading={eager || k === 0 ? undefined : "lazy"} width={1920} height={1088} className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${k === i ? "opacity-100" : "opacity-0"} ${className}`} />
+        <div key={src} className={`absolute inset-0 overflow-hidden transition-opacity duration-1000 ${k === i ? "opacity-100" : "opacity-0"} ${className}`}>
+          <img src={src} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full scale-110 object-cover object-center opacity-70 blur-2xl" />
+          <img src={src} alt={k === 0 ? alt : ""} loading={eager || k === 0 ? undefined : "lazy"} className="absolute inset-0 h-full w-full object-contain object-center" />
+        </div>
       ))}
     </>
   );
@@ -207,7 +213,8 @@ function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.2fr_1fr_1fr]">
         <div>
           <Logo small />
-          <p className="mt-4 max-w-xs text-sm text-primary-foreground/70">Reliable 24/7 taxi and tour services across Mangaluru and Coastal Karnataka.</p>
+          <p className="mt-3 font-display text-sm font-semibold italic text-gold">Your Journey, Our Responsibility</p>
+          <p className="mt-2 max-w-xs text-sm text-primary-foreground/70">Reliable 24/7 taxi and tour services across Mangaluru and Coastal Karnataka.</p>
         </div>
         <div>
           <h4 className="font-display text-sm font-bold text-gold">Quick Links</h4>
@@ -229,9 +236,6 @@ function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-primary-foreground/80">
             {coverage.map((c) => <li key={c} className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5 text-gold" />{c}</li>)}
           </ul>
-        </div>
-        <div className="flex items-center lg:justify-end">
-          <p className="font-display text-xl font-semibold italic leading-snug text-gold">Ride Mangalore<br />with Confidence</p>
         </div>
       </div>
       <div className="border-t border-primary-foreground/10">

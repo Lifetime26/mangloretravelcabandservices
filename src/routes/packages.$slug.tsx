@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, CalendarDays, Car, Clock, Footprints, HeartHandshake, MessageCircle, Phone, Route as RouteIcon, Shirt, Sunrise } from "lucide-react";
-import { SiteLayout, SectionTitle, PackageCard, RouteRail, PhotoSlide, ext } from "@/components/SiteLayout";
+import { SiteLayout, SectionTitle, PackageCard, RouteRail, PhotoSlide, FitImg, ext } from "@/components/SiteLayout";
 import { catLabel, getPackage, packages, travelGuide } from "@/lib/places";
 import { BRAND, CALL_NUMBER, callLink, whatsappLink as wa } from "@/lib/booking";
 
@@ -63,47 +63,66 @@ function PackagePage() {
       <section className="bg-background py-12 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
           <div>
-            <h2 className="font-display text-2xl font-bold text-primary">Route at a glance</h2>
-            <div className="mt-4 rounded-2xl bg-secondary p-5"><RouteRail stops={p.stops} /></div>
-
-            <h3 className="mt-10 font-display text-xl font-bold text-primary">What you will see</h3>
-            <ul className="mt-4 grid gap-4 sm:grid-cols-2">
-              {p.stops.map((s, i) => (
-                <li key={s.name} className="relative overflow-hidden rounded-2xl border border-border bg-card p-5">
-                  <span className="absolute -right-2 -top-4 font-display text-7xl font-extrabold text-gold/15">{i + 1}</span>
-                  <p className="relative font-display text-lg font-bold text-primary">{s.name}</p>
-                  <p className="relative mt-1.5 text-sm text-muted-foreground">{s.note}</p>
-                </li>
+            <h2 className="font-display text-2xl font-bold text-primary">About this tour</h2>
+            <div className="mt-4 space-y-4 text-base leading-relaxed text-muted-foreground">
+              {(p.about ?? [p.summary]).map((t, i) => (
+                <div key={t} className="space-y-4">
+                  <p>{t}</p>
+                  {i === 0 && <div className="relative aspect-video overflow-hidden rounded-2xl bg-navy-deep"><PhotoSlide imgs={p.imgs ?? [p.img]} alt={p.title} /></div>}
+                </div>
               ))}
-            </ul>
+            </div>
 
-            <h3 className="mt-10 font-display text-xl font-bold text-primary">How the trip works</h3>
-            <ol className="relative mt-5 space-y-5 border-l-2 border-dashed border-gold/50 pl-7">
-              {p.plan.map((step: string, i: number) => (
-                <li key={step} className="relative">
-                  <span className="absolute -left-[2.35rem] grid h-7 w-7 place-items-center rounded-full bg-gold text-xs font-bold text-gold-foreground">{i + 1}</span>
-                  <p className="text-sm text-muted-foreground sm:text-base">{step}</p>
-                </li>
+            <h3 className="mt-10 font-display text-xl font-bold text-primary">Places covered</h3>
+            <div className="mt-4 space-y-6">
+              {p.stops.map((s) => (
+                <article key={s.name}>
+                  <h4 className="font-display text-lg font-bold text-primary">{s.name}</h4>
+                  {s.img && <FitImg src={s.img} alt={s.name} />}
+                  <p className="mt-1.5 text-muted-foreground">{s.detail ?? s.note}</p>
+                </article>
               ))}
-            </ol>
-            <p className="mt-6 text-sm text-muted-foreground">The plan is flexible. Tell us what you would like to add or skip and we will adjust the trip.</p>
+            </div>
 
-            <h3 className="mt-12 font-display text-xl font-bold text-primary">Travel guide</h3>
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              {guide.map((g, i) => {
-                const I = guideIcons[i % guideIcons.length] as typeof Shirt;
-                return (
-                  <div key={g.title} className="rounded-2xl border border-border bg-card p-5">
-                    <div className="flex items-center gap-3">
-                      <span className="grid h-9 w-9 place-items-center rounded-lg bg-navy-deep text-gold"><I className="h-4 w-4" /></span>
-                      <h4 className="font-display font-bold text-primary">{g.title}</h4>
-                    </div>
-                    <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-                      {g.items.map((t) => <li key={t} className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />{t}</li>)}
-                    </ul>
-                  </div>
-                );
-              })}
+            <p className="mt-8 rounded-2xl border-l-4 border-gold bg-gold/15 p-4 text-sm font-semibold text-primary"><span className="mr-2 rounded bg-gold px-2 py-0.5 text-[11px] font-extrabold uppercase tracking-wider text-gold-foreground">Note</span>Every itinerary is fully customisable. Add the places you like, leave out the ones you do not need, and we will shape the trip around your group. The sections below are optional extras you can open if they help.</p>
+
+            <div className="mt-6 space-y-3">
+              <details className="group rounded-2xl border border-border bg-card p-5">
+                <summary className="cursor-pointer font-display font-bold text-primary">Suggested route</summary>
+                <div className="mt-4 rounded-2xl bg-secondary p-5"><RouteRail stops={p.stops} /></div>
+              </details>
+
+              <details className="group rounded-2xl border border-border bg-card p-5">
+                <summary className="cursor-pointer font-display font-bold text-primary">Suggested itinerary</summary>
+                <ol className="relative mt-5 space-y-5 border-l-2 border-dashed border-gold/50 pl-7">
+                  {p.plan.map((step: string, i: number) => (
+                    <li key={step} className="relative">
+                      <span className="absolute -left-[2.35rem] grid h-7 w-7 place-items-center rounded-full bg-gold text-xs font-bold text-gold-foreground">{i + 1}</span>
+                      <p className="text-sm text-muted-foreground sm:text-base">{step}</p>
+                    </li>
+                  ))}
+                </ol>
+              </details>
+
+              <details className="group rounded-2xl border border-border bg-card p-5">
+                <summary className="cursor-pointer font-display font-bold text-primary">Travel tips &amp; guidance</summary>
+                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                  {guide.map((g, i) => {
+                    const I = guideIcons[i % guideIcons.length] as typeof Shirt;
+                    return (
+                      <div key={g.title} className="rounded-2xl border border-border bg-background p-5">
+                        <div className="flex items-center gap-3">
+                          <span className="grid h-9 w-9 place-items-center rounded-lg bg-navy-deep text-gold"><I className="h-4 w-4" /></span>
+                          <h4 className="font-display font-bold text-primary">{g.title}</h4>
+                        </div>
+                        <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                          {g.items.map((t) => <li key={t} className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />{t}</li>)}
+                        </ul>
+                      </div>
+                    );
+                  })}
+                </div>
+              </details>
             </div>
           </div>
 
@@ -126,7 +145,7 @@ function PackagePage() {
             <a href={callLink} className="mt-3 flex items-center justify-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-semibold text-primary transition hover:border-gold">
               <Phone className="h-4 w-4" /> Call {CALL_NUMBER.slice(0, 5)} {CALL_NUMBER.slice(5)}
             </a>
-            <p className="mt-4 text-xs text-muted-foreground">Price is shared on enquiry. Tell us your date and group size. Distances are approximate.</p>
+            <p className="mt-4 rounded-xl border-l-4 border-gold bg-gold/15 p-3 text-xs font-semibold text-primary"><span className="mr-1.5 rounded bg-gold px-1.5 py-0.5 text-[10px] font-extrabold uppercase text-gold-foreground">Note</span>Price is shared on enquiry. Tell us your date and group size. Distances are approximate.</p>
           </aside>
         </div>
       </section>

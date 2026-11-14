@@ -20,8 +20,10 @@ export const Route = createFileRoute("/packages/")({
 const tabs: { id: "all" | Cat; label: string }[] = [
   { id: "all", label: "All trips" },
   { id: "temple", label: "Temple Yatras" },
-  { id: "coastal", label: "Coastal & City" },
-  { id: "outstation", label: "Hills & Outstation" },
+  { id: "coastal", label: "Mangaluru Local" },
+  { id: "hills", label: "Hill Stations" },
+  { id: "heritage", label: "Heritage" },
+  { id: "outstation", label: "Beaches & Adventure" },
 ];
 
 const guideIcons = [Shirt, Sunrise, Footprints, HeartHandshake];
