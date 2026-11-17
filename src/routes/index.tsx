@@ -31,8 +31,6 @@ import tMysore from "@/assets/mysore-tour.jpg";
 import tBandipur from "@/assets/bandipur-mobile.jpg";
 import dTannirbhavi from "@/assets/dest-beach.jpg";
 import dCoorg from "@/assets/coorg-tour.jpg";
-import fSedan from "@/assets/vehicle-sedan.jpg";
-import fSuv from "@/assets/vehicle-suv.jpg";
 import { PhotoMarquee } from "@/components/PhotoMarquee";
 import { services } from "@/lib/services";
 import { BRAND, CALL_NUMBER, WHATSAPP_NUMBER, callLink, whatsappLink as wa } from "@/lib/booking";

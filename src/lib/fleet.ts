@@ -1,8 +1,8 @@
 import fSedan from "@/assets/vehicle-sedan.jpg";
-import fSuv from "@/assets/vehicle-suv.jpg";
 import fTempo from "@/assets/vehicle-van.jpg";
 import fErtiga from "@/assets/ertiga.png";
-import fHycross from "@/assets/Hycross.jpg";
+import fCrysta from "@/assets/crysta.jpg";
+import fHycross from "@/assets/hycross.jpg";
 import fUrbania from "@/assets/vehicle-urbania.jpg";
 import fKia from "@/assets/Kia.jpg";
 import fBus21 from "@/assets/21-seater.jpg";
@@ -79,7 +79,7 @@ export const vehicles: Vehicle[] = [
     features: ["Chilled AC", "Spacious seats", "Ghat-road comfort"],
     desc: "A smooth and powerful ride for family trips, ghat roads and long outstation journeys.",
     bestFor: "Outstation trips and long drives",
-    img: fHycross,
+    img: fCrysta,
     zoom: 1.6,
     focus: [52, 74],
     featured: true,
@@ -93,7 +93,7 @@ export const vehicles: Vehicle[] = [
     features: ["Premium interiors", "Rear AC", "Smooth ride"],
     desc: "Toyota's newest premium MPV. Roomy, quiet and comfortable for family trips and airport transfers.",
     bestFor: "Premium family travel and airport pickups",
-    img: fSuv,
+    img: fHycross,
   },
   {
     slug: "tempo-traveller",
