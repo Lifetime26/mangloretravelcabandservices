@@ -7,13 +7,15 @@ import { catLabel, type Destination, type TourPackage } from "@/lib/places";
 
 export const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
 
-type NavItem = { l: string; href: string; to?: "/" | "/destinations" | "/packages" | "/fleet" };
+type NavItem = { l: string; href: string; to?: "/" | "/destinations" | "/packages" | "/fleet" | "/tariffs" | "/blog" };
 export const nav: NavItem[] = [
   { l: "Home", href: "/", to: "/" },
   { l: "About Us", href: "/#about" },
   { l: "Our Cabs", href: "/fleet", to: "/fleet" },
+  { l: "Tariffs", href: "/tariffs", to: "/tariffs" },
   { l: "Tour Packages", href: "/packages", to: "/packages" },
   { l: "Places to Visit", href: "/destinations", to: "/destinations" },
+  { l: "Blog", href: "/blog", to: "/blog" },
   { l: "Contact", href: "/#contact" },
 ];
 

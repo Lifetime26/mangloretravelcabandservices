@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FleetRouteImport } from './routes/fleet'
+import { Route as TariffsRouteImport } from './routes/tariffs'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as DestinationsIndexRouteImport } from './routes/destinations.index'
 import { Route as DestinationsSlugRouteImport } from './routes/destinations.$slug'
 import { Route as PackagesIndexRouteImport } from './routes/packages.index'
@@ -25,6 +28,21 @@ const IndexRoute = IndexRouteImport.update({
 const FleetRoute = FleetRouteImport.update({
   id: '/fleet',
   path: '/fleet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TariffsRoute = TariffsRouteImport.update({
+  id: '/tariffs',
+  path: '/tariffs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DestinationsIndexRoute = DestinationsIndexRouteImport.update({
@@ -56,18 +74,24 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/fleet': typeof FleetRoute
+  '/tariffs': typeof TariffsRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
   '/packages/$slug': typeof PackagesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog/': typeof BlogIndexRoute
   '/destinations/': typeof DestinationsIndexRoute
   '/packages/': typeof PackagesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/fleet': typeof FleetRoute
+  '/tariffs': typeof TariffsRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
   '/packages/$slug': typeof PackagesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog': typeof BlogIndexRoute
   '/destinations': typeof DestinationsIndexRoute
   '/packages': typeof PackagesIndexRoute
 }
@@ -75,9 +99,12 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/fleet': typeof FleetRoute
+  '/tariffs': typeof TariffsRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
   '/packages/$slug': typeof PackagesSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/blog/': typeof BlogIndexRoute
   '/destinations/': typeof DestinationsIndexRoute
   '/packages/': typeof PackagesIndexRoute
 }
@@ -86,27 +113,36 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/fleet'
+    | '/tariffs'
+    | '/blog/$slug'
     | '/destinations/$slug'
     | '/packages/$slug'
     | '/services/$slug'
+    | '/blog/'
     | '/destinations/'
     | '/packages/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/fleet'
+    | '/tariffs'
+    | '/blog/$slug'
     | '/destinations/$slug'
     | '/packages/$slug'
     | '/services/$slug'
+    | '/blog'
     | '/destinations'
     | '/packages'
   id:
     | '__root__'
     | '/'
     | '/fleet'
+    | '/tariffs'
+    | '/blog/$slug'
     | '/destinations/$slug'
     | '/packages/$slug'
     | '/services/$slug'
+    | '/blog/'
     | '/destinations/'
     | '/packages/'
   fileRoutesById: FileRoutesById
@@ -114,9 +150,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FleetRoute: typeof FleetRoute
+  TariffsRoute: typeof TariffsRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   DestinationsSlugRoute: typeof DestinationsSlugRoute
   PackagesSlugRoute: typeof PackagesSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   DestinationsIndexRoute: typeof DestinationsIndexRoute
   PackagesIndexRoute: typeof PackagesIndexRoute
 }
@@ -135,6 +174,27 @@ declare module '@tanstack/react-router' {
       path: '/fleet'
       fullPath: '/fleet'
       preLoaderRoute: typeof FleetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tariffs': {
+      id: '/tariffs'
+      path: '/tariffs'
+      fullPath: '/tariffs'
+      preLoaderRoute: typeof TariffsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/destinations/': {
@@ -178,9 +238,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FleetRoute: FleetRoute,
+  TariffsRoute: TariffsRoute,
+  BlogSlugRoute: BlogSlugRoute,
   DestinationsSlugRoute: DestinationsSlugRoute,
   PackagesSlugRoute: PackagesSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
   DestinationsIndexRoute: DestinationsIndexRoute,
   PackagesIndexRoute: PackagesIndexRoute,
 }
