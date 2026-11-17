@@ -79,7 +79,9 @@ export const vehicles: Vehicle[] = [
     features: ["Chilled AC", "Spacious seats", "Ghat-road comfort"],
     desc: "A smooth and powerful ride for family trips, ghat roads and long outstation journeys.",
     bestFor: "Outstation trips and long drives",
-    img: fSuv,
+    img: fHycross,
+    zoom: 1.6,
+    focus: [52, 74],
     featured: true,
   },
   {
@@ -91,9 +93,7 @@ export const vehicles: Vehicle[] = [
     features: ["Premium interiors", "Rear AC", "Smooth ride"],
     desc: "Toyota's newest premium MPV. Roomy, quiet and comfortable for family trips and airport transfers.",
     bestFor: "Premium family travel and airport pickups",
-    img: fHycross,
-    zoom: 1.6,
-    focus: [52, 74],
+    img: fSuv,
   },
   {
     slug: "tempo-traveller",
