@@ -16,6 +16,7 @@ import hKadri from "@/assets/kadri.jpg";
 import hKadri2 from "@/assets/kadri2.jpg";
 import hMangaladevi from "@/assets/mangaladevi.jpg";
 import sChik from "@/assets/chikamagaluru-tour.jpg";
+import sKukke from "@/assets/kukke-subramanya-tour.jpg";
 
 /* ------------------------------------------------------------------ */
 /*  EDIT TEXT HERE – every destination and package page reads this.   */
@@ -253,18 +254,42 @@ const basePackages: TourPackage[] = [
     featured: true,
   },
   {
+    slug: "kukke-subramanya-tour",
+    cat: "temple",
+    title: "Kukke Subramanya Tour Package",
+    img: sKukke,
+    places: "Kukke Subramanya Temple, Bisle Ghat View Point",
+    summary: "Darshan at Kukke Subramanya Temple with a drive up to the Bisle Ghat View Point.",
+    duration: "1 day",
+    route: "Mangaluru, Kukke Subramanya, Bisle Ghat, Mangaluru",
+    distance: "About 260 km round trip",
+    stops: [
+      { name: "Kukke Subramanya Temple", note: "A famous temple of Lord Subramanya in the Western Ghats foothills, known for Sarpa Samskara and Ashlesha Bali poojas. Queue times vary, so an early start is best." },
+      { name: "Bisle Ghat View Point", note: "A viewpoint in the forests near Subramanya with wide views over the Western Ghats, including the Kumara Parvatha, Pushpagiri and Dodda Betta ranges. Clearest after the monsoon." },
+    ],
+    vehicle: "Sedan, SUV or Tempo Traveller",
+    plan: [
+      "Early morning pickup in Mangaluru",
+      "Darshan at Kukke Subramanya Temple",
+      "Lunch in Subramanya",
+      "Drive to Bisle Ghat View Point",
+      "Return to Mangaluru in the evening",
+    ],
+  },
+  {
     slug: "udupi-krishna-temple-tour",
     cat: "temple",
     title: "Udupi Krishna Temple Tour",
     img: sUdupi,
-    places: "Udupi Sri Krishna Matha, Malpe Beach, Manipal",
-    summary: "Darshan at Sri Krishna Matha, sunset at Malpe Beach and a drive through Manipal.",
+    places: "Udupi Sri Krishna Matha, Manipal, St. Mary's Island, Malpe Beach",
+    summary: "Darshan at Sri Krishna Matha, a boat ride to St. Mary's Island and sunset at Malpe Beach.",
     duration: "1 day",
-    route: "Mangaluru, Udupi, Malpe, Manipal, Mangaluru",
+    route: "Mangaluru, Udupi, Manipal, Malpe, St. Mary's Island, Mangaluru",
     distance: "About 130 km round trip",
     stops: [
       { name: "Udupi Krishna Matha", note: "Darshan through the Navagraha Kindi window, then lunch in Udupi." },
       { name: "Manipal", note: "A short, green drive through the university town." },
+      { name: "St. Mary's Island", note: "A small island off Malpe, reached by a short boat ride, known for its rare hexagonal basalt rock columns. Boats usually do not run during the monsoon (about June to September)." },
       { name: "Malpe Beach", note: "Sunset and a sea breeze to end the day." },
     ],
     vehicle: "Sedan or SUV",
@@ -272,6 +297,7 @@ const basePackages: TourPackage[] = [
       "Morning pickup in Mangaluru",
       "Darshan at Udupi Sri Krishna Matha and lunch in Udupi",
       "Drive through Manipal",
+      "Boat ride from Malpe to St. Mary's Island (outside the monsoon)",
       "Evening at Malpe Beach for the sunset",
       "Return to Mangaluru",
     ],
