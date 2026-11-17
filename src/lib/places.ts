@@ -1,4 +1,4 @@
-import { withStopPhotos } from "@/lib/stop-photos";
+﻿import { withStopPhotos } from "@/lib/stop-photos";
 import { extraPackages, extraAbout } from "@/lib/packages-extra";
 import dTannirbhavi from "@/assets/dest-beach.jpg";
 import dKadri from "@/assets/kadri.jpg";
@@ -354,7 +354,7 @@ const basePackages: TourPackage[] = [
   },
   {
     slug: "coorg-hill-station-getaway",
-    cat: "outstation",
+    cat: "hills",
     title: "Coorg Hill Station Getaway",
     img: sCoorg,
     places: "Abbey Falls, Raja's Seat, Dubare, Golden Temple Bylakuppe",
@@ -380,7 +380,7 @@ const basePackages: TourPackage[] = [
   },
   {
     slug: "chikmagalur-coffee-trails",
-    cat: "outstation",
+    cat: "hills",
     title: "Chikmagalur Coffee Trails",
     img: sChik,
     places: "Mullayanagiri, Baba Budangiri, Hebbe Falls, coffee estates",
