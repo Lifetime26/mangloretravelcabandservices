@@ -347,6 +347,34 @@ export const extraPackages: TourPackage[] = [
       "Day 3: Pattadakal and begin the return drive",
     ],
   },
+  {
+    slug: "hampi-tour-package",
+    cat: "heritage",
+    title: "Hampi Tour Package",
+    img: iHampi,
+    places: "Anjanadri Hill, Virupaksha Temple, Stone Chariot (Vittala Temple), Lotus Mahal",
+    summary: "A three day trip to the ruins of the Vijayanagara capital, a UNESCO World Heritage Site.",
+    about: [
+      "Hampi was the capital of the Vijayanagara Empire in the 14th to 16th centuries. Today its temples, palaces and market streets lie among giant granite boulders on the banks of the Tungabhadra river, and the site is a UNESCO World Heritage Site.",
+      "The tour covers the main temples and royal buildings, plus Anjanadri Hill across the river, believed to be the birthplace of Lord Hanuman.",
+    ],
+    duration: "3 days, 2 nights",
+    route: "Mangaluru, Shivamogga, Hosapete, Hampi, Mangaluru",
+    distance: "About 900 km round trip",
+    stops: [
+      { name: "Anjanadri Hill", note: "A hilltop Hanuman temple reached by about 575 steps, believed to be the birthplace of Lord Hanuman. The view at sunrise or sunset over the boulders and paddy fields is one of the best in Hampi." },
+      { name: "Virupaksha Temple", note: "A temple to Lord Shiva that has been in worship since the 7th century, with a tall gopuram at the end of the old Hampi Bazaar." },
+      { name: "Stone Chariot (Vittala Temple)", note: "The famous stone chariot inside the Vittala Temple complex, shown on the Rs 50 note. The temple is also known for its musical pillars." },
+      { name: "Lotus Mahal", note: "An elegant two storey pavilion in the Zenana Enclosure, with arches shaped like lotus petals that mix Hindu and Islamic styles." },
+    ],
+    vehicle: "Innova, Ertiga or tempo traveller",
+    plan: [
+      "Day 1: Drive to Hampi via Shivamogga, overnight in Hampi or Hosapete",
+      "Day 2: Virupaksha Temple, Stone Chariot at Vittala Temple and Lotus Mahal",
+      "Day 3: Sunrise at Anjanadri Hill, then begin the return drive",
+    ],
+  },
+
 
   /* --------------------------- Beaches & adventure -------------------- */
   {
