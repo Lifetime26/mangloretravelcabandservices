@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { Info } from "lucide-react";
 import { SiteLayout, SectionTitle, GoldLink } from "@/components/SiteLayout";
 import { tariffs, tariffNotes, outstationMinKmPerDay, inr } from "@/lib/tariffs";

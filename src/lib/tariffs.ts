@@ -1,4 +1,4 @@
-/* ------------------------------------------------------------------ */
+﻿/* ------------------------------------------------------------------ */
 /*  EDIT PRICES HERE – the Tariffs page reads this file.              */
 /*  These are indicative starting prices in INR. Please update them   */
 /*  to your real rates before publishing.                             */

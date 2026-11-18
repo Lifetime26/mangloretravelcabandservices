@@ -1,4 +1,4 @@
-import bCity from "@/assets/mangaluru-city.jpg";
+﻿import bCity from "@/assets/mangaluru-city.jpg";
 import bKadri from "@/assets/kadri.jpg";
 import bCoorg from "@/assets/coorg-tour.jpg";
 import bAirport from "@/assets/airport.jpg";

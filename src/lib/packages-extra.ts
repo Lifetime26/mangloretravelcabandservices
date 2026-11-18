@@ -1,4 +1,4 @@
-import type { TourPackage } from "@/lib/places";
+﻿import type { TourPackage } from "@/lib/places";
 import iCity from "@/assets/mangaluru-city.jpg";
 import iKadri from "@/assets/kadri.jpg";
 import iMangaladevi from "@/assets/mangaladevi.jpg";
