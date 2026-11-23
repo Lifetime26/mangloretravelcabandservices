@@ -30,7 +30,7 @@ const guideIcons = [Shirt, Sunrise, Footprints, HeartHandshake];
 
 function PackageRow({ p, flip }: { p: TourPackage; flip: boolean }) {
   return (
-    <article className={`group flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition hover:shadow-float md:flex-row ${flip ? "md:flex-row-reverse" : ""}`}>
+    <article data-spotlight className={`group card-elevate flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm md:flex-row ${flip ? "md:flex-row-reverse" : ""}`}>
       <Link to="/packages/$slug" params={{ slug: p.slug }} className="relative block aspect-[16/10] overflow-hidden md:aspect-auto md:w-[36%] md:shrink-0" aria-label={p.title}>
         <PhotoSlide imgs={p.imgs ?? [p.img]} alt="" />
         <span className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-transparent to-transparent" />
