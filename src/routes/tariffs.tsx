@@ -1,14 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Info } from "lucide-react";
 import { SiteLayout, SectionTitle, GoldLink } from "@/components/SiteLayout";
-import {
-  tariffs,
-  tariffNotes,
-  outstationMinKmPerDay,
-  dayAndOutstationRates,
-  dayRateNote,
-  inr,
-} from "@/lib/tariffs";
+import { tariffs, tariffNotes, outstationMinKmPerDay, dayRateNote, inr } from "@/lib/tariffs";
 import { BRAND, whatsappLink as wa } from "@/lib/booking";
 
 export const Route = createFileRoute("/tariffs")({
@@ -25,6 +18,29 @@ export const Route = createFileRoute("/tariffs")({
   }),
   component: TariffsPage,
 });
+
+function DayRate({
+  rate,
+  bata,
+}: {
+  rate?: number | undefined;
+  bata?: number | undefined;
+}) {
+  if (rate === undefined) {
+    return <span className="text-muted-foreground">—</span>;
+  }
+
+  return (
+    <>
+      <span className="font-semibold text-primary">{inr(rate)}</span>
+      {bata !== undefined && (
+        <span className="mt-0.5 block text-xs font-normal text-muted-foreground">
+          + {inr(bata)} bata
+        </span>
+      )}
+    </>
+  );
+}
 
 function TariffsPage() {
   return (
@@ -44,20 +60,25 @@ function TariffsPage() {
       <section className="bg-background py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4">
           <h2 className="font-display text-xl font-bold text-primary sm:text-2xl">
-            Local and outstation fares
+            Local, full day and outstation fares
           </h2>
           <p className="mt-1 text-sm text-muted-foreground">
             Local package is 8 hours / 80 km. Outstation minimum is {outstationMinKmPerDay} km per
-            day.
+            day. Day rates are shown where we quote them; “—” means ask us for a price.
           </p>
 
           <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-card">
-            <table className="w-full min-w-[760px] text-left text-sm">
-              <caption className="sr-only">Taxi tariffs by vehicle</caption>
+            <table className="w-full min-w-[1080px] text-left text-sm">
+              <caption className="sr-only">
+                Taxi tariffs by vehicle for local, full day and outstation trips
+              </caption>
               <thead className="bg-secondary text-xs uppercase tracking-wider text-muted-foreground">
                 <tr>
                   <th scope="col" className="px-4 py-3">
                     Vehicle
+                  </th>
+                  <th scope="col" className="px-4 py-3">
+                    Full Day Local
                   </th>
                   <th scope="col" className="px-4 py-3">
                     Local 8 hr / 80 km
@@ -70,6 +91,9 @@ function TariffsPage() {
                   </th>
                   <th scope="col" className="px-4 py-3">
                     Outstation / km
+                  </th>
+                  <th scope="col" className="px-4 py-3">
+                    Outstation / day ({outstationMinKmPerDay} km)
                   </th>
                   <th scope="col" className="px-4 py-3">
                     Driver bata / day
@@ -88,11 +112,17 @@ function TariffsPage() {
                         {t.seats}
                       </span>
                     </th>
+                    <td className="px-4 py-3">
+                      <DayRate rate={t.fullDayLocal} bata={t.fullDayBata} />
+                    </td>
                     <td className="px-4 py-3 font-semibold text-primary">{inr(t.local8h80km)}</td>
                     <td className="px-4 py-3">{inr(t.extraKm)}</td>
                     <td className="px-4 py-3">{inr(t.extraHour)}</td>
                     <td className="px-4 py-3 font-semibold text-primary">
                       {inr(t.outstationPerKm)}
+                    </td>
+                    <td className="px-4 py-3">
+                      <DayRate rate={t.outstationPerDay} bata={t.outstationBata} />
                     </td>
                     <td className="px-4 py-3">{inr(t.driverBata)}</td>
                     <td className="px-4 py-3">{inr(t.airportDrop)}</td>
@@ -102,75 +132,10 @@ function TariffsPage() {
             </table>
           </div>
 
-          <div className="mt-12">
-            <h2 className="font-display text-xl font-bold text-primary sm:text-2xl">
-              Full Day &amp; Outstation Rates
-            </h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Day rates for our most-booked vehicles. Outstation trips are charged per day with a{" "}
-              {outstationMinKmPerDay} km limit.
-            </p>
-
-            <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-card">
-              <table className="w-full min-w-[720px] text-left text-sm">
-                <caption className="sr-only">
-                  Full day local and outstation per day rates by vehicle
-                </caption>
-                <thead className="bg-secondary text-xs uppercase tracking-wider text-muted-foreground">
-                  <tr>
-                    <th scope="col" className="px-4 py-3">
-                      Vehicle
-                    </th>
-                    <th scope="col" className="px-4 py-3">
-                      Full Day Local
-                    </th>
-                    <th scope="col" className="px-4 py-3">
-                      Driver Bata
-                    </th>
-                    <th scope="col" className="px-4 py-3">
-                      Outstation Per Day ({outstationMinKmPerDay} km limit)
-                    </th>
-                    <th scope="col" className="px-4 py-3">
-                      Driver Bata
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border">
-                  {dayAndOutstationRates.map((r) => (
-                    <tr key={r.vehicle}>
-                      <th scope="row" className="px-4 py-3 font-semibold text-primary">
-                        {r.vehicle}
-                        <span className="block text-xs font-normal text-muted-foreground">
-                          {r.seats}
-                        </span>
-                      </th>
-                      <td className="px-4 py-3 font-semibold text-primary">
-                        {inr(r.fullDayLocal)}
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className="rounded-full bg-secondary px-2.5 py-1 text-xs font-semibold text-primary">
-                          + {inr(r.fullDayBata)}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 font-semibold text-primary">
-                        {inr(r.outstationPerDay)}
-                      </td>
-                      <td className="px-4 py-3">
-                        <span className="rounded-full bg-secondary px-2.5 py-1 text-xs font-semibold text-primary">
-                          + {inr(r.outstationBata)}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <p className="mt-4 flex items-start gap-2 rounded-xl border border-gold bg-gold/10 px-4 py-3 text-sm font-semibold text-primary">
-              <Info className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
-              <span>{dayRateNote}</span>
-            </p>
-          </div>
+          <p className="mt-4 flex items-start gap-2 rounded-xl border border-gold bg-gold/10 px-4 py-3 text-sm font-semibold text-primary">
+            <Info className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+            <span>{dayRateNote}</span>
+          </p>
 
           <div className="mt-10 rounded-2xl bg-secondary p-6 sm:p-8">
             <h2 className="flex items-center gap-2 font-display text-lg font-bold text-primary">

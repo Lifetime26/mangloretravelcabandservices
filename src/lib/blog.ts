@@ -1,9 +1,14 @@
-﻿import bCity from "@/assets/mangaluru-city.jpg";
+import bCity from "@/assets/mangaluru-city.jpg";
 import bKadri from "@/assets/kadri.jpg";
 import bCoorg from "@/assets/coorg-tour.jpg";
 import bAirport from "@/assets/airport.jpg";
 import bChik from "@/assets/chikamagaluru-tour.jpg";
 import bGoa from "@/assets/goa-tour.jpg";
+import bGoaBeach from "@/assets/Palolem and Colva.jpg";
+import bBengaluru from "@/assets/Bryant Park.jpg";
+import bGokarna from "@/assets/gokarna-tour.jpg";
+import bKudremukh from "@/assets/Charmadi Ghat.jpg";
+import bHoranadu from "@/assets/horanadu-tour.jpg";
 
 /* ------------------------------------------------------------------ */
 /*  EDIT BLOG POSTS HERE – the Blog pages read this file.             */
@@ -22,6 +27,86 @@ export type BlogPost = {
 };
 
 export const posts: BlogPost[] = [
+  {
+    slug: "top-tourist-attractions-in-goa",
+    title: "Top 10 Tourist Attractions in Goa",
+    excerpt: "Beaches, forts, churches and a waterfall: the ten places to cover on a Goa trip from Mangalore.",
+    img: bGoaBeach,
+    date: "2026-11-21",
+    readTime: "6 min read",
+    tag: "Goa",
+    sections: [
+      { body: ["Goa is about 350 km from Mangaluru, a drive of seven to eight hours along the coast via Udupi, Kundapura and Karwar. Most of our guests go for two or three nights and cover the north and south of the state on separate days. These are the ten attractions we suggest first."] },
+      { heading: "North Goa beaches", body: ["Calangute, known as the queen of Goa's beaches, is the busiest and has the widest choice of shacks and water sports.", "Baga sits next to Calangute and is the place for beach parties, nightlife and seafood.", "Anjuna is the old hippie beach, quieter through the day and liveliest on Wednesdays, when the flea market runs in season (roughly November to April)."] },
+      { heading: "Forts and churches", body: ["Aguada Fort, about 18 km from Panjim, is a Portuguese fort on the headland with a lighthouse and views over the Arabian Sea.", "Basilica of Bom Jesus in Old Goa, a UNESCO world heritage site, holds the relics of St. Francis Xavier and is known for its baroque facade.", "The Church of Our Lady of the Immaculate Conception in Panjim is the whitewashed landmark on the hill above the capital.", "Mangeshi Temple, one of the oldest and largest shrines in Goa, is dedicated to Lord Mangesh, a form of Shiva."] },
+      { heading: "Waterfalls and wildlife", body: ["Dudhsagar Falls, on the Goa-Karnataka border, is a four-tiered waterfall inside Bhagwan Mahavir sanctuary. Private cars are not allowed beyond Kulem, so the last stretch is by forest department jeep, and the jeep safari usually does not run during the monsoon.", "Bondla Wildlife Sanctuary in Ponda taluka is the smallest of Goa's three sanctuaries, green and the easiest one to visit with children. It is closed on Thursdays."] },
+      { heading: "Planning tip", body: ["Base yourself in north Goa for beaches and Old Goa, and keep one day for the south. Booking a cab for the whole trip works out cheaper than a new taxi for every sight, and you do not lose time waiting at each stop."] },
+    ],
+  },
+  {
+    slug: "best-places-to-visit-in-bengaluru",
+    title: "10 Best Places to Visit in Bengaluru",
+    excerpt: "Gardens, palaces, temples and a hilltop sunrise: what to see in Bangalore on a trip from Mangalore.",
+    img: bBengaluru,
+    date: "2026-11-19",
+    readTime: "6 min read",
+    tag: "City Guide",
+    sections: [
+      { body: ["Bengaluru is roughly 350 km from Mangaluru, seven to eight hours by road on NH 75 over the Shiradi Ghat. It is an easy overnight trip, and these ten places cover the city's gardens, history and food in two days."] },
+      { heading: "Parks and gardens", body: ["Lalbagh Botanical Garden was laid out by Hyder Ali in the 1760s and expanded by Tipu Sultan. It has a glass house modelled on London's Crystal Palace and a rocky outcrop with an old watchtower.", "Cubbon Park, in the middle of the city, is a large expanse of old trees, walkways and the red Gothic State Library. Roads through it are closed to traffic early in the morning and on Sundays.", "Bannerghatta National Park, on the southern edge, has a zoo, a butterfly park and a safari."] },
+      { heading: "Palaces and buildings", body: ["Bangalore Palace, built in Tudor revival style on the lines of Windsor Castle, is the most photographed building in the city.", "Tipu Sultan's Summer Palace near Kalasipalyam in old Bengaluru is a small Indo-Islamic wooden structure completed in 1791, now a museum.", "Vidhana Soudha, the state legislature, is worth a stop for the architecture. Inside visits are limited to guided tours on selected days."] },
+      { heading: "Temples and markets", body: ["ISKCON Temple on Hare Krishna Hill is the city's best known temple and stays busy through the day.", "Bull Temple in Basavanagudi has a monolithic Nandi carved in the 16th century.", "Commercial Street and Chickpet are the places to shop for silk, spices and street food."] },
+      { heading: "Nandi Hills day trip", body: ["Nandi Hills, about 60 km north of the city, is the classic sunrise drive. The gate opens at 6 am, so leave the city around 4 am to be there before the queue builds, and come back through Devanahalli for breakfast."] },
+    ],
+  },
+  {
+    slug: "gokarna-and-murudeshwar-trip",
+    title: "Gokarna and Murudeshwar: A Coastal Trip from Mangalore",
+    excerpt: "Two temple towns, a handful of quiet beaches and the giant Shiva statue, all on one coastal drive.",
+    img: bGokarna,
+    date: "2026-11-17",
+    readTime: "5 min read",
+    tag: "Beaches",
+    sections: [
+      { body: ["The stretch of coast north of Mangaluru has two of the most visited temple towns in Karnataka: Murudeshwar, about 160 km away, and Gokarna, about 240 km away. Both can be seen on a two day trip with a night's stay, and the drive itself runs along the sea for most of the way."] },
+      { heading: "Murudeshwar", body: ["The town is built around the Murudeshwar Temple, whose 123 feet Shiva statue stands on a hill with the sea on three sides.", "The 20 storey Raja Gopura beside it has a lift that takes visitors up for a view over the statue and the sea.", "Netrani Island, a short boat ride from the shore, is a well known spot for scuba diving and snorkelling."] },
+      { heading: "Gokarna", body: ["Mahabaleshwar Temple is the reason Gokarna is a pilgrimage town, and the Atmalinga here is one of the most important Shiva shrines on the coast.", "Om Beach is shaped like the Om symbol: two crescents joined together form a semi-enclosed pool that stays calm enough to swim in. Kudle, the largest of the town beaches and about a ten minute walk south of the town, is lined with cafes and guesthouses.", "Mirjan Fort, a little south of Gokarna towards Kumta, is a laterite fort in the middle of paddy fields and makes a good stop on the way back."] },
+      { heading: "When to go", body: ["October to March is the best window: the sea is calm and the temple towns are not crowded. Avoid the monsoon for the boat rides and beach time."] },
+      { heading: "Planning tip", body: ["Both towns are temple towns, so dress modestly for darshan. Plan Murudeshwar for the first day and Gokarna for the second, staying overnight in Gokarna where there are more places to eat and stay."] },
+    ],
+  },
+  {
+    slug: "kudremukh-national-park-guide",
+    title: "Kudremukh National Park: Trekking and Waterfalls",
+    excerpt: "The horse-face peak, the Western Ghats grasslands and the waterfalls on the way, from Mangalore.",
+    img: bKudremukh,
+    date: "2026-11-15",
+    readTime: "5 min read",
+    tag: "Hill Stations",
+    sections: [
+      { body: ["Kudremukh, in Chikkamagaluru district, is about 105 km from Mangaluru, roughly two and a half to three hours by road, usually via Karkala and Kalasa. The name means horse face, after the shape of the main peak, and the national park around it is one of the greenest parts of the Western Ghats."] },
+      { heading: "The Kudremukh peak trek", body: ["The trek is roughly 20 to 22 km round trip from Mullodi village, a day hike of seven to nine hours. A forest permit and a guide are compulsory, only a limited number of trekkers are allowed up each day, and permits are booked online through the Karnataka forest department's Aranya Vihaara portal. Camping is not allowed, so everyone has to be back before sunset.", "The trail climbs through shola forest and grassland, with the last stretch along an open ridge. Start early, carry water and rain protection, and expect leeches during the monsoon."] },
+      { heading: "On the way", body: ["Hanuman Gundi Falls, inside the park, drops about 22 metres and is reached by a stairway down from the road.", "The Karkala and Kalasa road up to the park is hill road most of the way, with viewpoints and small waterfalls in the rains.", "Kalasa, on the Bhadra river, is close by if you are continuing towards Horanadu."] },
+      { heading: "Best time to visit", body: ["October to February is best for the trek. The monsoon from June to September is spectacular for the falls and greenery but the trail is slippery and leeches are common."] },
+      { heading: "Planning tip", body: ["The trail starts at Mullodi, up a rough jeep track from the main road. A cab from Mangaluru for the day, or a night's stay with a homestay near Kalasa or Kudremukh, is the practical way to do this trip."] },
+    ],
+  },
+  {
+    slug: "horanadu-and-sringeri-temple-trip",
+    title: "Horanadu and Sringeri Temple Trip from Mangalore",
+    excerpt: "Two of the coast's most loved temple towns, the Tunga river and a route through the ghats.",
+    img: bHoranadu,
+    date: "2026-11-13",
+    readTime: "5 min read",
+    tag: "Temple Yatra",
+    sections: [
+      { body: ["Horanadu and Sringeri sit in the hills of Chikkamagaluru district and are both doable from Mangaluru. Sringeri is about 110 km away and Horanadu about 125 km. Covering both makes a long day, so many guests leave early and stay a night at Sringeri."] },
+      { heading: "Sringeri Sharadamba Temple", body: ["Sringeri is one of the four peethas established by Adi Shankaracharya, on the banks of the Tunga.", "The Sharadamba Temple, the Vidyashankara Temple with its twelve zodiac pillars, and the river ghat all sit within a short walk of each other.", "Meals are served free at fixed times, and the town is small enough to cover in under two hours."] },
+      { heading: "Horanadu Annapoorneshwari Temple", body: ["The Annapoorneshwari Temple at Horanadu sits in thick forest in the Western Ghats and is known for the annadana meals served to every visitor.", "The drive from Sringeri to Horanadu is about 75 km through Kalasa, mostly hill road, so allow extra time in the rains."] },
+      { heading: "What to wear and carry", body: ["Traditional clothes are expected for darshan, and in many Karnataka temples men are asked to remove their shirts in the inner sanctum.", "Most temples here close for a couple of hours in the afternoon, so plan darshan for the morning or evening."] },
+      { heading: "Planning tip", body: ["If you want a relaxed trip, stay overnight at Sringeri and add Kalasa and the Kudremukh side the next morning. Ask us on WhatsApp and we will work out the order around the darshan timings."] },
+    ],
+  },
   {
     slug: "best-places-to-visit-in-mangalore",
     title: "10 Best Places to Visit in Mangalore",

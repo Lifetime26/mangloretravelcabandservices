@@ -13,6 +13,11 @@ export type Tariff = {
   outstationPerKm: number;
   driverBata: number;
   airportDrop: number;
+  /* Day rates from our printed rate card. Only some vehicles are quoted per day. */
+  fullDayLocal?: number;
+  fullDayBata?: number;
+  outstationPerDay?: number;
+  outstationBata?: number;
 };
 
 export const tariffs: Tariff[] = [
@@ -25,6 +30,10 @@ export const tariffs: Tariff[] = [
     outstationPerKm: 13,
     driverBata: 400,
     airportDrop: 800,
+    fullDayLocal: 3300,
+    fullDayBata: 300,
+    outstationPerDay: 3900,
+    outstationBata: 300,
   },
   {
     vehicle: "Maruti Suzuki Ertiga",
@@ -55,6 +64,10 @@ export const tariffs: Tariff[] = [
     outstationPerKm: 20,
     driverBata: 500,
     airportDrop: 1500,
+    fullDayLocal: 5500,
+    fullDayBata: 300,
+    outstationPerDay: 6500,
+    outstationBata: 300,
   },
   {
     vehicle: "Toyota Innova Hycross",
@@ -75,6 +88,10 @@ export const tariffs: Tariff[] = [
     outstationPerKm: 25,
     driverBata: 600,
     airportDrop: 2500,
+    fullDayLocal: 6500,
+    fullDayBata: 400,
+    outstationPerDay: 8000,
+    outstationBata: 500,
   },
   {
     vehicle: "Force Urbania",
@@ -109,43 +126,6 @@ export const tariffs: Tariff[] = [
 ];
 
 export const outstationMinKmPerDay = 300;
-
-/** Day rates from our printed rate card: full day local and outstation per day. */
-export type DayRate = {
-  vehicle: string;
-  seats: string;
-  fullDayLocal: number;
-  fullDayBata: number;
-  outstationPerDay: number;
-  outstationBata: number;
-};
-
-export const dayAndOutstationRates: DayRate[] = [
-  {
-    vehicle: "Toyota Etios",
-    seats: "4 Seater",
-    fullDayLocal: 3300,
-    fullDayBata: 300,
-    outstationPerDay: 3900,
-    outstationBata: 300,
-  },
-  {
-    vehicle: "Toyota Innova Crysta",
-    seats: "6 - 7 Seater",
-    fullDayLocal: 5500,
-    fullDayBata: 300,
-    outstationPerDay: 6500,
-    outstationBata: 300,
-  },
-  {
-    vehicle: "Tempo Traveller",
-    seats: "12 - 17 Seater",
-    fullDayLocal: 6500,
-    fullDayBata: 400,
-    outstationPerDay: 8000,
-    outstationBata: 500,
-  },
-];
 
 export const dayRateNote = "Driver Bata is charged extra for trips starting after 9:00 PM.";
 
