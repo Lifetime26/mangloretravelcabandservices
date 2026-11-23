@@ -44,6 +44,8 @@ export const tariffs: Tariff[] = [
     outstationPerKm: 16,
     driverBata: 400,
     airportDrop: 1100,
+    fullDayLocal: 4500,
+    fullDayBata: 300,
   },
   {
     vehicle: "Kia Carens",
@@ -54,6 +56,8 @@ export const tariffs: Tariff[] = [
     outstationPerKm: 17,
     driverBata: 400,
     airportDrop: 1200,
+    fullDayLocal: 5000,
+    fullDayBata: 300,
   },
   {
     vehicle: "Toyota Innova Crysta",
@@ -78,6 +82,8 @@ export const tariffs: Tariff[] = [
     outstationPerKm: 22,
     driverBata: 500,
     airportDrop: 1700,
+    fullDayLocal: 7000,
+    fullDayBata: 400,
   },
   {
     vehicle: "Tempo Traveller",
@@ -102,6 +108,8 @@ export const tariffs: Tariff[] = [
     outstationPerKm: 35,
     driverBata: 700,
     airportDrop: 3500,
+    fullDayLocal: 11000,
+    fullDayBata: 500,
   },
   {
     vehicle: "21 Seater Mini Bus",
@@ -112,6 +120,8 @@ export const tariffs: Tariff[] = [
     outstationPerKm: 40,
     driverBata: 800,
     airportDrop: 4000,
+    fullDayLocal: 13000,
+    fullDayBata: 500,
   },
   {
     vehicle: "50 Seater Bus",
@@ -122,6 +132,8 @@ export const tariffs: Tariff[] = [
     outstationPerKm: 65,
     driverBata: 1000,
     airportDrop: 7000,
+    fullDayLocal: 25000,
+    fullDayBata: 1000,
   },
 ];
 
