@@ -1,6 +1,6 @@
 import fSedan from "@/assets/vehicle-sedan.jpg";
 import fTempo from "@/assets/vehicle-van.jpg";
-import fErtiga from "@/assets/ertiga.png";
+import fErtiga from "@/assets/ertiga.jpg";
 import fCrysta from "@/assets/crysta.jpg";
 import fHycross from "@/assets/hycross.jpg";
 import fUrbania from "@/assets/vehicle-urbania.jpg";

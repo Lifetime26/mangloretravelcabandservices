@@ -10,7 +10,9 @@ import sUdupi from "@/assets/udupi.jpg";
 import sKollur from "@/assets/kollur.jpg";
 import sCoorg from "@/assets/coorg-tour.jpg";
 import sDharmasthala from "@/assets/darmasthala-tour.jpg";
-import sBeach from "@/assets/dest-beach.jpg";
+import sAirportHero from "@/assets/hero-airport.jpg";
+import sAirportHeroMobile from "@/assets/hero-airport-mobile.jpg";
+import tAirportHero from "@/assets/hero-airport-thumb.jpg";
 import sGokarna from "@/assets/gokarna-tour.jpg";
 import sHampi from "@/assets/hampi.jpg";
 import sJog from "@/assets/jog-falls.jpg";
@@ -22,7 +24,6 @@ import tUdupi from "@/assets/udupi-mobile.jpg";
 import tKollur from "@/assets/kollur-mobile.jpg";
 import tCoorg from "@/assets/coorg-tour.jpg";
 import tDharmasthala from "@/assets/darmasthala-tour.jpg";
-import tBeach from "@/assets/dest-beach.jpg";
 import tGokarna from "@/assets/gokarna-mobile.jpg";
 import tHampi from "@/assets/hampi-mobile.jpg";
 import tJog from "@/assets/jog-falls.jpg";
@@ -83,9 +84,9 @@ function Index() {
 
 const SLIDE_MS = 4000;
 
-type Slide = { img: string; thumb: string; place: string; sub: string; pos?: string };
+type Slide = { img: string; thumb: string; place: string; sub: string; pos?: string; imgMobile?: string };
 const slides: Slide[] = [
-  { img: sBeach, thumb: tBeach, place: "Mangaluru", sub: "City & Beaches" },
+  { img: sAirportHero, thumb: tAirportHero, imgMobile: sAirportHeroMobile, place: "Mangaluru", sub: "IXE Airport", pos: "max-sm:object-left" },
   { img: sMurudeshwara, thumb: tMurudeshwara, place: "Murudeshwara", sub: "Coastal Karnataka" },
   { img: sGokarna, thumb: tGokarna, place: "Gokarna", sub: "Beaches & Temples" },
   { img: sDharmasthala, thumb: tDharmasthala, place: "Dharmasthala", sub: "Temple Yatra" },
@@ -143,16 +144,18 @@ function Hero() {
       }}
     >
       {slides.map((sl, i) => (
-        <img
-          key={sl.place}
-          src={sl.img}
-          alt=""
-          aria-hidden
-          width={1920}
-          height={1088}
-          loading={i === 0 ? "eager" : "lazy"}
-          className={`absolute inset-0 -z-20 h-full w-full object-cover ${sl.pos ?? "object-center"} transition-opacity duration-[1400ms] ease-out ${i === active ? "animate-[hero-drift_9s_ease-out_forwards] opacity-100" : "opacity-0"}`}
-        />
+        <picture key={sl.place}>
+          {sl.imgMobile && <source media="(max-width: 640px)" srcSet={sl.imgMobile} />}
+          <img
+            src={sl.img}
+            alt=""
+            aria-hidden
+            width={1920}
+            height={1088}
+            loading={i === 0 ? "eager" : "lazy"}
+            className={`absolute inset-0 -z-20 h-full w-full object-cover object-center ${sl.pos ?? ""} transition-opacity duration-[1400ms] ease-out ${i === active ? "animate-[hero-drift_9s_ease-out_forwards] opacity-100" : "opacity-0"}`}
+          />
+        </picture>
       ))}
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/95 via-navy-deep/60 to-navy-deep/40 lg:bg-gradient-to-r lg:from-navy-deep/90 lg:via-navy-deep/55 lg:to-navy-deep/15" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-navy-deep/80 to-transparent" />
