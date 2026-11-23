@@ -156,6 +156,10 @@ function Hero() {
       ))}
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/95 via-navy-deep/60 to-navy-deep/40 lg:bg-gradient-to-r lg:from-navy-deep/90 lg:via-navy-deep/55 lg:to-navy-deep/15" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-navy-deep/80 to-transparent" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <span className="aurora -left-24 top-10 h-72 w-72 bg-gold/30" />
+        <span className="aurora -right-20 bottom-16 h-80 w-80 bg-sky-400/25 [animation-delay:-8s]" />
+      </div>
 
       <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-6 pt-32 sm:px-6 lg:px-8">
         <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_auto]">
@@ -163,7 +167,7 @@ function Hero() {
             <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-gold animate-in fade-in slide-in-from-left-4 duration-700">
               <span className="h-px w-10 bg-gold" /> Mangalore Travel Cabs
             </p>
-            <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] animate-in fade-in slide-in-from-bottom-6 duration-1000 sm:text-6xl xl:text-7xl">
+            <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.03] tracking-tight animate-in fade-in slide-in-from-bottom-6 duration-1000 sm:text-6xl xl:text-7xl">
               Your Ride Across <span className="bg-gradient-to-r from-gold via-amber-200 to-gold bg-clip-text text-transparent">Coastal Karnataka</span>
             </h1>
             <p className="mt-5 max-w-xl text-base text-primary-foreground/85 animate-in fade-in slide-in-from-bottom-4 duration-1000 sm:text-lg">
@@ -181,7 +185,7 @@ function Hero() {
             </ul>
           </div>
 
-          <div key={active} aria-live="polite" className="hidden w-72 rounded-3xl border border-primary-foreground/20 bg-navy-deep/40 p-5 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-700 lg:block">
+          <div key={active} aria-live="polite" className="hidden w-72 rounded-3xl border border-white/15 bg-navy-deep/45 p-5 shadow-float backdrop-blur-xl animate-in fade-in zoom-in-95 duration-700 lg:block">
             <div className="flex items-baseline justify-between">
               <span className="font-display text-5xl font-extrabold text-gold">{String(active + 1).padStart(2, "0")}</span>
               <span className="text-sm text-primary-foreground/60">/ {String(n).padStart(2, "0")}</span>
@@ -237,7 +241,8 @@ function Services() {
               key={slug}
               to="/services/$slug"
               params={{ slug }}
-              className="group relative isolate flex flex-col overflow-hidden rounded-3xl bg-primary-foreground/5 ring-1 ring-primary-foreground/15 transition-[flex,box-shadow] duration-700 ease-out hover:ring-gold/70 lg:flex-1 lg:hover:flex-[1.6]"
+              data-spotlight
+              className="group relative isolate flex flex-col overflow-hidden rounded-3xl bg-primary-foreground/5 ring-1 ring-primary-foreground/15 transition-[flex,box-shadow,transform] duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_30px_70px_-30px_rgba(0,0,0,0.7)] hover:ring-gold/70 lg:flex-1 lg:hover:flex-[1.6]"
             >
               <div className="relative h-56 overflow-hidden sm:h-60">
                 {gallery ? <PhotoMarquee imgs={gallery} itemClass="w-44" speed={45} /> : <img src={img} alt={t} loading="lazy" className={`h-full w-full object-cover transition duration-1000 ease-out group-hover:scale-105 ${pos ?? "object-center"}`} />}
@@ -331,8 +336,8 @@ function About() {
         <SectionTitle center kicker="About Us" title="Travel Easy with Local Experts" sub="A Mangaluru-based cab service open 24/7 – trusted by families, pilgrims and business travellers across South Canara." />
         <div data-reveal="pop" className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {features.map(({ icon: I, t, d }) => (
-            <div key={t} className="rounded-2xl border border-border bg-card p-6 text-center">
-              <span className="icon-bob mx-auto grid h-14 w-14 place-items-center rounded-full bg-gold text-gold-foreground"><I className="h-6 w-6" /></span>
+            <div key={t} data-spotlight className="card-elevate rounded-2xl border border-border bg-card p-6 text-center">
+              <span className="icon-bob mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-gold to-amber-500 text-gold-foreground shadow-[0_14px_30px_-14px_rgba(198,151,45,0.9)] ring-1 ring-white/40"><I className="h-6 w-6" /></span>
               <h3 className="mt-4 font-display font-bold text-primary">{t}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{d}</p>
             </div>
@@ -350,7 +355,7 @@ function Reviews() {
         <SectionTitle center light kicker="Reviews" title="What Our Travellers Say" />
         <div data-reveal="tilt" className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {reviews.map((r) => (
-            <figure key={r.n} className="rounded-2xl bg-primary-foreground/5 p-6 ring-1 ring-primary-foreground/10">
+            <figure key={r.n} data-spotlight className="card-elevate rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
               <div className="flex gap-0.5 text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
               <blockquote className="mt-3 text-sm text-primary-foreground/90">"{r.t}"</blockquote>
               <figcaption className="mt-4 text-sm font-semibold">{r.n} <span className="font-normal text-primary-foreground/60">· {r.p}</span></figcaption>
@@ -403,7 +408,7 @@ function ContactForm() {
             ))}
           </div>
         </div>
-        <form onSubmit={submit} className="grid gap-4 rounded-2xl bg-card p-6 shadow-float sm:grid-cols-2">
+        <form onSubmit={submit} data-spotlight className="grid gap-4 rounded-2xl border border-border bg-card p-6 shadow-float sm:grid-cols-2">
           <label className="text-sm font-semibold text-primary">Name<input className={input} value={f.name} onChange={set("name")} required /></label>
           <label className="text-sm font-semibold text-primary">Phone Number<input type="tel" className={input} value={f.phone} onChange={set("phone")} required /></label>
           <label className="text-sm font-semibold text-primary">Pickup Location<input className={input} value={f.pickup} onChange={set("pickup")} placeholder="e.g. IXE Airport" required /></label>
