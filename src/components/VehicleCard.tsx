@@ -8,7 +8,7 @@ function VehiclePhoto({ v }: { v: Vehicle }) {
   if (v.img) {
     return (
       <div className="h-40 overflow-hidden">
-        <img src={v.img} alt={`${v.name} – ${v.type}`} loading="lazy" width={1024} height={656} style={v.zoom ? { transform: `translate(${-v.zoom * ((v.focus?.[0] ?? 50) - 50)}%, ${-v.zoom * ((v.focus?.[1] ?? 50) - 50)}%) scale(${v.zoom})` } : undefined} className="mx-auto h-40 w-auto object-contain" />
+        <img src={v.img} alt={`${v.name} – ${v.type}`} loading="lazy" width={1024} height={656} className="mx-auto h-40 w-auto object-contain transition duration-700 ease-out group-hover:-translate-y-1 group-hover:scale-[1.04]" style={v.zoom ? { transform: `translate(${-v.zoom * ((v.focus?.[0] ?? 50) - 50)}%, ${-v.zoom * ((v.focus?.[1] ?? 50) - 50)}%) scale(${v.zoom})` } : undefined} />
       </div>
     );
   }
@@ -25,7 +25,7 @@ function VehiclePhoto({ v }: { v: Vehicle }) {
 export function VehicleCard({ v, detailed = false }: { v: Vehicle; detailed?: boolean }) {
   const msg = `Hi ${BRAND}, I'd like to book the ${v.name}. Please share availability and a quote.`;
   return (
-    <article id={v.slug} className="flex scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition hover:shadow-float">
+    <article id={v.slug} data-spotlight className="group card-elevate flex scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
       <div className="relative px-6 pt-6">
         <VehiclePhoto v={v} />
         <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-gold px-3 py-1 text-xs font-bold text-gold-foreground">
