@@ -1,4 +1,4 @@
-﻿import { withStopPhotos } from "@/lib/stop-photos";
+import { withStopPhotos } from "@/lib/stop-photos";
 import { extraPackages, extraAbout } from "@/lib/packages-extra";
 import dTannirbhavi from "@/assets/dest-beach.jpg";
 import dKadri from "@/assets/kadri.jpg";
@@ -167,7 +167,6 @@ export type TourPackage = {
   places: string;
   summary: string;
   about?: string[];
-  duration: string;
   route: string;
   distance: string;
   stops: { name: string; note: string; detail?: string; img?: string }[];
@@ -183,8 +182,7 @@ const basePackages: TourPackage[] = [
     title: "Kollur Mookambika Darshan",
     img: sKollur,
     places: "Kollur Mookambika Temple, Kodachadri view, Maravanthe Beach",
-    summary: "A one-day pilgrimage to the Mookambika Temple with scenic stops on the way.",
-    duration: "1 day (early start)",
+    summary: "A pilgrimage to the Mookambika Temple with scenic stops on the way.",
     route: "Mangaluru, Maravanthe, Kollur, Mangaluru",
     distance: "About 270 km round trip",
     stops: [
@@ -209,47 +207,45 @@ const basePackages: TourPackage[] = [
     img: sMurudeshwara,
     places: "Murudeshwara Temple & Statue, Idagunji Ganapati, Bhatkal",
     summary: "See the giant Shiva statue at Murudeshwara and nearby coastal temples.",
-    duration: "1 to 2 days",
     route: "Mangaluru, Udupi, Murudeshwara, Bhatkal, Mangaluru",
     distance: "About 330 km round trip",
     stops: [
       { name: "Murudeshwara Temple", note: "A sea-facing temple with a tall Raja Gopura. A lift takes you up." },
       { name: "Shiva statue", note: "Walk down to the giant statue and the beach around it." },
       { name: "Bhatkal", note: "A coastal town for a tea or lunch break." },
-      { name: "Idagunji Ganapati", note: "A Ganesha temple inland. Best added on a 2-day plan." },
+      { name: "Idagunji Ganapati", note: "A Ganesha temple inland. Best added with a night's stay." },
     ],
     vehicle: "Sedan, SUV or Tempo Traveller",
     plan: [
       "Early morning pickup in Mangaluru",
       "Breakfast stop on the coastal highway",
       "Darshan at Murudeshwara Temple and a walk to the Shiva statue",
-      "Visit Bhatkal. Idagunji Ganapati is a longer inland drive and works best on a 2-day plan",
+      "Visit Bhatkal. Idagunji Ganapati is a longer inland drive and works best with a night's stay",
       "Return to Mangaluru",
     ],
     featured: true,
   },
   {
-    slug: "dharmasthala-kukke-subrahmanya",
+    slug: "dharmasthala-manjunatha-temple",
     cat: "temple",
-    title: "Dharmasthala & Kukke Subrahmanya",
+    title: "Dharmasthala Manjunatha Temple",
     img: sDharmasthala,
-    places: "Sri Manjunatha Temple, Kukke Subrahmanya Temple, Sowthadka",
-    summary: "Two of Karnataka's most visited temples in a single comfortable day trip.",
-    duration: "1 day",
-    route: "Mangaluru, Dharmasthala, Kukke Subrahmanya, Mangaluru",
-    distance: "About 230 km round trip",
+    places: "Sri Manjunatha Temple, Bahubali Statue, Sowthadka Ganapati",
+    summary: "Darshan at Sri Manjunatha Temple in Dharmasthala, with the temple annaprasada and the Bahubali statue.",
+    route: "Mangaluru, Dharmasthala, Mangaluru",
+    distance: "About 150 km round trip",
     stops: [
-      { name: "Dharmasthala", note: "Darshan at Sri Manjunatha Temple. Temple lunch is served to visitors." },
+      { name: "Dharmasthala", note: "Darshan at Sri Manjunatha Temple. The temple serves free annaprasada to every visitor." },
+      { name: "Bahubali Statue", note: "A short walk up the hill behind the temple, with views over the town and the Nethravathi river." },
       { name: "Sowthadka Ganapati", note: "Optional short stop on the way." },
-      { name: "Kukke Subrahmanya", note: "Darshan in the Western Ghats foothills. Queue times vary." },
     ],
     vehicle: "Sedan, SUV or Tempo Traveller",
     plan: [
       "Early morning pickup in Mangaluru",
       "Darshan at Sri Manjunatha Temple, Dharmasthala",
-      "Optional stop at Sowthadka Ganapati Temple",
-      "Continue to Kukke Subrahmanya for darshan",
-      "Return to Mangaluru in the evening (queue times can vary)",
+      "Annaprasada lunch at the temple",
+      "Optional stop at Sowthadka Ganapati Temple or the Bahubali statue",
+      "Return to Mangaluru in the evening",
     ],
     featured: true,
   },
@@ -260,7 +256,6 @@ const basePackages: TourPackage[] = [
     img: sKukke,
     places: "Kukke Subramanya Temple, Bisle Ghat View Point",
     summary: "Darshan at Kukke Subramanya Temple with a drive up to the Bisle Ghat View Point.",
-    duration: "1 day",
     route: "Mangaluru, Kukke Subramanya, Bisle Ghat, Mangaluru",
     distance: "About 260 km round trip",
     stops: [
@@ -283,7 +278,6 @@ const basePackages: TourPackage[] = [
     img: sUdupi,
     places: "Udupi Sri Krishna Matha, Manipal, St. Mary's Island, Malpe Beach",
     summary: "Darshan at Sri Krishna Matha, a boat ride to St. Mary's Island and sunset at Malpe Beach.",
-    duration: "1 day",
     route: "Mangaluru, Udupi, Manipal, Malpe, St. Mary's Island, Mangaluru",
     distance: "About 130 km round trip",
     stops: [
@@ -310,7 +304,6 @@ const basePackages: TourPackage[] = [
     img: sBeach,
     places: "Panambur Beach, Tannirbhavi Beach, Sultan Battery",
     summary: "A relaxed half-day tour of Mangaluru's best beaches and its old watchtower.",
-    duration: "Half day (4 to 6 hours)",
     route: "Sultan Battery, Tannirbhavi, Panambur",
     distance: "About 40 km in the city",
     stops: [
@@ -335,7 +328,6 @@ const basePackages: TourPackage[] = [
     imgs: [hKadri, hKadri2, hMangaladevi],
     places: "St. Aloysius Chapel, Mangaladevi Temple, Kadri Manjunatha",
     summary: "Visit the city's painted chapel and two of its oldest temples.",
-    duration: "Half day (4 to 5 hours)",
     route: "St. Aloysius Chapel, Mangaladevi Temple, Kadri Manjunatha Temple",
     distance: "About 20 km in the city",
     stops: [
@@ -358,10 +350,9 @@ const basePackages: TourPackage[] = [
     title: "Coorg Hill Station Getaway",
     img: sCoorg,
     places: "Abbey Falls, Raja's Seat, Dubare, Golden Temple Bylakuppe",
-    summary: "Two days of waterfalls, viewpoints and coffee country in the hills of Kodagu.",
-    duration: "2 days, 1 night",
+    summary: "Waterfalls, viewpoints and coffee country in the hills of Kodagu.",
     route: "Mangaluru, Madikeri, Dubare, Bylakuppe, Mangaluru",
-    distance: "About 330 km over 2 days",
+    distance: "About 330 km round trip",
     stops: [
       { name: "Madikeri", note: "Raja's Seat for sunset views over the hills." },
       { name: "Abbey Falls", note: "A waterfall inside a coffee estate. Fullest in the monsoon." },
@@ -370,10 +361,10 @@ const basePackages: TourPackage[] = [
     ],
     vehicle: "SUV or Tempo Traveller",
     plan: [
-      "Day 1: Morning pickup and a drive up the ghat road to Madikeri",
-      "Day 1: Raja's Seat and Abbey Falls, then overnight stay in Coorg",
-      "Day 2: Dubare elephant camp",
-      "Day 2: Golden Temple at Bylakuppe, then return to Mangaluru",
+      "Morning pickup and a drive up the ghat road to Madikeri",
+      "Raja's Seat and Abbey Falls, then overnight stay in Coorg",
+      "Dubare elephant camp",
+      "Golden Temple at Bylakuppe, then return to Mangaluru",
       "Hotel stay is booked by you. Ask us for suggestions",
     ],
     featured: true,
@@ -385,9 +376,8 @@ const basePackages: TourPackage[] = [
     img: sChik,
     places: "Mullayanagiri, Baba Budangiri, Hebbe Falls, coffee estates",
     summary: "Climb Karnataka's highest peaks and wander through coffee estates.",
-    duration: "2 days, 1 night",
     route: "Mangaluru, Chikmagalur, Baba Budangiri, Mangaluru",
-    distance: "About 400 km over 2 days",
+    distance: "About 400 km round trip",
     stops: [
       { name: "Coffee estate", note: "Walk through plantations and see how coffee is grown." },
       { name: "Mullayanagiri", note: "Karnataka's highest peak, with a short climb at the top." },
@@ -396,10 +386,10 @@ const basePackages: TourPackage[] = [
     ],
     vehicle: "SUV or Tempo Traveller",
     plan: [
-      "Day 1: Morning pickup and a scenic drive up the ghat road to Chikmagalur",
-      "Day 1: Coffee estate visit and Mullayanagiri viewpoint",
-      "Day 2: Baba Budangiri and Hebbe Falls",
-      "Day 2: Return drive to Mangaluru",
+      "Morning pickup and a scenic drive up the ghat road to Chikmagalur",
+      "Coffee estate visit and Mullayanagiri viewpoint",
+      "Baba Budangiri and Hebbe Falls",
+      "Return drive to Mangaluru",
       "Hotel or homestay is booked by you. Ask us for suggestions",
     ],
     featured: true,
@@ -411,7 +401,6 @@ const basePackages: TourPackage[] = [
     img: dTannirbhavi,
     places: "Bekal Fort, Kappil Beach, Ananthapura Lake Temple",
     summary: "A day trip across the border to a sea fort, a quiet beach and a lake temple.",
-    duration: "1 day",
     route: "Mangaluru, Ananthapura, Bekal, Kappil, Mangaluru",
     distance: "About 150 km round trip",
     stops: [
