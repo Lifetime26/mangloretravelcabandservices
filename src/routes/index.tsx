@@ -165,8 +165,8 @@ function Hero() {
       </div>
 
       <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-4 pt-24 sm:px-6 sm:pb-6 sm:pt-32 lg:px-8">
-        <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_auto]">
-          <div className="min-w-0 max-w-3xl">
+        <div className="flex flex-col gap-8 max-sm:flex-1 sm:items-end lg:grid lg:grid-cols-[minmax(0,1fr)_auto]">
+          <div className="min-w-0 max-w-3xl max-sm:flex max-sm:flex-1 max-sm:flex-col">
             <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-gold animate-in fade-in slide-in-from-left-4 duration-700">
               <span className="h-px w-10 bg-gold" /> Mangalore Travel Cabs
             </p>
@@ -176,7 +176,7 @@ function Hero() {
             <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-primary-foreground/85 sm:mt-5 sm:text-lg animate-in fade-in slide-in-from-bottom-4 duration-1000 sm:text-lg">
               Local taxis, airport transfers, outstation trips and temple tours — clean AC cars, local drivers, clear prices on WhatsApp.
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7 sm:gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-3 max-sm:mt-auto max-sm:pt-10 sm:mt-7 sm:gap-4">
               <Link to="/packages" className="inline-flex items-center gap-2.5 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground shadow-float transition hover:scale-105 sm:px-7 sm:py-3.5 sm:text-base">
                 Explore Packages <ArrowRight className="h-4 w-4" />
               </Link>
