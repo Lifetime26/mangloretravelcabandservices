@@ -9,7 +9,7 @@ import sDharmasthala from "@/assets/darmasthala-tour.jpg";
 export const Route = createFileRoute("/packages/")({
   head: () => ({
     meta: [
-      { title: "Temple Yatras & Tour Packages from Mangalore | Mangalore Travel Cabs" },
+      { title: "Temple Yatras & Tour Packages from Mangalore | Mangalore Travel Cabs And Taxi Services" },
       { name: "description", content: "Temple yatras, beach tours and hill station trips from Mangaluru. See the route, stops and travel guide for each package and enquire on WhatsApp." },
       { property: "og:title", content: "Temple Yatras & Tour Packages from Mangalore" },
     ],
