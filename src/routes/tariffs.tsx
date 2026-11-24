@@ -8,7 +8,7 @@ import { BRAND, whatsappLink as wa } from "@/lib/booking";
 export const Route = createFileRoute("/tariffs")({
   head: () => ({
     meta: [
-      { title: "Taxi & Cab Tariffs in Mangalore | Mangalore Travel Cabs" },
+      { title: "Taxi & Cab Tariffs in Mangalore | Mangalore Travel Cabs And Taxi Services" },
       {
         name: "description",
         content:
