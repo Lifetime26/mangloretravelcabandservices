@@ -10,20 +10,17 @@ for (const [path, url] of Object.entries(files)) {
   if (base) index.set(norm(base), url);
 }
 
-/* Other names a photo may be saved under, so a file dropped in with its
-   original name still matches. */
-const alias: Record<string, string> = {
-  bahubali: "bahubali-statue",
-  idgunji: "idagunji-ganapati",
-  idagunji: "idagunji-ganapati",
-  kodachadri: "kodachadri-peak",
-  marvanthe: "maravanthe-beach",
-  maravanthe: "maravanthe-beach",
-  southadka: "sowthadka-ganapati",
-  sowthadka: "sowthadka-ganapati",
-  "udupi-temple": "udupi-krishna-matha",
-  "udupi-temple-2": "udupi-krishna-matha-2",
-  "rajas-seat": "raja-seat",
+/* Names a photo may be saved under, so a file dropped in with its original
+   file name still matches the name used in the data. */
+const alias: Record<string, string[]> = {
+  "bahubali-statue": ["bahubali"],
+  "idagunji-ganapati": ["idgunji", "idagunji"],
+  "kodachadri-peak": ["kodachadri"],
+  "maravanthe-beach": ["marvanthe", "maravanthe"],
+  "sowthadka-ganapati": ["southadka", "sowthadka"],
+  "udupi-krishna-matha": ["udupi-temple"],
+  "udupi-krishna-matha-2": ["udupi-temple-2"],
+  "raja-seat": ["rajas-seat"],
 };
 
 /* Photos that are not in src/assets yet can be pointed at a URL instead. */
@@ -32,7 +29,8 @@ const remote: Record<string, string> = {};
 /** The photo for a file name, or undefined when it has not been added yet. */
 export const photo = (name: string): string | undefined => {
   const key = norm(name);
-  return index.get(key) ?? index.get(alias[key] ?? "") ?? remote[key];
+  const alt = (alias[key] ?? []).map((n) => index.get(n)).find((x): x is string => Boolean(x));
+  return index.get(key) ?? alt ?? remote[key];
 };
 
 /* [text to find in the stop name, image file name in src/assets] */
