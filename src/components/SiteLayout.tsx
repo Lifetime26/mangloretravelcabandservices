@@ -157,7 +157,7 @@ export function PackageCard({ p }: { p: TourPackage }) {
         <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-deep/60 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
       </Link>
       <div className="flex flex-1 flex-col p-5">
-        <p className="text-[11px] font-bold uppercase tracking-wider text-gold">{catLabel[p.cat]} · {p.duration}</p>
+        <p className="text-[11px] font-bold uppercase tracking-wider text-gold">{catLabel[p.cat]}</p>
         <h3 className="mt-1 font-display text-lg font-bold text-primary">{p.title}</h3>
         <p className="mt-2 flex-1 text-sm text-muted-foreground">{p.summary}</p>
         <div className="mt-4 flex flex-wrap items-center gap-2">
