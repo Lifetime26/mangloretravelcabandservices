@@ -12,7 +12,7 @@ export const Route = createFileRoute("/destinations/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: loaderData ? `${loaderData.place.title} | Mangalore Travel Cabs` : "Destination | Mangalore Travel Cabs" },
+      { title: loaderData ? `${loaderData.place.title} | Mangalore Travel Cabs And Taxi Services` : "Destination | Mangalore Travel Cabs And Taxi Services" },
       { name: "description", content: loaderData?.place.short ?? "Places to visit near Mangalore." },
     ],
   }),

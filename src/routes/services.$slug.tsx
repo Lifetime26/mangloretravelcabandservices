@@ -15,7 +15,7 @@ export const Route = createFileRoute("/services/$slug")({
     const s = loaderData ? getService(loaderData.slug) : undefined;
     return {
       meta: [
-        { title: s ? `${s.title} | Mangalore Travel Cabs` : "Service | Mangalore Travel Cabs" },
+        { title: s ? `${s.title} | Mangalore Travel Cabs And Taxi Services` : "Service | Mangalore Travel Cabs And Taxi Services" },
         { name: "description", content: s?.short ?? "Taxi and cab services in Mangalore." },
       ],
     };
