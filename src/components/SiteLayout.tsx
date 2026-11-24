@@ -31,9 +31,10 @@ function NavAnchor({ item, className, onClick }: { item: NavItem; className?: st
 }
 
 export function Logo({ small = false }: { small?: boolean }) {
-  const mark = small ? "h-9 w-9 sm:h-11 sm:w-11" : "h-11 w-11 sm:h-[52px] sm:w-[52px]";
+  const mark = small ? "h-9 w-9 sm:h-11 sm:w-11" : "h-10 w-10 sm:h-12 sm:w-12";
+  const car = small ? "h-3.5" : "h-3.5 sm:h-4";
   return (
-    <Link to="/" className="group flex shrink-0 items-center gap-2 sm:gap-2.5" aria-label={BRAND}>
+    <Link to="/" className="group flex shrink-0 items-center gap-2.5" aria-label={BRAND}>
       <img
         src={logoImg}
         alt=""
@@ -41,20 +42,25 @@ export function Logo({ small = false }: { small?: boolean }) {
         height={200}
         className={`${mark} shrink-0 object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.45)] transition duration-300 group-hover:-translate-y-0.5 group-hover:brightness-110`}
       />
-      <span className="flex min-w-0 flex-col leading-none">
+      <span className="flex min-w-0 items-center gap-2">
+        <span className="min-w-0 leading-none">
+          <span className={`block font-display font-extrabold tracking-tight text-primary-foreground ${small ? "text-[15px]" : "text-[16px] sm:text-[19px]"}`}>
+            Mangalore
+          </span>
+          <span className={`mt-1 block font-display font-bold uppercase text-gold ${small ? "text-[8px] tracking-[0.24em]" : "text-[8px] tracking-[0.24em] sm:text-[9px] sm:tracking-[0.26em]"}`}>
+            Travel Cabs
+          </span>
+          <span className="mt-1 hidden text-[7px] font-semibold uppercase tracking-[0.2em] text-primary-foreground/55 sm:block">
+            &amp; Taxi Services
+          </span>
+        </span>
         <img
           src={logoCar}
           alt=""
           width={526}
           height={89}
-          className="mb-1 h-auto w-full max-w-[190px] object-contain opacity-95 transition duration-500 group-hover:translate-x-0.5 group-hover:opacity-100"
+          className={`${car} w-auto shrink-0 object-contain opacity-90 transition duration-500 group-hover:translate-x-1 group-hover:opacity-100`}
         />
-        <span className={`block font-display font-extrabold tracking-tight text-primary-foreground ${small ? "text-[15px]" : "text-[15px] sm:text-[19px]"}`}>
-          Mangalore
-        </span>
-        <span className={`mt-1 block whitespace-nowrap font-display font-bold uppercase text-gold ${small ? "text-[7.5px] tracking-[0.22em]" : "text-[7.5px] tracking-[0.22em] sm:text-[8px] sm:tracking-[0.26em]"}`}>
-          Travel Cabs<span className="hidden sm:inline"> &amp; Taxi Services</span>
-        </span>
       </span>
     </Link>
   );
