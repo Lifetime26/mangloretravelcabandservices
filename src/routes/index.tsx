@@ -43,7 +43,7 @@ import { vehicles } from "@/lib/fleet";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Mangalore Travel Cabs – Your Journey, Our Priority | 24/7 Taxi in Mangaluru" },
+      { title: "Mangalore Travel Cabs And Taxi Services | 24/7 Taxi in Mangaluru" },
       { name: "description", content: "Reliable taxi and cab services in Mangalore for local rides, IXE airport transfers, outstation trips and custom tour packages. Call 8073565608." },
       { property: "og:title", content: "Mangalore Travel Cabs And Taxi Services" },
       { property: "og:description", content: "Local rides, airport transfers, outstation trips and temple & beach tours across Coastal Karnataka – book on WhatsApp." },
@@ -240,8 +240,8 @@ function Hero() {
       <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-4 pt-6 sm:px-6 sm:pb-6 sm:pt-32 lg:px-8">
         <div className="flex flex-col gap-8 max-sm:flex-1 sm:items-end lg:grid lg:grid-cols-[minmax(0,1fr)_auto]">
           <div className="min-w-0 max-w-3xl max-sm:flex max-sm:flex-1 max-sm:flex-col max-sm:justify-center">
-            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-gold animate-in fade-in slide-in-from-left-4 duration-700">
-              <span className="h-px w-10 bg-gold" /> Mangalore Travel Cabs
+            <p className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-gold animate-in fade-in slide-in-from-left-4 duration-700 sm:text-xs sm:tracking-[0.25em]">
+              <span className="hidden h-px w-10 bg-gold sm:block" /> Mangalore Travel Cabs And Taxi Services
             </p>
             <h1 className="mt-4 font-display text-[2rem] font-extrabold leading-[1.05] tracking-tight sm:mt-5 sm:text-6xl animate-in fade-in slide-in-from-bottom-6 duration-1000 sm:text-6xl xl:text-7xl">
               Your Ride Across <span className="bg-gradient-to-r from-gold via-amber-200 to-gold bg-clip-text text-transparent">Coastal Karnataka</span>
