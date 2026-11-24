@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowRight, Clock, MapPin, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { BRAND, CALL_NUMBER, WHATSAPP_NUMBER, callLink, whatsappLink as wa } from "@/lib/booking";
-import logoImg from "@/assets/logo-mtc.png";
+import logoImg from "@/assets/logo-mtc-mark.png";
 import { catLabel, type Destination, type TourPackage } from "@/lib/places";
 
 export const ext = { target: "_blank", rel: "noopener noreferrer" } as const;
@@ -30,10 +30,26 @@ function NavAnchor({ item, className, onClick }: { item: NavItem; className?: st
 }
 
 export function Logo({ small = false }: { small?: boolean }) {
+  const mark = small ? "h-9 w-9 sm:h-11 sm:w-11" : "h-10 w-10 sm:h-12 sm:w-12";
   return (
-    <Link to="/" className="group flex shrink-0 items-center" aria-label={BRAND}>
-      <span className="rounded-xl bg-white px-2.5 py-1 shadow-[0_6px_20px_-6px_rgba(0,0,0,0.5)] ring-1 ring-gold/60 transition duration-300 group-hover:-translate-y-0.5 group-hover:ring-gold sm:rounded-2xl sm:px-3 sm:py-1.5">
-        <img src={logoImg} alt={BRAND} className={`${small ? "h-10 sm:h-11" : "h-10 sm:h-12"} w-auto`} />
+    <Link to="/" className="group flex shrink-0 items-center gap-2.5" aria-label={BRAND}>
+      <img
+        src={logoImg}
+        alt=""
+        width={200}
+        height={200}
+        className={`${mark} shrink-0 object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.45)] transition duration-300 group-hover:-translate-y-0.5 group-hover:brightness-110`}
+      />
+      <span className="min-w-0 leading-none">
+        <span className={`block font-display font-extrabold tracking-tight text-primary-foreground ${small ? "text-[15px]" : "text-[16px] sm:text-[19px]"}`}>
+          Mangalore
+        </span>
+        <span className={`mt-1 block font-display font-bold uppercase text-gold ${small ? "text-[8px] tracking-[0.24em]" : "text-[8px] tracking-[0.24em] sm:text-[9px] sm:tracking-[0.26em]"}`}>
+          Travel Cabs
+        </span>
+        <span className="mt-1 hidden text-[7px] font-semibold uppercase tracking-[0.2em] text-primary-foreground/55 sm:block">
+          &amp; Taxi Services
+        </span>
       </span>
     </Link>
   );
