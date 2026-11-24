@@ -104,16 +104,24 @@ const wrap = (i: number, n: number) => ((i % n) + n) % n;
 
 function Hero() {
   const [active, setActive] = useState(0);
+  const [outgoing, setOutgoing] = useState<Slide | null>(null);
   const [paused, setPaused] = useState(false);
   const touchX = useRef<number | null>(null);
   const strip = useRef<HTMLUListElement>(null);
   const n = slides.length;
-  const go = (i: number) => setActive(wrap(i, n));
   const s = slides[active] as Slide;
+  // Phones show one photo at a time, so keep the last one behind it for a soft cross-fade
+  const go = (i: number) => {
+    setOutgoing(s);
+    setActive(wrap(i, n));
+  };
 
   useEffect(() => {
     if (paused) return;
-    const t = setTimeout(() => setActive((a) => wrap(a + 1, n)), SLIDE_MS);
+    const t = setTimeout(() => {
+      setOutgoing(slides[active] as Slide);
+      setActive((a) => wrap(a + 1, n));
+    }, SLIDE_MS);
     return () => clearTimeout(t);
   }, [active, paused, n]);
 
@@ -146,42 +154,76 @@ function Hero() {
       {slides.map((sl, i) => (
         <div
           key={sl.place}
-          className={`absolute inset-0 -z-20 transition-opacity duration-[1400ms] ease-out ${i === active ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 -z-20 transition-opacity duration-[1400ms] ease-out max-sm:hidden ${i === active ? "opacity-100" : "opacity-0"}`}
         >
-          {/* Phones: a softened copy fills the screen so the whole photo can stay uncropped */}
-          <img
-            src={sl.imgMobile ?? sl.img}
-            alt=""
-            aria-hidden
-            loading={i === 0 ? "eager" : "lazy"}
-            className="absolute inset-0 h-full w-full scale-110 object-cover object-center opacity-60 blur-2xl sm:hidden"
-          />
-          <div className="absolute inset-0 flex items-center">
-            <picture className="block w-full sm:absolute sm:inset-0 sm:h-full">
-              {sl.imgMobile && <source media="(max-width: 640px)" srcSet={sl.imgMobile} />}
-              <img
-                src={sl.img}
-                alt=""
-                aria-hidden
-                width={1920}
-                height={1040}
-                loading={i === 0 ? "eager" : "lazy"}
-                className={`photo-fade h-auto w-full object-center sm:h-full sm:w-full sm:object-cover ${sl.pos ?? ""} ${i === active ? "sm:animate-[hero-drift_9s_ease-out_forwards]" : ""}`}
-              />
-            </picture>
-          </div>
+          <picture className="absolute inset-0 block">
+            <img
+              src={sl.img}
+              alt=""
+              aria-hidden
+              width={1920}
+              height={1040}
+              loading={i === 0 ? "eager" : "lazy"}
+              className={`h-full w-full object-cover object-center ${sl.pos ?? ""} ${i === active ? "animate-[hero-drift_9s_ease-out_forwards]" : ""}`}
+            />
+          </picture>
         </div>
       ))}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/95 via-navy-deep/60 to-navy-deep/40 lg:bg-gradient-to-r lg:from-navy-deep/90 lg:via-navy-deep/55 lg:to-navy-deep/15" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-navy-deep/80 to-transparent" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/95 via-navy-deep/60 to-navy-deep/40 max-sm:hidden lg:bg-gradient-to-r lg:from-navy-deep/90 lg:via-navy-deep/55 lg:to-navy-deep/15" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-navy-deep/80 to-transparent max-sm:hidden" />
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <span className="aurora -left-24 top-10 h-72 w-72 bg-gold/30" />
         <span className="aurora -right-20 bottom-16 h-80 w-80 bg-sky-400/25 [animation-delay:-8s]" />
       </div>
 
-      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-4 pt-24 sm:px-6 sm:pb-6 sm:pt-32 lg:px-8">
+      {/* Phones: the trip photo leads, the place name sits on its lower edge, and the copy follows below */}
+      <div className="sm:hidden">
+        <div className="relative mt-[76px] overflow-hidden bg-navy-deep">
+          {outgoing && (
+            <img key={outgoing.place} src={outgoing.img} alt="" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center" />
+          )}
+          <img
+            key={s.place}
+            src={s.img}
+            alt=""
+            aria-hidden
+            className="relative z-10 block h-auto w-full object-center animate-in fade-in duration-700"
+          />
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 z-20 h-12 bg-gradient-to-b from-navy-deep/70 to-transparent" />
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-24 bg-gradient-to-t from-navy-deep via-navy-deep/60 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 z-20 flex items-end justify-between gap-3 px-5 pb-2">
+            <p className="min-w-0 truncate font-display text-lg font-bold leading-tight drop-shadow">
+              <MapPin className="mr-1 inline h-3.5 w-3.5 -translate-y-px text-gold" />
+              {s.place} <span className="font-sans text-[11px] font-medium text-primary-foreground/75">{s.sub}</span>
+            </p>
+            <span className="shrink-0 rounded-full bg-gold/15 px-2 py-0.5 text-[10px] font-bold tabular-nums text-gold ring-1 ring-gold/40">
+              {String(active + 1).padStart(2, "0")}/{String(n).padStart(2, "0")}
+            </span>
+          </div>
+        </div>
+        <div className="px-5 pt-2.5">
+          <div role="tablist" aria-label="Choose trip" className="flex items-stretch gap-1">
+            {slides.map((sl, i) => {
+              const on = i === active;
+              return (
+                <button key={sl.place} type="button" role="tab" aria-selected={on} aria-label={`Show ${sl.place}`} onClick={() => go(i)} className="group flex-1 py-2">
+                  <span className="block h-1.5 overflow-hidden rounded-full bg-primary-foreground/20 transition-colors group-hover:bg-primary-foreground/40">
+                    <span
+                      className={`block h-full origin-left rounded-full bg-gold ${on ? "" : i < active ? "scale-x-100" : "scale-x-0"}`}
+                      style={on ? { animation: `hero-progress ${SLIDE_MS}ms linear forwards`, animationPlayState: paused ? "paused" : "running" } : undefined}
+                    />
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <p className="text-[11px] font-medium text-primary-foreground/50">Swipe the photo or tap a bar to change the trip</p>
+        </div>
+      </div>
+
+      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-4 pt-6 sm:px-6 sm:pb-6 sm:pt-32 lg:px-8">
         <div className="flex flex-col gap-8 max-sm:flex-1 sm:items-end lg:grid lg:grid-cols-[minmax(0,1fr)_auto]">
-          <div className="min-w-0 max-w-3xl max-sm:flex max-sm:flex-1 max-sm:flex-col">
+          <div className="min-w-0 max-w-3xl max-sm:flex max-sm:flex-1 max-sm:flex-col max-sm:justify-center">
             <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-gold animate-in fade-in slide-in-from-left-4 duration-700">
               <span className="h-px w-10 bg-gold" /> Mangalore Travel Cabs
             </p>
@@ -191,7 +233,7 @@ function Hero() {
             <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-primary-foreground/85 sm:mt-5 sm:text-lg animate-in fade-in slide-in-from-bottom-4 duration-1000 sm:text-lg">
               Local taxis, airport transfers, outstation trips and temple tours — clean AC cars, local drivers, clear prices on WhatsApp.
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-3 max-sm:mt-auto max-sm:pt-10 sm:mt-7 sm:gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7 sm:gap-4">
               <Link to="/packages" className="inline-flex items-center gap-2.5 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground shadow-float transition hover:scale-105 sm:px-7 sm:py-3.5 sm:text-base">
                 Explore Packages <ArrowRight className="h-4 w-4" />
               </Link>
@@ -218,33 +260,7 @@ function Hero() {
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-7xl px-5 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6 sm:pb-8 lg:px-8">
-        {/* Phones: a story-style rail always fits the screen, so no thumb is ever half cut off */}
-        <div className="sm:hidden">
-          <div className="flex items-end justify-between gap-3">
-            <p className="min-w-0 truncate font-display text-sm font-bold">
-              {s.place} <span className="font-sans text-[11px] font-medium text-primary-foreground/70">{s.sub}</span>
-            </p>
-            <span className="shrink-0 text-[11px] font-bold tabular-nums text-primary-foreground/60">{String(active + 1).padStart(2, "0")}/{String(n).padStart(2, "0")}</span>
-          </div>
-          <div role="tablist" aria-label="Choose trip" className="mt-2 flex items-stretch gap-1">
-            {slides.map((sl, i) => {
-              const on = i === active;
-              return (
-                <button key={sl.place} type="button" role="tab" aria-selected={on} aria-label={`Show ${sl.place}`} onClick={() => go(i)} className="group flex-1 py-2">
-                  <span className="block h-1.5 overflow-hidden rounded-full bg-primary-foreground/25 transition-colors group-hover:bg-primary-foreground/40">
-                    <span
-                      className={`block h-full origin-left rounded-full bg-gold ${on ? "" : i < active ? "scale-x-100" : "scale-x-0"}`}
-                      style={on ? { animation: `hero-progress ${SLIDE_MS}ms linear forwards`, animationPlayState: paused ? "paused" : "running" } : undefined}
-                    />
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-          <p className="mt-1.5 text-[11px] font-medium text-primary-foreground/55">Swipe the photo or tap a bar to change the trip</p>
-        </div>
-
+      <div className="mx-auto w-full max-w-7xl px-5 pb-[max(1rem,env(safe-area-inset-bottom))] max-sm:hidden sm:px-6 sm:pb-8 lg:px-8">
         <ul ref={strip} role="tablist" aria-label="Choose trip" className="hidden gap-3 overflow-x-auto pb-2 [scrollbar-width:none] sm:flex sm:gap-4">
           {slides.map((sl, i) => {
             const on = i === active;
