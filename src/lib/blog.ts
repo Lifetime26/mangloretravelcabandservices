@@ -1,14 +1,14 @@
-import bCity from "@/assets/mangaluru-city.jpg";
-import bKadri from "@/assets/kadri.jpg";
-import bCoorg from "@/assets/coorg-tour.jpg";
-import bAirport from "@/assets/airport.jpg";
-import bChik from "@/assets/chikamagaluru-tour.jpg";
-import bGoa from "@/assets/goa-tour.jpg";
-import bGoaBeach from "@/assets/Palolem and Colva.jpg";
-import bBengaluru from "@/assets/Bryant Park.jpg";
-import bGokarna from "@/assets/gokarna-tour.jpg";
-import bKudremukh from "@/assets/Charmadi Ghat.jpg";
-import bHoranadu from "@/assets/horanadu-tour.jpg";
+import bCity from "@/assets/blog-mangalore.jpg";
+import bKadri from "@/assets/blog-temples.jpg";
+import bCoorg from "@/assets/blog-coorg.jpg";
+import bAirport from "@/assets/blog-airport-taxi.jpg";
+import bChik from "@/assets/blog-chikmagalur.jpg";
+import bGoaBeach from "@/assets/blog-goa.jpg";
+import bBengaluru from "@/assets/blog-bengaluru.jpg";
+import bGokarna from "@/assets/blog-gokarna-murudeshwar.jpg";
+import bKudremukh from "@/assets/blog-kudremukh.jpg";
+import bHoranadu from "@/assets/blog-horanadu-sringeri.jpg";
+import bHoneymoon from "@/assets/blog-honeymoon.jpg";
 
 /* ------------------------------------------------------------------ */
 /*  EDIT BLOG POSTS HERE – the Blog pages read this file.             */
@@ -187,7 +187,7 @@ export const posts: BlogPost[] = [
     slug: "honeymoon-places-in-south-india",
     title: "Best Honeymoon Places in South India by Road",
     excerpt: "Romantic hill stations, beaches and backwaters that are an easy drive from Mangaluru.",
-    img: bGoa,
+    img: bHoneymoon,
     date: "2026-10-01",
     readTime: "5 min read",
     tag: "Travel Ideas",
