@@ -178,7 +178,7 @@ function Hero() {
 
       {/* Phones: the trip photo leads, the place name sits on its lower edge, and the copy follows below */}
       <div className="sm:hidden">
-        <div className="relative mt-[76px] overflow-hidden bg-navy-deep">
+        <div className="relative mt-[76px] aspect-[4/3] max-h-[42svh] overflow-hidden bg-navy-deep">
           {outgoing && (
             <img key={outgoing.place} src={outgoing.img} alt="" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center" />
           )}
@@ -187,7 +187,7 @@ function Hero() {
             src={s.img}
             alt=""
             aria-hidden
-            className="relative z-10 block h-auto w-full object-center animate-in fade-in duration-700"
+            className="relative z-10 block h-full w-full object-cover object-center animate-in fade-in duration-700"
           />
           <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 z-20 h-12 bg-gradient-to-b from-navy-deep/70 to-transparent" />
           <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-24 bg-gradient-to-t from-navy-deep via-navy-deep/60 to-transparent" />
