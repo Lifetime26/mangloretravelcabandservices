@@ -6,7 +6,7 @@ import { BRAND, whatsappLink as wa } from "@/lib/booking";
 export const Route = createFileRoute("/destinations/")({
   head: () => ({
     meta: [
-      { title: "Places to Visit near Mangalore | Mangalore Travel Cabs" },
+      { title: "Places to Visit near Mangalore | Mangalore Travel Cabs And Taxi Services" },
       { name: "description", content: "Beaches, temples and hill stations near Mangaluru. Read about each place and book a cab on WhatsApp." },
       { property: "og:title", content: "Places to Visit near Mangalore" },
     ],

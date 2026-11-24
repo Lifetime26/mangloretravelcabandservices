@@ -7,7 +7,7 @@ import { BRAND, whatsappLink as wa } from "@/lib/booking";
 export const Route = createFileRoute("/fleet")({
   head: () => ({
     meta: [
-      { title: "Our Cabs & Vehicles in Mangalore | Mangalore Travel Cabs" },
+      { title: "Our Cabs & Vehicles in Mangalore | Mangalore Travel Cabs And Taxi Services" },
       { name: "description", content: "Sedans, Ertiga, Kia Carens, Innova Crysta, Hycross, Tempo Traveller, Force Urbania, 21 seater mini bus and 50 seater bus in Mangaluru. Book on WhatsApp." },
       { property: "og:title", content: "Our Cabs & Vehicles in Mangalore" },
     ],

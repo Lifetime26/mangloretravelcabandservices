@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { SiteLayout, GoldLink } from "@/components/SiteLayout";
 import { getPost, formatDate } from "@/lib/blog";
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: loaderData ? `${loaderData.post.title} | Mangalore Travel Cabs` : "Blog | Mangalore Travel Cabs" },
+      { title: loaderData ? `${loaderData.post.title} | Mangalore Travel Cabs And Taxi Services` : "Blog | Mangalore Travel Cabs And Taxi Services" },
       { name: "description", content: loaderData?.post.excerpt ?? "Travel guides from Mangalore." },
     ],
   }),

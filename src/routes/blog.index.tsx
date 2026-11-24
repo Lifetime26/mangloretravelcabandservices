@@ -1,4 +1,4 @@
-﻿import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { SiteLayout, SectionTitle } from "@/components/SiteLayout";
 import { posts, formatDate } from "@/lib/blog";
@@ -6,9 +6,9 @@ import { posts, formatDate } from "@/lib/blog";
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
-      { title: "Travel Blog | Mangalore Travel Cabs" },
+      { title: "Travel Blog | Mangalore Travel Cabs And Taxi Services" },
       { name: "description", content: "Travel guides and tips for Mangaluru, temple yatras, Coorg, Chikmagalur and road trips across South India." },
-      { property: "og:title", content: "Travel Blog | Mangalore Travel Cabs" },
+      { property: "og:title", content: "Travel Blog | Mangalore Travel Cabs And Taxi Services" },
     ],
   }),
   component: BlogIndex,
