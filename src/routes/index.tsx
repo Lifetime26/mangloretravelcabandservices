@@ -128,7 +128,7 @@ function Hero() {
       id="home"
       aria-roledescription="carousel"
       aria-label="Popular trips from Mangalore"
-      className="relative isolate flex min-h-[100svh] flex-col overflow-clip bg-navy-deep text-primary-foreground"
+      className="relative isolate flex min-h-[100svh] flex-col overflow-clip bg-navy-deep text-primary-foreground max-sm:min-h-[100dvh]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
@@ -164,24 +164,24 @@ function Hero() {
         <span className="aurora -right-20 bottom-16 h-80 w-80 bg-sky-400/25 [animation-delay:-8s]" />
       </div>
 
-      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-6 pt-32 sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-4 pt-24 sm:px-6 sm:pb-6 sm:pt-32 lg:px-8">
         <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_auto]">
           <div className="min-w-0 max-w-3xl">
             <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-gold animate-in fade-in slide-in-from-left-4 duration-700">
               <span className="h-px w-10 bg-gold" /> Mangalore Travel Cabs
             </p>
-            <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.03] tracking-tight animate-in fade-in slide-in-from-bottom-6 duration-1000 sm:text-6xl xl:text-7xl">
+            <h1 className="mt-4 font-display text-[2rem] font-extrabold leading-[1.05] tracking-tight sm:mt-5 sm:text-6xl animate-in fade-in slide-in-from-bottom-6 duration-1000 sm:text-6xl xl:text-7xl">
               Your Ride Across <span className="bg-gradient-to-r from-gold via-amber-200 to-gold bg-clip-text text-transparent">Coastal Karnataka</span>
             </h1>
-            <p className="mt-5 max-w-xl text-base text-primary-foreground/85 animate-in fade-in slide-in-from-bottom-4 duration-1000 sm:text-lg">
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-primary-foreground/85 sm:mt-5 sm:text-lg animate-in fade-in slide-in-from-bottom-4 duration-1000 sm:text-lg">
               Local taxis, airport transfers, outstation trips and temple tours — clean AC cars, local drivers, clear prices on WhatsApp.
             </p>
-            <div className="mt-7 flex flex-wrap items-center gap-3 sm:gap-4">
-              <Link to="/packages" className="inline-flex items-center gap-2.5 rounded-full bg-gold px-7 py-3.5 text-sm font-bold text-gold-foreground shadow-float transition hover:scale-105 sm:text-base">
+            <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7 sm:gap-4">
+              <Link to="/packages" className="inline-flex items-center gap-2.5 rounded-full bg-gold px-6 py-3 text-sm font-bold text-gold-foreground shadow-float transition hover:scale-105 sm:px-7 sm:py-3.5 sm:text-base">
                 Explore Packages <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold text-primary-foreground/80 sm:text-sm">
+            <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-1.5 text-[11px] font-semibold text-primary-foreground/80 sm:mt-8 sm:gap-x-6 sm:gap-y-2 sm:text-sm">
               {["24/7 Service", "Airport Transfers", "Local Drivers", "No Hidden Charges"].map((t) => (
                 <li key={t} className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-gold" />{t}</li>
               ))}
@@ -203,8 +203,34 @@ function Hero() {
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-7xl px-5 pb-8 sm:px-6 lg:px-8" role="tablist" aria-label="Choose trip">
-        <ul ref={strip} className="flex gap-3 overflow-x-auto pb-2 [scrollbar-width:none] sm:gap-4">
+      <div className="mx-auto w-full max-w-7xl px-5 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6 sm:pb-8 lg:px-8">
+        {/* Phones: a story-style rail always fits the screen, so no thumb is ever half cut off */}
+        <div className="sm:hidden">
+          <div className="flex items-end justify-between gap-3">
+            <p className="min-w-0 truncate font-display text-sm font-bold">
+              {s.place} <span className="font-sans text-[11px] font-medium text-primary-foreground/70">{s.sub}</span>
+            </p>
+            <span className="shrink-0 text-[11px] font-bold tabular-nums text-primary-foreground/60">{String(active + 1).padStart(2, "0")}/{String(n).padStart(2, "0")}</span>
+          </div>
+          <div role="tablist" aria-label="Choose trip" className="mt-2 flex items-stretch gap-1">
+            {slides.map((sl, i) => {
+              const on = i === active;
+              return (
+                <button key={sl.place} type="button" role="tab" aria-selected={on} aria-label={`Show ${sl.place}`} onClick={() => go(i)} className="group flex-1 py-2">
+                  <span className="block h-1.5 overflow-hidden rounded-full bg-primary-foreground/25 transition-colors group-hover:bg-primary-foreground/40">
+                    <span
+                      className={`block h-full origin-left rounded-full bg-gold ${on ? "" : i < active ? "scale-x-100" : "scale-x-0"}`}
+                      style={on ? { animation: `hero-progress ${SLIDE_MS}ms linear forwards`, animationPlayState: paused ? "paused" : "running" } : undefined}
+                    />
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <p className="mt-1.5 text-[11px] font-medium text-primary-foreground/55">Swipe the photo or tap a bar to change the trip</p>
+        </div>
+
+        <ul ref={strip} role="tablist" aria-label="Choose trip" className="hidden gap-3 overflow-x-auto pb-2 [scrollbar-width:none] sm:flex sm:gap-4">
           {slides.map((sl, i) => {
             const on = i === active;
             return (
