@@ -76,10 +76,57 @@ export function PhotoSlide({ imgs, alt, eager = false, className = "" }: { imgs:
       {imgs.map((src, k) => (
         <div key={src} className={`absolute inset-0 overflow-hidden transition-opacity duration-1000 ${k === i ? "opacity-100" : "opacity-0"} ${className}`}>
           <img src={src} alt="" aria-hidden loading="lazy" className="absolute inset-0 h-full w-full scale-110 object-cover object-center opacity-70 blur-2xl" />
-          <img src={src} alt={k === 0 ? alt : ""} loading={eager || k === 0 ? undefined : "lazy"} className="absolute inset-0 h-full w-full object-contain object-center" />
+          <img src={src} alt={k === 0 ? alt : ""} loading={eager || k === 0 ? undefined : "lazy"} className="absolute inset-0 h-full w-full object-cover object-center" />
         </div>
       ))}
     </>
+  );
+}
+
+/* Full bleed photo slide show with a thumbnail strip. Used on package pages. */
+export function PhotoShow({ slides }: { slides: { src: string; label?: string }[] }) {
+  const [i, setI] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const n = slides.length;
+  useEffect(() => {
+    if (n < 2 || paused) return;
+    const t = setInterval(() => setI((x) => (x + 1) % n), 4500);
+    return () => clearInterval(t);
+  }, [n, paused]);
+  const go = (k: number) => setI(((k % n) + n) % n);
+  return (
+    <div
+      className="absolute inset-0"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {slides.map((s, k) => (
+        <div key={`${s.src}-${k}`} className={`absolute inset-0 transition-opacity duration-[1200ms] ease-out ${k === i ? "opacity-100" : "opacity-0"}`}>
+          <img
+            src={s.src}
+            alt={k === i ? (s.label ?? "") : ""}
+            loading={k === 0 ? "eager" : "lazy"}
+            className="h-full w-full object-cover object-center"
+          />
+        </div>
+      ))}
+      {n > 1 && (
+        <div className="absolute bottom-3 right-3 z-20 hidden items-center gap-1.5 rounded-full bg-navy-deep/50 p-1.5 backdrop-blur-md sm:flex">
+          {slides.map((s, k) => (
+            <button
+              key={`${s.src}-thumb-${k}`}
+              type="button"
+              aria-label={`Show photo ${k + 1} of ${n}`}
+              aria-current={k === i}
+              onClick={() => go(k)}
+              className={`relative h-10 w-10 overflow-hidden rounded-full ring-2 transition ${k === i ? "ring-gold" : "opacity-70 ring-white/30 hover:opacity-100"}`}
+            >
+              <img src={s.src} alt="" loading="lazy" className="h-full w-full object-cover" />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 

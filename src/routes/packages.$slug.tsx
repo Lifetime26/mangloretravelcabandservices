@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Car, Footprints, HeartHandshake, MessageCircle, Phone, Route as RouteIcon, Shirt, Sunrise } from "lucide-react";
-import { SiteLayout, SectionTitle, PackageCard, RouteRail, PhotoSlide, FitImg, ext } from "@/components/SiteLayout";
+import { SiteLayout, SectionTitle, PackageCard, RouteRail, PhotoShow, ext } from "@/components/SiteLayout";
 import { catLabel, getPackage, packages, travelGuide } from "@/lib/places";
 import { BRAND, CALL_NUMBER, callLink, whatsappLink as wa } from "@/lib/booking";
 
@@ -35,6 +35,8 @@ function PackagePage() {
   const msg = `Hi ${BRAND}, I'm interested in the "${p.title}" package. Please share details and a quote.`;
   const others = packages.filter((x) => x.slug !== p.slug).slice(0, 3);
   const guide = travelGuide[p.cat as keyof typeof travelGuide];
+  const stopLabel = new Map(p.stops.filter((s) => s.img).map((s) => [s.img as string, s.name]));
+  const gallery = (p.imgs ?? [p.img]).map((src) => ({ src, label: stopLabel.get(src) ?? p.title }));
   const facts = [
     { icon: RouteIcon, l: "Distance", v: p.distance },
     { icon: Car, l: "Suggested vehicle", v: p.vehicle },
@@ -43,9 +45,10 @@ function PackagePage() {
   return (
     <SiteLayout>
       <section className="relative isolate flex min-h-[340px] items-end overflow-hidden bg-navy-deep text-primary-foreground sm:min-h-[440px]">
-        <div className="absolute inset-0 -z-20"><PhotoSlide imgs={p.imgs ?? [p.img]} alt={p.title} eager /></div>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/95 via-navy-deep/50 to-navy-deep/10" />
-        <div className="mx-auto w-full max-w-7xl px-4 pb-8 pt-16 sm:pb-12">
+        <div className="absolute inset-0 -z-10 bg-navy-deep" />
+        <PhotoShow slides={gallery} />
+        <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-navy-deep/95 via-navy-deep/50 to-navy-deep/10" />
+        <div className="relative z-20 mx-auto w-full max-w-7xl px-4 pb-8 pt-16 sm:pb-12">
           <Link to="/packages" className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-foreground/80 hover:text-gold">
             <ArrowLeft className="h-3.5 w-3.5" /> All packages
           </Link>
@@ -68,13 +71,25 @@ function PackagePage() {
               ))}
             </div>
 
-            <h3 className="mt-10 font-display text-xl font-bold text-primary">Places covered</h3>
-            <div className="mt-4 space-y-6">
-              {p.stops.map((s) => (
-                <article key={s.name}>
-                  <h4 className="font-display text-lg font-bold text-primary">{s.name}</h4>
-                  {s.img && <FitImg src={s.img} alt={s.name} />}
-                  <p className="mt-1.5 text-muted-foreground">{s.detail ?? s.note}</p>
+            <h3 className="mt-10 font-display text-xl font-bold text-primary">Places along the route</h3>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Suggested stops, not a fixed list. Add, swap or skip any of them when we plan your trip.
+            </p>
+            <div className="mt-5 space-y-4">
+              {p.stops.map((s, i) => (
+                <article key={s.name} className="overflow-hidden rounded-2xl border border-border bg-card">
+                  <div className={s.img ? "grid sm:grid-cols-[minmax(0,15rem)_1fr]" : ""}>
+                    {s.img && (
+                      <div className="relative aspect-[16/10] overflow-hidden bg-navy-deep sm:aspect-auto sm:h-full sm:min-h-[11rem]">
+                        <img src={s.img} alt={s.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover object-center" />
+                      </div>
+                    )}
+                    <div className="p-4 sm:p-5">
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-gold">Stop {i + 1}</p>
+                      <h4 className="mt-1 font-display text-lg font-bold text-primary">{s.name}</h4>
+                      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{s.detail ?? s.note}</p>
+                    </div>
+                  </div>
                 </article>
               ))}
             </div>

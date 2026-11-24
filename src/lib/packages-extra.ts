@@ -654,5 +654,10 @@ export const extraAbout: Record<string, string[]> = {
   "Bekal Fort is the largest and best preserved fort in Kerala, built in the 17th century on a headland jutting into the Arabian Sea. Its walls, watchtowers and a viewing platform over the surf are a favourite for photographers, and the beach below has a long stretch of quiet sand.",
   "Kappil Beach is a small beach where a backwater meets the sea, and Ananthapura Lake Temple is the only lake temple in Kerala, said to be the original seat of Lord Padmanabha of Thiruvananthapuram. A famous vegetarian crocodile called Babiya is believed to guard the temple lake.",
   "The route is about 70 km from Mangaluru and easily done in a day, leaving early to reach the fort in the cooler hours."
+ ],
+ "kukke-subramanya-tour": [
+  "Kukke Subramanya lies in the foothills of the Western Ghats, about 105 km east of Mangaluru, beside the Kumaradhara river. The temple is dedicated to Lord Subramanya and is one of the most important shrines for the poojas of Sarpa Samskara and Ashlesha Bali, which families book months in advance. The river ghat in front of the temple is used for ritual baths through the morning.",
+  "The drive climbs through areca and coffee country, and the air turns noticeably cooler as you approach Subramanya town. A little further on, the road to Bisle Ghat View Point opens out over the ridges of the Western Ghats, including the Kumar Parvatha and Pushpagiri ranges. The view is clearest in the months after the monsoon.",
+  "Queue times vary with the day and the poojas being held, so an early start is best. Dress modestly and expect to leave footwear at the stand, and we will confirm the day's timings before you travel."
  ]
 };

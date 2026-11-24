@@ -17,6 +17,7 @@ import hKadri2 from "@/assets/kadri2.jpg";
 import hMangaladevi from "@/assets/mangaladevi.jpg";
 import sChik from "@/assets/chikamagaluru-tour.jpg";
 import sKukke from "@/assets/kukke-subramanya-tour.jpg";
+import { stopDetails } from "@/lib/stop-details";
 
 /* ------------------------------------------------------------------ */
 /*  EDIT TEXT HERE – every destination and package page reads this.   */
@@ -164,6 +165,7 @@ export type TourPackage = {
   title: string;
   img: string;
   imgs?: string[];
+  extraImgs?: string[];
   places: string;
   summary: string;
   about?: string[];
@@ -181,6 +183,7 @@ const basePackages: TourPackage[] = [
     cat: "temple",
     title: "Kollur Mookambika Darshan",
     img: sKollur,
+    extraImgs: ["maravanthe-beach", "kodachadri-peak"],
     places: "Kollur Mookambika Temple, Kodachadri view, Maravanthe Beach",
     summary: "A pilgrimage to the Mookambika Temple with scenic stops on the way.",
     route: "Mangaluru, Maravanthe, Kollur, Mangaluru",
@@ -205,6 +208,7 @@ const basePackages: TourPackage[] = [
     cat: "temple",
     title: "Murudeshwara Shiva Yatra",
     img: sMurudeshwara,
+    extraImgs: ["idagunji-ganapati"],
     places: "Murudeshwara Temple & Statue, Idagunji Ganapati, Bhatkal",
     summary: "See the giant Shiva statue at Murudeshwara and nearby coastal temples.",
     route: "Mangaluru, Udupi, Murudeshwara, Bhatkal, Mangaluru",
@@ -230,6 +234,7 @@ const basePackages: TourPackage[] = [
     cat: "temple",
     title: "Dharmasthala Manjunatha Temple",
     img: sDharmasthala,
+    extraImgs: ["bahubali-statue", "sowthadka-ganapati"],
     places: "Sri Manjunatha Temple, Bahubali Statue, Sowthadka Ganapati",
     summary: "Darshan at Sri Manjunatha Temple in Dharmasthala, with the temple annaprasada and the Bahubali statue.",
     route: "Mangaluru, Dharmasthala, Mangaluru",
@@ -276,6 +281,7 @@ const basePackages: TourPackage[] = [
     cat: "temple",
     title: "Udupi Krishna Temple Tour",
     img: sUdupi,
+    extraImgs: ["udupi-krishna-matha", "udupi-krishna-matha-2"],
     places: "Udupi Sri Krishna Matha, Manipal, St. Mary's Island, Malpe Beach",
     summary: "Darshan at Sri Krishna Matha, a boat ride to St. Mary's Island and sunset at Malpe Beach.",
     route: "Mangaluru, Udupi, Manipal, Malpe, St. Mary's Island, Mangaluru",
@@ -349,6 +355,7 @@ const basePackages: TourPackage[] = [
     cat: "hills",
     title: "Coorg Hill Station Getaway",
     img: sCoorg,
+    extraImgs: ["abbey-falls", "raja-seat"],
     places: "Abbey Falls, Raja's Seat, Dubare, Golden Temple Bylakuppe",
     summary: "Waterfalls, viewpoints and coffee country in the hills of Kodagu.",
     route: "Mangaluru, Madikeri, Dubare, Bylakuppe, Mangaluru",
@@ -374,6 +381,7 @@ const basePackages: TourPackage[] = [
     cat: "hills",
     title: "Chikmagalur Coffee Trails",
     img: sChik,
+    extraImgs: ["mullayanagiri", "hebbe-falls"],
     places: "Mullayanagiri, Baba Budangiri, Hebbe Falls, coffee estates",
     summary: "Climb Karnataka's highest peaks and wander through coffee estates.",
     route: "Mangaluru, Chikmagalur, Baba Budangiri, Mangaluru",
@@ -419,7 +427,16 @@ const basePackages: TourPackage[] = [
   },
 ];
 
-export const packages: TourPackage[] = [...basePackages.map((b) => (extraAbout[b.slug] ? { ...b, about: extraAbout[b.slug]! } : b)), ...extraPackages].map(withStopPhotos);
+const withDetails = (p: TourPackage): TourPackage => {
+  const list = stopDetails[p.slug];
+  if (!list) return p;
+  return { ...p, stops: p.stops.map((s, i) => {
+    const text = list[i];
+    return text && !s.detail ? { ...s, detail: text } : s;
+  }) };
+};
+
+export const packages: TourPackage[] = [...basePackages.map((b) => (extraAbout[b.slug] ? { ...b, about: extraAbout[b.slug]! } : b)), ...extraPackages].map(withStopPhotos).map(withDetails);
 
 export const getPackage = (slug: string) => packages.find((p) => p.slug === slug);
 

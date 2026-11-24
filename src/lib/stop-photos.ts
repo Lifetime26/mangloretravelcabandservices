@@ -1,7 +1,39 @@
 import type { TourPackage } from "@/lib/places";
 
 const files = import.meta.glob("/src/assets/*.jpg", { eager: true, import: "default" }) as Record<string, string>;
-const pic = (name: string) => files[`/src/assets/${name}.jpg`];
+
+const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
+const index = new Map<string, string>();
+for (const [path, url] of Object.entries(files)) {
+  const base = path.split("/").pop()?.replace(/\.jpg$/i, "");
+  if (base) index.set(norm(base), url);
+}
+
+/* Other names a photo may be saved under, so a file dropped in with its
+   original name still matches. */
+const alias: Record<string, string> = {
+  bahubali: "bahubali-statue",
+  idgunji: "idagunji-ganapati",
+  idagunji: "idagunji-ganapati",
+  kodachadri: "kodachadri-peak",
+  marvanthe: "maravanthe-beach",
+  maravanthe: "maravanthe-beach",
+  southadka: "sowthadka-ganapati",
+  sowthadka: "sowthadka-ganapati",
+  "udupi-temple": "udupi-krishna-matha",
+  "udupi-temple-2": "udupi-krishna-matha-2",
+  "rajas-seat": "raja-seat",
+};
+
+/* Photos that are not in src/assets yet can be pointed at a URL instead. */
+const remote: Record<string, string> = {};
+
+/** The photo for a file name, or undefined when it has not been added yet. */
+export const photo = (name: string): string | undefined => {
+  const key = norm(name);
+  return index.get(key) ?? index.get(alias[key] ?? "") ?? remote[key];
+};
 
 /* [text to find in the stop name, image file name in src/assets] */
 const rules: [string, string][] = [
@@ -16,17 +48,21 @@ const rules: [string, string][] = [
   ["charmadi", "Charmadi Ghat"], ["badami cave", "Badami cave temples"], ["^aihole", "Aihole"], ["pattadakal", "Pattadakal"],
   ["palolem", "Palolem and Colva"], ["kali river", "Kali river rafting"], ["kavala", "Kavala Caves"],
   ["bhairaveshwara", "Bhairaveshwara and Mohini Shikharas"], ["vibhooti", "Vibhooti Falls"], ["bekal fort", "bekal-fort"],
+  ["maravanthe", "maravanthe-beach"], ["kodachadri", "kodachadri-peak"], ["idagunji", "idagunji-ganapati"],
+  ["bahubali", "bahubali-statue"], ["sowthadka", "sowthadka-ganapati"], ["udupi krishna", "udupi-krishna-matha"],
+  ["abbey falls", "abbey-falls"], ["raja", "raja-seat"], ["hebbe", "hebbe-falls"], ["mullayanagiri", "mullayanagiri"],
 ];
 
 const find = (name: string) => {
   const n = name.toLowerCase();
   const r = rules.find(([k]) => (k.startsWith("^") ? n.startsWith(k.slice(1)) : n.includes(k)));
-  return r ? pic(r[1]) : undefined;
+  return r ? photo(r[1]) : undefined;
 };
 
 export function withStopPhotos(p: TourPackage): TourPackage {
   const stops = p.stops.map((s) => { const img = s.img ?? find(s.name); return img ? { ...s, img } : s; });
-  const all = [...(p.imgs ?? [p.img]), ...stops.flatMap((s) => (s.img ? [s.img] : []))];
+  const extra = (p.extraImgs ?? []).map(photo).filter((x): x is string => Boolean(x));
+  const all = [...(p.imgs ?? [p.img]), ...stops.flatMap((s) => (s.img ? [s.img] : [])), ...extra];
   const imgs = [...new Set(all)].slice(0, 8);
   return { ...p, stops, imgs };
 }
