@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, CalendarDays, Car, Clock, Footprints, HeartHandshake, MessageCircle, Phone, Route as RouteIcon, Shirt, Sunrise } from "lucide-react";
+import { ArrowLeft, Car, Footprints, HeartHandshake, MessageCircle, Phone, Route as RouteIcon, Shirt, Sunrise } from "lucide-react";
 import { SiteLayout, SectionTitle, PackageCard, RouteRail, PhotoSlide, FitImg, ext } from "@/components/SiteLayout";
 import { catLabel, getPackage, packages, travelGuide } from "@/lib/places";
 import { BRAND, CALL_NUMBER, callLink, whatsappLink as wa } from "@/lib/booking";
@@ -37,7 +37,6 @@ function PackagePage() {
   const guide = travelGuide[p.cat as keyof typeof travelGuide];
   const facts = [
     { icon: RouteIcon, l: "Distance", v: p.distance },
-    { icon: CalendarDays, l: "Duration", v: p.duration },
     { icon: Car, l: "Suggested vehicle", v: p.vehicle },
   ];
 
@@ -55,7 +54,6 @@ function PackagePage() {
           <p className="mt-3 max-w-xl text-sm text-primary-foreground/85 sm:text-base">{p.summary}</p>
           <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold sm:text-sm">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-foreground/15 px-3 py-1.5 backdrop-blur"><RouteIcon className="h-3.5 w-3.5 text-gold" />{p.distance}</span>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-foreground/15 px-3 py-1.5 backdrop-blur"><Clock className="h-3.5 w-3.5 text-gold" />{p.duration}</span>
           </div>
         </div>
       </section>

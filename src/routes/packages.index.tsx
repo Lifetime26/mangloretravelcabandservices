@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, Car, ChevronDown, Clock, HeartHandshake, MessageCircle, Route as RouteIcon, Shirt, Sunrise, Footprints } from "lucide-react";
+import { ArrowRight, Car, ChevronDown, HeartHandshake, MessageCircle, Route as RouteIcon, Shirt, Sunrise, Footprints } from "lucide-react";
 import { SiteLayout, RouteRail, PhotoSlide, ext } from "@/components/SiteLayout";
 import { catLabel, packages, travelGuide, yatraFaqs, type Cat, type TourPackage } from "@/lib/places";
 import { BRAND, whatsappLink as wa } from "@/lib/booking";
@@ -44,11 +44,7 @@ function PackageRow({ p, flip }: { p: TourPackage; flip: boolean }) {
 
         <div className="mt-5"><RouteRail stops={p.stops} /></div>
 
-        <dl className="mt-6 grid grid-cols-2 gap-3 text-sm">
-          <div className="flex items-start gap-2.5 rounded-xl bg-secondary p-3">
-            <Clock className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-            <div><dt className="text-xs text-muted-foreground">Duration</dt><dd className="font-semibold text-primary">{p.duration}</dd></div>
-          </div>
+        <dl className="mt-6 grid gap-3 text-sm">
           <div className="flex items-start gap-2.5 rounded-xl bg-secondary p-3">
             <Car className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
             <div><dt className="text-xs text-muted-foreground">Suggested vehicle</dt><dd className="font-semibold text-primary">{p.vehicle}</dd></div>
