@@ -1,4 +1,4 @@
-﻿import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowRight, Clock, MapPin, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { BRAND, CALL_NUMBER, WHATSAPP_NUMBER, callLink, whatsappLink as wa } from "@/lib/booking";
@@ -47,8 +47,8 @@ export function Logo({ small = false }: { small?: boolean }) {
         <span className={`mt-1 block font-display font-bold uppercase text-gold ${small ? "text-[8px] tracking-[0.24em]" : "text-[8px] tracking-[0.24em] sm:text-[9px] sm:tracking-[0.26em]"}`}>
           Travel Cabs
         </span>
-        <span className="mt-1 hidden text-[7px] font-semibold uppercase tracking-[0.2em] text-primary-foreground/55 sm:block">
-          &amp; Taxi Services
+        <span className={`mt-1 block font-semibold uppercase tracking-[0.2em] text-primary-foreground/70 ${small ? "text-[7px]" : "text-[7px] sm:text-[8px]"}`}>
+          And Taxi Services
         </span>
       </span>
     </Link>
