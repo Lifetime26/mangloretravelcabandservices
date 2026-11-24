@@ -1,4 +1,4 @@
-﻿import type { TourPackage } from "@/lib/places";
+import type { TourPackage } from "@/lib/places";
 import iCity from "@/assets/mangaluru-city.jpg";
 import iKadri from "@/assets/kadri.jpg";
 import iMangaladevi from "@/assets/mangaladevi.jpg";
@@ -33,7 +33,6 @@ export const extraPackages: TourPackage[] = [
       "Mangaluru is a port city where Tulu temples, Konkani shrines and old Catholic churches sit within a few kilometres of each other. This tour joins them into one easy day, starting with the temples in the morning, moving to the churches around midday and ending on the beach at sunset.",
       "Your driver keeps the order flexible, so you can spend longer at the places that matter most to you and skip anything you have already seen.",
     ],
-    duration: "Full day (8 to 10 hours)",
     route: "Mangaladevi, Sharavu, Car Street, churches, Kudroli, Kadri, Tannirbhavi, Panambur",
     distance: "About 60 km within the city",
     stops: [
@@ -66,12 +65,11 @@ export const extraPackages: TourPackage[] = [
     title: "Gokarna Mahabaleshwara Temple",
     img: iGokarna,
     places: "Gokarna Mahabaleshwara Temple, Om Beach, Kudle Beach, Maha Ganapati Temple",
-    summary: "A two day pilgrimage to the Atmalinga at Gokarna, with beach time on the Arabian Sea.",
+    summary: "A pilgrimage to the Atmalinga at Gokarna, with beach time on the Arabian Sea.",
     about: [
       "Gokarna is one of Karnataka's seven Mukti Sthalas, and the Mahabaleshwara Temple holds the Atmalinga said to have been brought by Ravana from Mount Kailash. Pilgrims come here for Shiva darshan and for rituals performed for ancestors.",
       "The town is also known for its quiet beaches, so the trip balances a morning of darshan with an afternoon by the sea.",
     ],
-    duration: "2 days, 1 night",
     route: "Mangaluru, Murudeshwara, Gokarna, Mangaluru",
     distance: "About 480 km round trip",
     stops: [
@@ -96,12 +94,11 @@ export const extraPackages: TourPackage[] = [
     title: "Sringeri Sharadamba Temple",
     img: iSringeri,
     places: "Sringeri Sharadamba Temple, Vidyashankara Temple, Tunga river ghat",
-    summary: "A one day yatra to the seat of Adi Shankaracharya's southern peetham.",
+    summary: "A yatra to the seat of Adi Shankaracharya's southern peetham.",
     about: [
       "Sringeri is where Adi Shankaracharya founded the first of his four mathas in the 8th century, and the Sharadamba Temple is dedicated to Sharada, the goddess of learning. Many families visit before a child begins school or an important exam.",
       "The temple sits on the banks of the Tunga river in the Western Ghats, and the drive there is as pleasant as the visit itself.",
     ],
-    duration: "1 day (early start)",
     route: "Mangaluru, Karkala, Sringeri, Mangaluru",
     distance: "About 230 km round trip",
     stops: [
@@ -129,7 +126,6 @@ export const extraPackages: TourPackage[] = [
       "Horanadu is a small village in the Western Ghats, home to the Adi Shakti Annapoorneshwari Temple. The goddess is worshipped as the giver of food, and the temple serves free meals to every visitor, a tradition that has continued for generations.",
       "Hills, coffee estates and winding ghat roads make the journey scenic, and the temple can be paired with Sringeri since the two are close.",
     ],
-    duration: "1 day, or 2 days with Sringeri",
     route: "Mangaluru, Karkala, Kalasa, Horanadu, Mangaluru",
     distance: "About 300 km round trip",
     stops: [
@@ -154,12 +150,11 @@ export const extraPackages: TourPackage[] = [
     title: "Ooty Tour Package",
     img: iOoty,
     places: "Ooty Botanical Garden, Ooty Lake, Doddabetta Peak, Coonoor, tea estates",
-    summary: "Three days in the Nilgiri hills with tea gardens, lakes and cool mountain air.",
+    summary: "Tea gardens, lakes and cool mountain air in the Nilgiri hills.",
     about: [
       "Ooty, officially Udhagamandalam, is the best known hill station of the Nilgiris. At around 2,240 metres, it stays cool through the year and is surrounded by tea estates, eucalyptus forests and old colonial buildings.",
       "This tour covers the main sights in and around the town and includes Coonoor, which is quieter and has some of the best tea views.",
     ],
-    duration: "3 days, 2 nights",
     route: "Mangaluru, Mysuru, Bandipur, Ooty, Coonoor, Mangaluru",
     distance: "About 900 km round trip",
     stops: [
@@ -171,9 +166,9 @@ export const extraPackages: TourPackage[] = [
     ],
     vehicle: "Innova, Ertiga or tempo traveller",
     plan: [
-      "Day 1: Drive to Ooty via Mysuru and Bandipur, check in and rest",
-      "Day 2: Botanical Garden, Ooty Lake, Doddabetta and local shopping",
-      "Day 3: Coonoor sightseeing, then begin the return drive",
+      "Drive to Ooty via Mysuru and Bandipur, check in and rest",
+      "Botanical Garden, Ooty Lake, Doddabetta and local shopping",
+      "Coonoor sightseeing, then begin the return drive",
     ],
   },
   {
@@ -182,12 +177,11 @@ export const extraPackages: TourPackage[] = [
     title: "Wayanad Tour Package",
     img: iWayanad,
     places: "Edakkal Caves, Banasura Sagar Dam, Soochipara Falls, Pookode Lake, spice plantations",
-    summary: "A green two to three day escape through Kerala's forest and waterfall district.",
+    summary: "A green escape through Kerala's forest and waterfall district.",
     about: [
       "Wayanad is a hill district in northern Kerala, covered in forest, tea, coffee and spice plantations. It has waterfalls, ancient caves with prehistoric carvings and one of the largest earth dams in India.",
       "The pace here is relaxed. Most visitors come for views, forest walks and fresh air, so the tour is built around short drives with plenty of time at each stop.",
     ],
-    duration: "2 to 3 days",
     route: "Mangaluru, Mananthavady, Kalpetta, Sulthan Bathery, Mangaluru",
     distance: "About 550 km round trip",
     stops: [
@@ -199,9 +193,9 @@ export const extraPackages: TourPackage[] = [
     ],
     vehicle: "Ertiga, Innova or tempo traveller",
     plan: [
-      "Day 1: Drive to Wayanad, reach by afternoon, visit Pookode Lake",
-      "Day 2: Soochipara Falls, Edakkal Caves and a plantation visit",
-      "Day 3: Banasura Sagar Dam, then return to Mangaluru",
+      "Drive to Wayanad, reach by afternoon, visit Pookode Lake",
+      "Soochipara Falls, Edakkal Caves and a plantation visit",
+      "Banasura Sagar Dam, then return to Mangaluru",
     ],
   },
   {
@@ -210,12 +204,11 @@ export const extraPackages: TourPackage[] = [
     title: "Kodaikanal Tour Package",
     img: iKodai,
     places: "Kodaikanal Lake, Coaker's Walk, Pillar Rocks, Guna Caves, Bryant Park",
-    summary: "A four day trip to the 'Princess of Hill Stations' in the Palani hills.",
+    summary: "A trip to the 'Princess of Hill Stations' in the Palani hills.",
     about: [
       "Kodaikanal sits at about 2,100 metres in Tamil Nadu's Palani hills. A star shaped lake sits at the centre of the town, and the surrounding cliffs and pine forests give it a calm, misty character.",
-      "The distance from Mangaluru is long, so the tour is planned over four days with comfortable overnight stops and time to enjoy the town.",
+      "The distance from Mangaluru is long, so the tour is planned with comfortable overnight stops and time to enjoy the town.",
     ],
-    duration: "4 days, 3 nights",
     route: "Mangaluru, Coimbatore, Palani, Kodaikanal, Mangaluru",
     distance: "About 1,400 km round trip",
     stops: [
@@ -227,10 +220,10 @@ export const extraPackages: TourPackage[] = [
     ],
     vehicle: "Innova, Ertiga or tempo traveller",
     plan: [
-      "Day 1: Long drive via Coimbatore towards Palani, overnight stop",
-      "Day 2: Reach Kodaikanal, lake and Bryant Park",
-      "Day 3: Coaker's Walk, Pillar Rocks and Guna Caves",
-      "Day 4: Return drive towards Mangaluru",
+      "Long drive via Coimbatore towards Palani, overnight stop",
+      "Reach Kodaikanal, lake and Bryant Park",
+      "Coaker's Walk, Pillar Rocks and Guna Caves",
+      "Return drive towards Mangaluru",
     ],
   },
   {
@@ -239,12 +232,11 @@ export const extraPackages: TourPackage[] = [
     title: "Munnar Tour Package",
     img: iMunnar,
     places: "Tea gardens, Mattupetty Dam, Echo Point, Eravikulam National Park, Top Station",
-    summary: "A three to four day journey among Munnar's rolling tea estates and mountain viewpoints.",
+    summary: "A journey among Munnar's rolling tea estates and mountain viewpoints.",
     about: [
       "Munnar is a hill station in Kerala's Idukki district, famous for its endless tea plantations and cool, misty weather. Mountain roads wind between dams, waterfalls and viewpoints.",
       "The tour mixes easy sightseeing with time in the tea gardens and a visit to Eravikulam, home to the endangered Nilgiri tahr.",
     ],
-    duration: "3 to 4 days",
     route: "Mangaluru, Thrissur, Munnar, Mangaluru",
     distance: "About 1,100 km round trip",
     stops: [
@@ -256,10 +248,10 @@ export const extraPackages: TourPackage[] = [
     ],
     vehicle: "Innova, Ertiga or tempo traveller",
     plan: [
-      "Day 1: Drive to Munnar via Thrissur, overnight in Munnar",
-      "Day 2: Tea gardens, Mattupetty Dam and Echo Point",
-      "Day 3: Eravikulam National Park and Top Station",
-      "Day 4: Return drive to Mangaluru",
+      "Drive to Munnar via Thrissur, overnight in Munnar",
+      "Tea gardens, Mattupetty Dam and Echo Point",
+      "Eravikulam National Park and Top Station",
+      "Return drive to Mangaluru",
     ],
   },
 
@@ -270,12 +262,11 @@ export const extraPackages: TourPackage[] = [
     title: "Mysuru Tour Package",
     img: iMysore,
     places: "Mysore Palace, Chamundi Hills, Brindavan Gardens, St. Philomena's Church, Srirangapatna",
-    summary: "A two day tour of Karnataka's royal city and its palaces, gardens and temples.",
+    summary: "A tour of Karnataka's royal city and its palaces, gardens and temples.",
     about: [
       "Mysuru was the capital of the Wodeyar kings, and the city is still full of palaces, temples and wide, clean boulevards. The Mysore Palace is one of the most visited monuments in India and glows with thousands of lights on Sundays and festival evenings.",
       "The tour also takes in the Chamundi Hills temple, the gardens at Krishnarajasagara and the island fort town of Srirangapatna.",
     ],
-    duration: "2 days, 1 night",
     route: "Mangaluru, Madikeri, Mysuru, Srirangapatna, Mangaluru",
     distance: "About 600 km round trip",
     stops: [
@@ -287,9 +278,9 @@ export const extraPackages: TourPackage[] = [
     ],
     vehicle: "Ertiga, Innova or tempo traveller",
     plan: [
-      "Day 1: Drive via Madikeri, reach Mysuru, visit the palace and Chamundi Hills",
+      "Drive via Madikeri, reach Mysuru, visit the palace and Chamundi Hills",
       "Evening at Brindavan Gardens",
-      "Day 2: St. Philomena's Church and Srirangapatna",
+      "St. Philomena's Church and Srirangapatna",
       "Return drive to Mangaluru",
     ],
   },
@@ -304,7 +295,6 @@ export const extraPackages: TourPackage[] = [
       "Belur and Halebidu were the royal capitals of the Hoysala dynasty between the 11th and 14th centuries. Their temples are covered from base to roof in sculpture, with gods, dancers, musicians, animals and scenes from epics carved in soapstone.",
       "The two towns are only 16 km apart, so both can be seen comfortably in one visit. The trip is a good fit for history lovers and photographers.",
     ],
-    duration: "2 days, 1 night",
     route: "Mangaluru, Charmadi Ghat, Belur, Halebidu, Mangaluru",
     distance: "About 400 km round trip",
     stops: [
@@ -315,9 +305,9 @@ export const extraPackages: TourPackage[] = [
     ],
     vehicle: "Ertiga, Innova or tempo traveller",
     plan: [
-      "Day 1: Drive through Charmadi Ghat and reach Belur by afternoon, visit Chennakeshava Temple",
+      "Drive through Charmadi Ghat and reach Belur by afternoon, visit Chennakeshava Temple",
       "Overnight at Belur or Halebidu",
-      "Day 2: Hoysaleswara Temple and the Jain basadis",
+      "Hoysaleswara Temple and the Jain basadis",
       "Return drive to Mangaluru",
     ],
   },
@@ -327,12 +317,11 @@ export const extraPackages: TourPackage[] = [
     title: "Badami Tour Package",
     img: iHampi,
     places: "Badami cave temples, Agastya Lake, Aihole, Pattadakal",
-    summary: "A three day journey to the Chalukyan rock caves and temples of north Karnataka.",
+    summary: "A journey to the Chalukyan rock caves and temples of north Karnataka.",
     about: [
       "Badami was the capital of the early Chalukya dynasty in the 6th century. Four caves are cut into a red sandstone cliff above Agastya Lake, with carvings of Vishnu, Shiva and Jain Tirthankaras.",
       "Aihole and Pattadakal, nearby, hold some of the oldest Hindu temples in India and are a UNESCO World Heritage Site, so the trip combines all three.",
     ],
-    duration: "3 days, 2 nights",
     route: "Mangaluru, Hubballi, Badami, Aihole, Pattadakal, Mangaluru",
     distance: "About 1,100 km round trip",
     stops: [
@@ -343,9 +332,9 @@ export const extraPackages: TourPackage[] = [
     ],
     vehicle: "Innova, Ertiga or tempo traveller",
     plan: [
-      "Day 1: Long drive to Badami via Hubballi, overnight in Badami",
-      "Day 2: Cave temples, Agastya Lake and Aihole",
-      "Day 3: Pattadakal and begin the return drive",
+      "Long drive to Badami via Hubballi, overnight in Badami",
+      "Cave temples, Agastya Lake and Aihole",
+      "Pattadakal and begin the return drive",
     ],
   },
   {
@@ -354,12 +343,11 @@ export const extraPackages: TourPackage[] = [
     title: "Hampi Tour Package",
     img: iHampi,
     places: "Anjanadri Hill, Virupaksha Temple, Stone Chariot (Vittala Temple), Lotus Mahal",
-    summary: "A three day trip to the ruins of the Vijayanagara capital, a UNESCO World Heritage Site.",
+    summary: "A trip to the ruins of the Vijayanagara capital, a UNESCO World Heritage Site.",
     about: [
       "Hampi was the capital of the Vijayanagara Empire in the 14th to 16th centuries. Today its temples, palaces and market streets lie among giant granite boulders on the banks of the Tungabhadra river, and the site is a UNESCO World Heritage Site.",
       "The tour covers the main temples and royal buildings, plus Anjanadri Hill across the river, believed to be the birthplace of Lord Hanuman.",
     ],
-    duration: "3 days, 2 nights",
     route: "Mangaluru, Shivamogga, Hosapete, Hampi, Mangaluru",
     distance: "About 900 km round trip",
     stops: [
@@ -370,9 +358,9 @@ export const extraPackages: TourPackage[] = [
     ],
     vehicle: "Innova, Ertiga or tempo traveller",
     plan: [
-      "Day 1: Drive to Hampi via Shivamogga, overnight in Hampi or Hosapete",
-      "Day 2: Virupaksha Temple, Stone Chariot at Vittala Temple and Lotus Mahal",
-      "Day 3: Sunrise at Anjanadri Hill, then begin the return drive",
+      "Drive to Hampi via Shivamogga, overnight in Hampi or Hosapete",
+      "Virupaksha Temple, Stone Chariot at Vittala Temple and Lotus Mahal",
+      "Sunrise at Anjanadri Hill, then begin the return drive",
     ],
   },
 
@@ -384,12 +372,11 @@ export const extraPackages: TourPackage[] = [
     title: "Goa Tour Package",
     img: iGoa,
     places: "Calangute and Baga beaches, Basilica of Bom Jesus, Fort Aguada, Old Goa, Dudhsagar (optional)",
-    summary: "A three to four day trip to Goa's beaches, old churches and sea forts.",
+    summary: "A trip to Goa's beaches, old churches and sea forts.",
     about: [
       "Goa is India's smallest state and one of its best loved holiday places. It has long sandy beaches, Portuguese era churches and forts, spice farms and a famously relaxed way of life.",
       "The tour mixes beach time with sightseeing in Old Goa and the forts, and leaves free evenings for markets, food and sunsets.",
     ],
-    duration: "3 to 4 days",
     route: "Mangaluru, Karwar, Panaji, North and South Goa, Mangaluru",
     distance: "About 750 km round trip",
     stops: [
@@ -401,10 +388,10 @@ export const extraPackages: TourPackage[] = [
     ],
     vehicle: "Innova, Ertiga or tempo traveller",
     plan: [
-      "Day 1: Drive up the coast via Karwar, reach Goa by evening",
-      "Day 2: North Goa beaches and Fort Aguada",
-      "Day 3: Old Goa churches, markets and South Goa beaches",
-      "Day 4: Return drive to Mangaluru",
+      "Drive up the coast via Karwar, reach Goa by evening",
+      "North Goa beaches and Fort Aguada",
+      "Old Goa churches, markets and South Goa beaches",
+      "Return drive to Mangaluru",
     ],
   },
   {
@@ -413,12 +400,11 @@ export const extraPackages: TourPackage[] = [
     title: "Dandeli Tour Package",
     img: iForest,
     places: "Kali river rafting, Supa Dam, Syntheri Rocks, Kavala Caves, Dandeli wildlife sanctuary",
-    summary: "A two to three day forest getaway with river rafting, jungle safaris and caves.",
+    summary: "A forest getaway with river rafting, jungle safaris and caves.",
     about: [
       "Dandeli sits on the Kali river in Uttara Kannada, inside the Western Ghats forests. It is popular for white water rafting in the monsoon and post monsoon months, as well as bird watching, boating and jungle safaris.",
       "The area is rich in wildlife, including hornbills, deer and the occasional black panther, and it makes an easy getaway for friends and families who want some adventure.",
     ],
-    duration: "2 to 3 days",
     route: "Mangaluru, Kumta, Yellapur, Dandeli, Mangaluru",
     distance: "About 800 km round trip",
     stops: [
@@ -429,9 +415,9 @@ export const extraPackages: TourPackage[] = [
     ],
     vehicle: "Innova, Ertiga or tempo traveller",
     plan: [
-      "Day 1: Drive to Dandeli through the Kumta and Yellapur ghats",
-      "Day 2: River rafting, Syntheri Rocks and a jungle safari",
-      "Day 3: Kavala Caves and return drive",
+      "Drive to Dandeli through the Kumta and Yellapur ghats",
+      "River rafting, Syntheri Rocks and a jungle safari",
+      "Kavala Caves and return drive",
     ],
   },
   {
@@ -440,12 +426,11 @@ export const extraPackages: TourPackage[] = [
     title: "Yana Caves Tour Package",
     img: iFalls,
     places: "Yana Caves, Bhairaveshwara and Mohini Shikharas, Vibhooti Falls, Gokarna",
-    summary: "A two day trip to the unusual black rock formations of Yana in the Sahyadri forest.",
+    summary: "A trip to the unusual black rock formations of Yana in the Sahyadri forest.",
     about: [
       "Yana is a small village in Uttara Kannada, known for two enormous black crystalline limestone rocks that rise out of the forest. The Bhairaveshwara rock reaches about 120 metres, and a cave beneath it holds a Shiva temple with a spring that runs year round.",
       "Reaching Yana involves a walk of about a kilometre through forest, and the trip works well when combined with Gokarna and the nearby Vibhooti Falls.",
     ],
-    duration: "2 days, 1 night",
     route: "Mangaluru, Kumta, Yana, Gokarna, Mangaluru",
     distance: "About 560 km round trip",
     stops: [
@@ -455,9 +440,9 @@ export const extraPackages: TourPackage[] = [
     ],
     vehicle: "Ertiga or Innova",
     plan: [
-      "Day 1: Early start and drive to Yana via Kumta, walk to the caves",
+      "Early start and drive to Yana via Kumta, walk to the caves",
       "Evening at Gokarna temple and beach",
-      "Day 2: Vibhooti Falls, then return drive",
+      "Vibhooti Falls, then return drive",
     ],
   },
   {
@@ -466,12 +451,11 @@ export const extraPackages: TourPackage[] = [
     title: "Netravati Peak Trekking",
     img: iHills,
     places: "Netravati Peak, Samse, Kudremukh National Park grasslands",
-    summary: "A one day trek to Netravati Peak, with rolling green ridges and views over the Western Ghats.",
+    summary: "A trek to Netravati Peak, with rolling green ridges and views over the Western Ghats.",
     about: [
       "Netravati Peak lies inside Kudremukh National Park, near the source of the Netravati river. The trail runs through shola forest and open grassland to a ridge with wide views of the surrounding hills, and on clear mornings the valleys below are filled with cloud.",
       "The trek is moderate and suits most fit beginners. Entry is controlled by the Forest Department through online slot booking, so we plan the drive around your confirmed slot.",
     ],
-    duration: "1 day (very early start)",
     route: "Mangaluru, Karkala, Kalasa, Samse, Netravati base, Mangaluru",
     distance: "About 300 km round trip, trek about 10 km (both ways)",
     stops: [
@@ -499,7 +483,6 @@ export const extraPackages: TourPackage[] = [
       "Kudremukha, meaning 'horse face' in Kannada, is the third highest peak in Karnataka at about 1,894 metres. Its shape is easiest to see from the approach, and the trail crosses streams, rolling grassland and patches of dense forest.",
       "The trek is long and moderate to difficult, so it is best for people with some fitness. As with Netravati, the Forest Department limits daily entries and requires slot booking in advance.",
     ],
-    duration: "1 day, or 2 days with a stay at Mullodi",
     route: "Mangaluru, Karkala, Kalasa, Balagal, Mullodi, Mangaluru",
     distance: "About 300 km round trip, trek about 20 km (both ways)",
     stops: [
@@ -527,7 +510,6 @@ export const extraPackages: TourPackage[] = [
       "Kodachadri is a peak of about 1,343 metres in the Western Ghats, above the town of Kollur. It is linked with Adi Shankaracharya, and the small stone Sarvajna Peeta shrine near the top is said to be where he meditated.",
       "The top is reached by a rough jeep track or by a trek through forest, and the sunset from the peak is one of the most popular in coastal Karnataka. The trip pairs easily with darshan at Kollur Mookambika.",
     ],
-    duration: "1 day, or 2 days with Kollur",
     route: "Mangaluru, Kundapura, Kollur, Kodachadri, Mangaluru",
     distance: "About 300 km round trip",
     stops: [
@@ -555,7 +537,6 @@ export const extraPackages: TourPackage[] = [
       "Mandalpatti is a hilltop viewpoint about 25 km from Madikeri in Coorg, at around 1,600 metres. The last stretch is a bumpy jeep ride through coffee estates and forest, and the top opens onto grassy ridges that are often above the clouds.",
       "The trip combines Mandalpatti with Madikeri's main sights such as Abbey Falls and Raja's Seat, making a full and scenic day in Coorg.",
     ],
-    duration: "1 to 2 days",
     route: "Mangaluru, Sullia, Madikeri, Mandalpatti, Mangaluru",
     distance: "About 300 km round trip",
     stops: [
@@ -583,7 +564,6 @@ export const extraPackages: TourPackage[] = [
       "Kyathanamakki is a hilltop near Kalasa in Chikkamagaluru district, known for its sunrise and sunset views. The grassy summit looks out over rolling ridges in every direction, and in the cooler months the valleys are often filled with mist.",
       "The last part of the road is rough, so local jeeps take visitors to the top. The trip pairs well with darshan at Horanadu Annapoorneshwari Temple, which is close by.",
     ],
-    duration: "1 day, or 2 days for sunrise",
     route: "Mangaluru, Karkala, Kalasa, Kyathanamakki, Mangaluru",
     distance: "About 280 km round trip",
     stops: [
@@ -611,7 +591,6 @@ export const extraPackages: TourPackage[] = [
       "Jhari Falls, also called Buttermilk Falls, is a waterfall near Attigundi in Chikkamagaluru, set among coffee estates. The water is milky white as it falls over the rocks, which gives it its name, and there is a shallow pool at the base.",
       "The road to the falls is rough and reached by local jeep. The trip is usually combined with Mullayanagiri, the highest peak in Karnataka, which is nearby.",
     ],
-    duration: "1 to 2 days",
     route: "Mangaluru, Charmadi Ghat, Chikkamagaluru, Attigundi, Jhari Falls, Mangaluru",
     distance: "About 340 km round trip",
     stops: [
@@ -641,10 +620,10 @@ export const extraAbout: Record<string, string[]> = {
   "Murudeshwara is also known for the story of the Atmalinga, whose covering is said to have fallen here after it was thrown from Gokarna. Devotees visit for darshan of Lord Shiva in the temple sanctum and for the sea breeze at the shore. Further north, the Idagunji Ganapati temple is a quieter shrine reached through green countryside, and many travellers enjoy the contrast.",
   "The route is a comfortable day trip if you leave early, though staying a night near the beach is easier for families and older travellers. Evenings at the beachfront are particularly pleasant, and we can adjust timings to suit darshan and meals."
  ],
- "dharmasthala-kukke-subrahmanya": [
-  "Most families travelling from Mangaluru combine Kukke Subrahmanya and Dharmasthala in one trip. The two temple towns lie roughly 65 km apart along the base of the Western Ghats, with the road passing through forest, rubber plantations and small villages. At Kukke, devotees offer prayers to Lord Subrahmanya, often bathing in the Kumaradhara river first, and the temple is also known for the Ashlesha Bali and Sarpa Samskara poojas performed for serpent worship.",
-  "Dharmasthala is known for the Manjunatha Swamy temple and for its unusual tradition, in which the temple is managed by a Jain family while the rituals are led by Vaishnava priests. Pilgrims take darshan and then sit for the free Annaprasada at the large dining hall, which serves thousands of people every day. A visit to the Bahubali statue on the nearby hill is a good addition if there is time.",
-  "Covering both places in a day needs an early start. Leaving Mangaluru by 5.30 am avoids city traffic and brings you to Kukke ahead of the morning darshan queues, leaving enough time to reach Dharmasthala for the afternoon prasada."
+ "dharmasthala-manjunatha-temple": [
+  "Dharmasthala lies about 75 km east of Mangaluru, at the edge of the Western Ghats, and is one of Karnataka's most visited temple towns. The Sri Manjunatha Temple is at the centre of it, and pilgrims come for darshan of Lord Manjunatha. The town is unusual in that the temple is managed by a Jain family while the daily rituals are led by Vaishnava priests, a tradition that has continued for centuries.",
+  "After darshan, the temple serves free annaprasada in a large dining hall, where thousands of people are fed every day. A short walk from the temple leads up to the Bahubali statue on Ratnagiri hill, a tall monolith with views over the town and the Nethravathi river. The temple's garden and car museum are close by if you have time.",
+  "Dharmasthala pairs easily with a stop at Sowthadka Ganapati on the way. Queues are shortest early in the morning, so we leave Mangaluru around 5.30 am, and we can plan Kukke Subrahmanya as a separate trip if your family wants to cover both temples."
  ],
  "udupi-krishna-temple-tour": [
   "Udupi is a temple town about 60 km north of Mangaluru and is known across India for the Sri Krishna Matha, founded by the philosopher Madhvacharya in the 13th century. The idol of Lord Krishna is worshipped through a silver covered window called the Navagraha Kitiki, and the temple's eight monastic orders take turns to run its worship in a rotation called the Paryaya. The temple kitchen also gave rise to the famous Udupi style of vegetarian cooking.",
@@ -664,12 +643,12 @@ export const extraAbout: Record<string, string[]> = {
  "coorg-hill-station-getaway": [
   "Coorg, also called Kodagu, is a hill district of coffee estates, orange groves and misty forest, about 140 km from Mangaluru by road through the Sampaje ghat. Madikeri, its main town, is the usual base, and Raja's Seat, a garden viewpoint built for the old Kodava kings, is the classic spot to watch the sun go down over the valley.",
   "Abbey Falls plunges through a private coffee estate and is at its best after the monsoon. Dubare is an elephant camp on the Kaveri river where visitors can help bathe the elephants, and the Golden Temple at Bylakuppe, a Tibetan Buddhist monastery with huge golden statues, is a colourful stop that feels far from the rest of Karnataka.",
-  "We suggest two days so you are not rushing the ghat roads. Evenings are cool, so carry a light jacket, and ask us if you would like a coffee estate walk added."
+  "We suggest an overnight stay so you are not rushing the ghat roads. Evenings are cool, so carry a light jacket, and ask us if you would like a coffee estate walk added."
  ],
  "chikmagalur-coffee-trails": [
   "Chikmagalur is the birthplace of coffee in India, and the hills around it are covered in coffee estates, pepper vines and shola forest. Mullayanagiri, the highest peak in Karnataka at about 1,930 metres, is reached by a short climb of steps and gives sweeping views over the Western Ghats, especially at sunrise.",
   "Baba Budangiri is a hill shrine sacred to both Hindus and Muslims, tied to the legend of the saint Baba Budan who is said to have brought the first coffee beans to India. Hebbe Falls is a two stage waterfall inside a private estate, reached by a jeep ride through coffee plantations, and is lovely in and just after the monsoon.",
-  "Two days give you enough time for the viewpoints and a stay in an estate homestay. Roads are winding, and we suggest travelling in daylight."
+  "An overnight stay gives you enough time for the viewpoints and a stay in an estate homestay. Roads are winding, and we suggest travelling in daylight."
  ],
  "bekal-fort-kerala-coast": [
   "Bekal Fort is the largest and best preserved fort in Kerala, built in the 17th century on a headland jutting into the Arabian Sea. Its walls, watchtowers and a viewing platform over the surf are a favourite for photographers, and the beach below has a long stretch of quiet sand.",
