@@ -217,7 +217,23 @@ function Hero() {
               );
             })}
           </div>
-          <p className="text-[11px] font-medium text-primary-foreground/50">Swipe the photo or tap a bar to change the trip</p>
+          <div role="group" aria-label="Trip photos" className="mt-1 flex gap-2.5 overflow-x-auto pb-1 [scrollbar-width:none]">
+            {slides.map((sl, i) => {
+              const on = i === active;
+              return (
+                <button
+                  key={sl.place}
+                  type="button"
+                  aria-label={`Show ${sl.place}`}
+                  aria-current={on}
+                  onClick={() => go(i)}
+                  className={`relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 transition duration-500 ${on ? "ring-gold" : "opacity-70 ring-primary-foreground/25"}`}
+                >
+                  <img src={sl.thumb} alt="" loading="lazy" className="h-full w-full object-cover" />
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
