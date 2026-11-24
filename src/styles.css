@@ -266,6 +266,15 @@
   100% { transform: scale(1.6); opacity: 0; }
 }
 
+/* Phones: let an uncropped hero photo melt into the blurred backdrop instead of
+   ending on a hard edge */
+@media (max-width: 639px) {
+  .photo-fade {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+  }
+}
+
 /* Thin gold rule used between sections */
 .hairline {
   height: 1px;

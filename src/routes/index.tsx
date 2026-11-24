@@ -144,18 +144,33 @@ function Hero() {
       }}
     >
       {slides.map((sl, i) => (
-        <picture key={sl.place}>
-          {sl.imgMobile && <source media="(max-width: 640px)" srcSet={sl.imgMobile} />}
+        <div
+          key={sl.place}
+          className={`absolute inset-0 -z-20 transition-opacity duration-[1400ms] ease-out ${i === active ? "opacity-100" : "opacity-0"}`}
+        >
+          {/* Phones: a softened copy fills the screen so the whole photo can stay uncropped */}
           <img
-            src={sl.img}
+            src={sl.imgMobile ?? sl.img}
             alt=""
             aria-hidden
-            width={1920}
-            height={1040}
             loading={i === 0 ? "eager" : "lazy"}
-            className={`absolute inset-0 -z-20 h-full w-full object-cover object-center ${sl.pos ?? ""} transition-opacity duration-[1400ms] ease-out ${i === active ? "animate-[hero-drift_9s_ease-out_forwards] opacity-100" : "opacity-0"}`}
+            className="absolute inset-0 h-full w-full scale-110 object-cover object-center opacity-60 blur-2xl sm:hidden"
           />
-        </picture>
+          <div className="absolute inset-0 flex items-center">
+            <picture className="block w-full sm:absolute sm:inset-0 sm:h-full">
+              {sl.imgMobile && <source media="(max-width: 640px)" srcSet={sl.imgMobile} />}
+              <img
+                src={sl.img}
+                alt=""
+                aria-hidden
+                width={1920}
+                height={1040}
+                loading={i === 0 ? "eager" : "lazy"}
+                className={`photo-fade h-auto w-full object-center sm:h-full sm:w-full sm:object-cover ${sl.pos ?? ""} ${i === active ? "sm:animate-[hero-drift_9s_ease-out_forwards]" : ""}`}
+              />
+            </picture>
+          </div>
+        </div>
       ))}
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/95 via-navy-deep/60 to-navy-deep/40 lg:bg-gradient-to-r lg:from-navy-deep/90 lg:via-navy-deep/55 lg:to-navy-deep/15" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-navy-deep/80 to-transparent" />

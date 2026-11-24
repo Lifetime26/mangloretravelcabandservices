@@ -42,7 +42,7 @@ function ServicePage() {
     <SiteLayout>
       <section className="relative isolate flex min-h-[340px] items-end overflow-hidden bg-navy-deep text-primary-foreground sm:min-h-[440px]">
         {s.gallery ? <PhotoMarquee imgs={s.gallery} itemClass="w-72 sm:w-96" speed={60} className="-z-20" /> : (
-          <img src={s.img} alt={s.title} className={`absolute inset-0 -z-20 h-full w-full animate-[hero-drift_9s_ease-out_forwards] object-cover ${s.pos ?? "object-center"}`} />
+          <img src={s.img} alt={s.title} className={`absolute inset-0 -z-20 h-full w-full sm:animate-[hero-drift_9s_ease-out_forwards] object-cover ${s.pos ?? "object-center"}`} />
         )}
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/90 via-navy-deep/20 to-transparent" />
         <div className="mx-auto w-full max-w-7xl px-4 pb-8 pt-28 sm:pb-12">
