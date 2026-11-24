@@ -65,11 +65,8 @@ function PackagePage() {
           <div>
             <h2 className="font-display text-2xl font-bold text-primary">About this tour</h2>
             <div className="mt-4 space-y-4 text-base leading-relaxed text-muted-foreground">
-              {(p.about ?? [p.summary]).map((t, i) => (
-                <div key={t} className="space-y-4">
-                  <p>{t}</p>
-                  {i === 0 && <div className="relative aspect-video overflow-hidden rounded-2xl bg-navy-deep"><PhotoSlide imgs={p.imgs ?? [p.img]} alt={p.title} /></div>}
-                </div>
+              {(p.about ?? [p.summary]).map((t) => (
+                <p key={t}>{t}</p>
               ))}
             </div>
 

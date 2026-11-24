@@ -340,7 +340,7 @@ const basePackages: TourPackage[] = [
     distance: "About 20 km in the city",
     stops: [
       { name: "St. Aloysius Chapel", note: "Painted walls and ceiling from the late 1800s." },
-      { name: "Mangaladevi Temple", note: "The old temple the city is named after." },
+      { name: "Mangaladevi Temple", img: hMangaladevi, note: "The temple that gave Mangaluru its name, with Kerala style tiled roofs and a history going back about a thousand years.", detail: "Mangaladevi Temple in the Bolar area is the shrine from which Mangaluru takes its name. Local tradition says it was built around the 10th century by the Alupa king Kundavarma, after the princess Mangala, who came from Malabar, became a devotee of Goddess Shakti and settled here. The temple is dedicated to Goddess Mangaladevi, worshipped as a form of Parvati, and it follows the Kerala style of architecture with sloping tiled roofs over a quiet stone courtyard. Navaratri is the biggest festival here, when the whole temple is lit and the goddess is taken out in procession. Early morning and evening pooja are the calmest times to visit, the temple sits close to the Netravathi river, and a darshan usually takes about 30 to 40 minutes." },
       { name: "Kadri Manjunatha Temple", note: "A hilltop temple with ancient bronze statues." },
     ],
     vehicle: "Sedan or SUV",

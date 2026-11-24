@@ -86,7 +86,7 @@ const SLIDE_MS = 4000;
 
 type Slide = { img: string; thumb: string; place: string; sub: string; pos?: string; imgMobile?: string };
 const slides: Slide[] = [
-  { img: sAirportHero, thumb: tAirportHero, imgMobile: sAirportHeroMobile, place: "Mangaluru", sub: "IXE Airport", pos: "max-sm:object-left" },
+  { img: sAirportHero, thumb: tAirportHero, imgMobile: sAirportHeroMobile, place: "Mangaluru", sub: "IXE Airport" },
   { img: sMurudeshwara, thumb: tMurudeshwara, place: "Murudeshwara", sub: "Coastal Karnataka" },
   { img: sGokarna, thumb: tGokarna, place: "Gokarna", sub: "Beaches & Temples" },
   { img: sDharmasthala, thumb: tDharmasthala, place: "Dharmasthala", sub: "Temple Yatra" },
@@ -151,7 +151,7 @@ function Hero() {
             alt=""
             aria-hidden
             width={1920}
-            height={1088}
+            height={1040}
             loading={i === 0 ? "eager" : "lazy"}
             className={`absolute inset-0 -z-20 h-full w-full object-cover object-center ${sl.pos ?? ""} transition-opacity duration-[1400ms] ease-out ${i === active ? "animate-[hero-drift_9s_ease-out_forwards] opacity-100" : "opacity-0"}`}
           />
