@@ -632,7 +632,7 @@ export const extraAbout: Record<string, string[]> = {
  ],
  "mangaluru-city-beaches": [
   "Mangaluru has several beaches within easy reach of the city centre, and this half day tour covers three of the best. Panambur Beach is a wide, lively beach with lifeguards, stalls, boat rides and water sports, and it is busiest around sunset. Tannirbhavi Beach is a calmer stretch of sand near the river mouth, set among coconut palms and a wooded headland.",
-  "Sultan Battery is a watchtower built by Tipu Sultan in the 18th century to guard the Gurupura river against enemy ships, and its black stone walls look over the water from a small hilltop. The ferry crossing nearby is a pleasant short ride, and the spot has good views of the estuary.",
+  "Sulthan Bathery is a watchtower built by Tipu Sultan in the 18th century to guard the Gurupura river against enemy ships, and its black stone walls look over the water from a small hilltop. The ferry crossing nearby is a pleasant short ride, and the spot has good views of the estuary.",
   "Because the tour is short, it fits easily into an afternoon and ends in the evening light. Avoid swimming in the monsoon months, and ask us if you would like to add a seafood dinner afterwards."
  ],
  "heritage-temples-mangaluru": [

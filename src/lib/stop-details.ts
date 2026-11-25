@@ -28,7 +28,7 @@ export const stopDetails: Record<string, string[]> = {
     "Malpe Beach is a long stretch of sand beside a working fishing harbour, and it is the natural place to end the day. The beach is wide enough for a walk even when it is busy, and the fishing boats coming in add to the scene. Sunset here is the main attraction, and the sea is rough during the monsoon months.",
   ],
   "mangaluru-city-beaches": [
-    "Sultan Battery is a small stone watchtower on a hill above the Gurupura river, built to guard the waterway that leads into the port. The walls are dark with age and the top gives a wide view of the estuary and the boats crossing it. A short ferry ride nearby is a pleasant way to see the water from a different angle.",
+    "Sulthan Bathery is a small stone watchtower on a hill above the Gurupura river, built to guard the waterway that leads into the port. The walls are dark with age and the top gives a wide view of the estuary and the boats crossing it. A short ferry ride nearby is a pleasant way to see the water from a different angle.",
     "Tannirbhavi Beach sits on the strip of land where the river meets the sea, framed by coconut palms and a wooded headland. It is quieter and cleaner than the busier city beaches, which makes it a good place for a slow walk. Swimming is not advised, especially in the monsoon months when the current is strong.",
     "Panambur Beach is the liveliest beach in Mangaluru, with wide sand, food stalls and water sports along the shore. Lifeguards are usually on duty and the crowd builds up towards sunset. It is the best place in the city for an evening walk with the family.",
   ],

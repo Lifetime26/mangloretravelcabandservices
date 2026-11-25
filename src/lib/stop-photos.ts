@@ -52,6 +52,11 @@ const rules: [string, string][] = [
   ["kollur mookambika", "kollur"], ["^dharmasthala", "darmasthala-tour"], ["bhatkal", "bhatkal"],
   ["st. mary", "st-marys-island"], ["malpe", "malpe"], ["manipal", "manipal"],
   ["madikeri", "madikeri"], ["dubare", "dubare"], ["coffee estate", "coffee-estate"], ["baba budangiri", "baba-budangiri"],
+  ["kukke subramanya", "kukke-subramanya-tour"], ["ananthapura", "ananthapura-lake-temple"], ["kappil", "kappil-beach"],
+  ["mangaladevi", "mangaladevi"], ["murudeshwara", "murudeshwara"], ["sharadamba", "sringeri-tour"],
+  ["^sringeri", "sringeri-tour"], ["annapoorneshwari", "horanadu-tour"], ["sulthan bathery", "sulthan-bathery"],
+  ["bandipur", "Bandipur forest road"], ["doddabetta", "Doddabetta Peak"],
+  ["botanical garden", "Government Botanical Garden"],
 ];
 
 const find = (name: string) => {
