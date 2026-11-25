@@ -214,8 +214,7 @@ const basePackages: TourPackage[] = [
     route: "Mangaluru, Udupi, Murudeshwara, Bhatkal, Mangaluru",
     distance: "About 330 km round trip",
     stops: [
-      { name: "Murudeshwara Temple", note: "A sea-facing temple with a tall Raja Gopura. A lift takes you up." },
-      { name: "Shiva statue", note: "Walk down to the giant statue and the beach around it." },
+      { name: "Murudeshwara Temple", note: "A sea-facing temple with a tall Raja Gopura and the giant Shiva statue on the hill beside it. A lift takes you up." },
       { name: "Bhatkal", note: "A coastal town for a tea or lunch break." },
       { name: "Idagunji Ganapati", note: "A Ganesha temple inland. Best added with a night's stay." },
     ],
@@ -364,7 +363,7 @@ const basePackages: TourPackage[] = [
       { name: "Madikeri", note: "Raja's Seat for sunset views over the hills." },
       { name: "Abbey Falls", note: "A waterfall inside a coffee estate. Fullest in the monsoon." },
       { name: "Dubare", note: "Elephant camp on the Kaveri river." },
-      { name: "Bylakuppe", note: "Golden Temple and a Tibetan settlement." },
+      { name: "Bylakuppe", img: sCoorg, note: "Golden Temple and a Tibetan settlement." },
     ],
     vehicle: "SUV or Tempo Traveller",
     plan: [

@@ -49,6 +49,9 @@ const rules: [string, string][] = [
   ["maravanthe", "maravanthe-beach"], ["kodachadri", "kodachadri-peak"], ["idagunji", "idagunji-ganapati"],
   ["bahubali", "bahubali-statue"], ["sowthadka", "sowthadka-ganapati"], ["udupi krishna", "udupi-krishna-matha"],
   ["abbey falls", "abbey-falls"], ["raja", "raja-seat"], ["hebbe", "hebbe-falls"], ["mullayanagiri", "mullayanagiri"],
+  ["kollur mookambika", "kollur"], ["^dharmasthala", "darmasthala-tour"], ["bhatkal", "bhatkal"],
+  ["st. mary", "st-marys-island"], ["malpe", "malpe"], ["manipal", "manipal"],
+  ["madikeri", "madikeri"], ["dubare", "dubare"], ["coffee estate", "coffee-estate"], ["baba budangiri", "baba-budangiri"],
 ];
 
 const find = (name: string) => {
