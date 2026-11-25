@@ -57,6 +57,29 @@ const rules: [string, string][] = [
   ["^sringeri", "sringeri-tour"], ["annapoorneshwari", "horanadu-tour"], ["sulthan bathery", "sulthan-bathery"],
   ["bandipur", "Bandipur forest road"], ["doddabetta", "Doddabetta Peak"],
   ["botanical garden", "Government Botanical Garden"],
+  /* Kodaikanal */
+  ["kodaikanal lake", "kodaikanal-lake"], ["coaker", "coakers-walk"], ["pillar rocks", "pillar-rocks"],
+  /* Munnar */
+  ["tea gardens", "tea-gardens-and-factory"], ["mattupetty", "mattupetty-dam"],
+  ["eravikulam", "eravikulam-national-park"], ["top station", "top-station"],
+  /* Mysuru */
+  ["mysore palace", "mysore-tour"], ["brindavan", "brindavan-gardens"], ["srirangapatna", "srirangapatna"],
+  /* Belur and Halebidu */
+  ["chennakeshava", "chennakeshava-temple-belur"], ["jain basadi", "halebidu-jain-basadis"],
+  /* Hampi */
+  ["anjanadri", "anjanadri-hill"], ["virupaksha", "virupaksha-temple"],
+  ["stone chariot", "hampi"], ["lotus mahal", "lotus-mahal"],
+  /* Goa */
+  ["basilica", "basilica-of-bom-jesus"], ["fort aguada", "goa-tour"],
+  ["calangute", "calangute-and-baga-beaches"], ["dudhsagar", "dudhsagar-falls"],
+  /* Dandeli and Yana */
+  ["dandeli wildlife", "dandeli-wildlife-sanctuary"], ["syntheri", "syntheri-rocks"],
+  ["^gokarna", "gokarna-tour"],
+  /* Treks */
+  ["netravati peak trail", "netravati-peak-trail"], ["netravati peak viewpoint", "netravati-peak-viewpoint"],
+  ["samse", "samse"], ["mullodi", "mullodi"], ["kudremukha peak", "kudremukha-peak"],
+  ["hidlumane", "hidlumane-falls"], ["mandalpatti", "mandalpatti-viewpoint"],
+  ["kyathanamakki", "kyathanamakki-hill"], ["jhari", "jhari-falls"], ["bisle", "bisle-ghat"],
 ];
 
 const find = (name: string) => {
