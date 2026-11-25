@@ -44,7 +44,7 @@ const rules: [string, string][] = [
   ["spice plantation", "wayanad-spice-plantation"],
   ["banasura", "Banasura Sagar Dam"], ["guna caves", "Guna Caves"], ["bryant", "Bryant Park"], ["echo point", "Echo Point"],
   ["chamundi", "Chamundi Hills"], ["philomena", "St. Philomena's Church"], ["hoysaleswara", "Hoysaleswara Temple"],
-  ["charmadi", "Charmadi Ghat"], ["badami cave", "Badami cave temples"], ["agastya", "Badami cave temples"], ["^aihole", "Aihole"], ["pattadakal", "Pattadakal"],
+  ["charmadi", "Charmadi Ghat"], ["badami cave", "Badami cave temples"], ["agastya", "agastya-lake"], ["^aihole", "Aihole"], ["pattadakal", "Pattadakal"],
   ["palolem", "Palolem and Colva"], ["kali river", "Kali river rafting"], ["kavala", "Kavala Caves"],
   ["bhairaveshwara", "Bhairaveshwara and Mohini Shikharas"], ["vibhooti", "Vibhooti Falls"], ["bekal fort", "bekal-fort"],
   ["maravanthe", "maravanthe-beach"], ["kodachadri", "kodachadri-peak"], ["idagunji", "idagunji-ganapati"],
