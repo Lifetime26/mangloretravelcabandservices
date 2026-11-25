@@ -31,15 +31,13 @@ export const Route = createFileRoute("/packages/$slug")({
 const guideIcons = [Shirt, Sunrise, Footprints, HeartHandshake];
 
 /* Stop photos arrive in every shape, from wide panoramas to tall phone shots.
-   On phones the frame takes the photo's own height, on desktop it fills the
-   card column, and whatever the photo does not cover is filled with a blurred
-   copy of itself, so nothing is cropped and no white bars appear. */
+   The frame is the photo's own shape at every screen size: the image keeps its
+   aspect ratio and spans the card, so there is never a filled or blank band
+   beside it. Long photos are capped so they cannot take over the screen. */
 function StopPhoto({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="relative overflow-hidden bg-navy-deep sm:h-full sm:min-h-[13rem]">
-      <img src={src} alt="" aria-hidden className="absolute inset-0 h-full w-full scale-150 object-cover blur-3xl" />
-      <div className="absolute inset-0 bg-navy-deep/20" />
-      <img src={src} alt={alt} loading="lazy" className="relative mx-auto block h-auto max-h-[70vh] w-full object-contain sm:absolute sm:inset-0 sm:h-full sm:max-h-none" />
+    <div className="overflow-hidden">
+      <img src={src} alt={alt} loading="lazy" className="block h-auto w-full" />
     </div>
   );
 }
@@ -92,7 +90,7 @@ function PackagePage() {
             <div className="mt-5 space-y-4">
               {p.stops.map((s, i) => (
                 <article key={s.name} className="overflow-hidden rounded-2xl border border-border bg-card">
-                  <div className={s.img ? "grid sm:grid-cols-[minmax(0,15rem)_1fr]" : ""}>
+                  <div>
                     {s.img && <StopPhoto src={s.img} alt={s.name} />}
                     <div className="p-4 sm:p-5">
                       <p className="text-[11px] font-bold uppercase tracking-wider text-gold">Stop {i + 1}</p>
