@@ -31,13 +31,13 @@ export const Route = createFileRoute("/packages/$slug")({
 const guideIcons = [Shirt, Sunrise, Footprints, HeartHandshake];
 
 /* Stop photos arrive in every shape, from wide panoramas to tall phone shots.
-   The frame is the photo's own shape at every screen size: the image keeps its
-   aspect ratio and spans the card, so there is never a filled or blank band
-   beside it. Long photos are capped so they cannot take over the screen. */
+   The frame is a fixed medium size and the photo always fills it edge to edge
+   (cover, never contain), so no blank or blurred band can appear beside or
+   around the picture at any screen width. */
 function StopPhoto({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="overflow-hidden">
-      <img src={src} alt={alt} loading="lazy" className="block h-auto w-full" />
+    <div className="relative overflow-hidden bg-navy-deep sm:h-full sm:min-h-[11rem]">
+      <img src={src} alt={alt} loading="lazy" className="block h-56 w-full object-cover sm:absolute sm:inset-0 sm:h-full" />
     </div>
   );
 }
@@ -90,7 +90,7 @@ function PackagePage() {
             <div className="mt-5 space-y-4">
               {p.stops.map((s, i) => (
                 <article key={s.name} className="overflow-hidden rounded-2xl border border-border bg-card">
-                  <div>
+                  <div className={s.img ? "grid sm:grid-cols-[minmax(0,18rem)_1fr]" : ""}>
                     {s.img && <StopPhoto src={s.img} alt={s.name} />}
                     <div className="p-4 sm:p-5">
                       <p className="text-[11px] font-bold uppercase tracking-wider text-gold">Stop {i + 1}</p>
